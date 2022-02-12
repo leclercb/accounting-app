@@ -15,9 +15,13 @@ import { getMovements } from 'selectors/MovementSelectors';
 import { applyRule } from 'utils/RuleUtils';
 import { getRules } from 'selectors/RuleSelectors';
 import { setMovementFile } from 'actions/AppActions';
+import { getSettings } from 'selectors/SettingSelectors';
 
 export function loadMovementsFromFile(file, bank) {
-    return async dispatch => {
+    return async (dispatch, getState) => {
+        const state = getState();
+        const settings = getSettings(state);
+
         await dispatch(setMovementFile(file));
 
         return await dispatch(loadObjectsFromFile('movements', file, (file, data) => {
@@ -30,7 +34,7 @@ export function loadMovementsFromFile(file, bank) {
 
                 records.shift();
 
-                const fields = getMovementFields();
+                const fields = getMovementFields(settings);
 
                 return records.map(record => fields.reduce((movement, field) => {
                     if (field.csv && field.csv[bank]) {
@@ -84,7 +88,8 @@ export function computeCategories() {
         const state = getState();
 
         try {
-            const movementFields = getMovementFields();
+            const settings = getSettings(state);
+            const movementFields = getMovementFields(settings);
             const movements = getMovements(state);
             const rules = getRules(state);
 

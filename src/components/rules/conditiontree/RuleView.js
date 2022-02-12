@@ -3,10 +3,11 @@ import { Col, Divider, Empty, Row } from 'antd';
 import RuleConditionTree from 'components/rules/conditiontree/RuleConditionTree';
 import RuleForm from 'components/rules/conditiontree/RuleForm';
 import RuleList from 'components/rules/conditiontree/RuleList';
-import { getMovementFields } from 'data/DataMovementFields';
+import { useMovementFieldApi } from 'hooks/UseMovementFieldApi';
 import { useRuleApi } from 'hooks/UseRuleApi';
 
 function RuleView() {
+    const movementFieldApi = useMovementFieldApi();
     const ruleApi = useRuleApi();
 
     const selectedRuleId = ruleApi.selectedRuleIds.length === 1 ? ruleApi.selectedRuleIds[0] : null;
@@ -48,11 +49,11 @@ function RuleView() {
                                 key={'conditionTree_' + selectedRuleId}
                                 rule={selectedRule}
                                 context={{
-                                    fields: getMovementFields()
+                                    fields: movementFieldApi.movementFields
                                 }}
                                 updateRule={ruleApi.updateRule} />
                         </React.Fragment>
-                    ) : (<Empty description="Please select a rule" />)}
+                    ) : (<Empty description="Veuillez sélectionner une règle" />)}
                 </Col>
             </Row>
         </div>

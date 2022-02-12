@@ -20,7 +20,7 @@ function ModalThreadManager() {
             onCancel={onClose}
             footer={(
                 <Button onClick={onClose}>
-                    Close
+                    Fermer
                 </Button>
             )}>
             <ProcessList processes={threadApi.processes} />

@@ -25,7 +25,7 @@ function ModalSettingManager() {
             footer={(
                 <LeftRight right={(
                     <Button onClick={onClose}>
-                        Close
+                        Fermer
                     </Button>
                 )}>
                     <div style={{ textAlign: 'left', fontSize: 10 }}>

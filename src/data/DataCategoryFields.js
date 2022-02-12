@@ -1,9 +1,5 @@
 import { addColorsToArray } from 'utils/ColorUtils';
 
-export function getCategoryField(categoryFieldId) {
-    return getCategoryFields().find(categoryField => categoryField.id === categoryFieldId);
-}
-
 export function getCategoryFields() {
     return addColorsToArray([
         {

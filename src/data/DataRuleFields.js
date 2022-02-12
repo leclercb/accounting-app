@@ -1,9 +1,5 @@
 import { addColorsToArray } from 'utils/ColorUtils';
 
-export function getRuleField(ruleFieldId) {
-    return getRuleFields().find(ruleField => ruleField.id === ruleFieldId);
-}
-
 export function getRuleFields() {
     return addColorsToArray([
         {

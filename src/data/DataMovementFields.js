@@ -1,17 +1,16 @@
 import moment from 'moment';
 import { addColorsToArray } from 'utils/ColorUtils';
 
-export function getMovementField(movementFieldId) {
-    return getMovementFields().find(movementField => movementField.id === movementFieldId);
-}
-
-export function getMovementFields() {
+export function getMovementFields(settings) {
     return addColorsToArray([
         {
             static: true,
             id: 'date',
             title: 'Date',
             type: 'date',
+            options: {
+                dateFormat: settings.dateFormat
+            },
             editable: false,
             defaultOrder: 1,
             csv: {

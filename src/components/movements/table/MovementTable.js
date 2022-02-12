@@ -6,18 +6,19 @@ import { ResizableAndMovableColumn, moveHandler, resizeHandler } from 'component
 import { multiSelectionHandler } from 'components/common/table/VirtualizedTable';
 import Constants from 'constants/Constants';
 import { getWidthForType, isAlwaysInEditionForType } from 'data/DataFieldTypes';
-import { getMovementFields } from 'data/DataMovementFields';
 import { useAppApi } from 'hooks/UseAppApi';
 import { useEditingCellApi } from 'hooks/UseEditingCellApi';
 import { useSettingsApi } from 'hooks/UseSettingsApi';
 import { useMovementApi } from 'hooks/UseMovementApi';
 import { getMovementBackgroundColor, getMovementForegroundColor } from 'utils/SettingUtils';
 import 'components/movements/table/MovementTable.css';
+import { useMovementFieldApi } from 'hooks/UseMovementFieldApi';
 
 function MovementTable() {
     const appApi = useAppApi();
     const editingCellApi = useEditingCellApi();
     const movementApi = useMovementApi();
+    const movementFieldApi = useMovementFieldApi();
     const settingsApi = useSettingsApi();
 
     const gridRef = useRef();
@@ -38,9 +39,9 @@ function MovementTable() {
     };
 
     const onResize = resizeHandler('movementColumnWidth_', settingsApi.updateSettings);
-    const onMove = moveHandler('movementColumnOrder_', getMovementFields(), settingsApi.settings, settingsApi.updateSettings);
+    const onMove = moveHandler('movementColumnOrder_', movementFieldApi.movementFields, settingsApi.settings, settingsApi.updateSettings);
 
-    const sortedFields = sortBy(getMovementFields(), field => ('movementColumnOrder_' + field.id) in settingsApi.settings ? settingsApi.settings['movementColumnOrder_' + field.id] : field.defaultOrder || 0);
+    const sortedFields = sortBy(movementFieldApi.movementFields, field => ('movementColumnOrder_' + field.id) in settingsApi.settings ? settingsApi.settings['movementColumnOrder_' + field.id] : field.defaultOrder || 0);
 
     const getColumnWidth = columnIndex => {
         const field = sortedFields[columnIndex];

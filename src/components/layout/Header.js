@@ -102,8 +102,8 @@ function Header() {
                 </Button>
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>
-                {createButton('save', 'Save', onSave, false)}
-                {createButton('cog', 'Settings', onSetSettingsVisible, false)}
+                {createButton('save', 'Sauver', onSave, false)}
+                {createButton('cog', 'Préférences', onSetSettingsVisible, false)}
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>
                 {appApi.selectedView === 'rules' ? createButton('plus', 'Ajouter une règle', onAddRule, false) : null}

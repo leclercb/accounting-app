@@ -1,7 +1,10 @@
 import { getMovementFields } from 'data/DataMovementFields';
+import { useSettingsApi } from 'hooks/UseSettingsApi';
 
 export function useMovementFieldApi() {
-    const movementFields = getMovementFields();
+    const settingsApi = useSettingsApi();
+
+    const movementFields = getMovementFields(settingsApi.settings);
 
     return {
         movementFields

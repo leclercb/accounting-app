@@ -4,6 +4,7 @@ import { getMovementFields } from 'data/DataMovementFields';
 import { getOperations } from 'data/DataOperations';
 import moment from 'moment';
 import { getComputedCategories } from 'selectors/CategorySelectors';
+import { getSettings } from 'selectors/SettingSelectors';
 import {
     compareBooleans,
     compareDates,
@@ -237,8 +238,8 @@ export function getFieldType(type, options) {
                 width: 200,
                 alwaysInEdition: false,
                 valuePropName: 'value',
-                compare: (a, b) => compareObjects(a, b, getMovementFields()),
-                toString: (value) => toStringObject(value, getMovementFields()),
+                compare: (a, b, state) => compareObjects(a, b, getMovementFields(getSettings(state))),
+                toString: (value, state) => toStringObject(value, getMovementFields(getSettings(state))),
                 options: []
             };
         }

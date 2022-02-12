@@ -1,5 +1,6 @@
 import React from 'react';
 import { Checkbox, Modal, message } from 'antd';
+import moment from 'moment';
 import { loadData, saveData } from 'actions/AppActions';
 import { getUserDataPath } from 'actions/ActionUtils';
 import FileField from 'components/common/FileField';
@@ -51,12 +52,12 @@ export function getCategories() {
     return [
         {
             id: 'general',
-            title: 'General',
+            title: 'Général',
             icon: 'home',
             settings: [
                 {
                     id: 'dataFolder',
-                    title: 'Data folder location',
+                    title: 'Dossier des données',
                     type: 'text',
                     value: getUserDataPath(),
                     editable: false,
@@ -64,7 +65,7 @@ export function getCategories() {
                 },
                 {
                     id: 'changeDataFolder',
-                    title: 'Change data folder location',
+                    title: 'Changer le dossier des données',
                     type: 'button',
                     value: (settings, updateSettings, dispatch) => {
                         return new Promise((resolve, reject) => {
@@ -72,7 +73,7 @@ export function getCategories() {
                             let copy = false;
 
                             Modal.confirm({
-                                title: 'Change data folder location',
+                                title: 'Changer le dossier des données',
                                 content: (
                                     <React.Fragment>
                                         <FileField
@@ -88,13 +89,13 @@ export function getCategories() {
                                             }} />
                                         <Checkbox
                                             onChange={event => copy = event.target.checked}>
-                                            Copy current data to the new data folder location.
+                                            Copier les données courantes vers le nouveau dossier.
                                             <br />
-                                            This will override any data in the selected folder !
+                                            Ceci va écraser toutes les données de ce dossier !
                                         </Checkbox>
                                     </React.Fragment>
                                 ),
-                                okText: 'Change',
+                                okText: 'Changer',
                                 onOk: async () => {
                                     try {
                                         if (dataFolder) {
@@ -103,7 +104,7 @@ export function getCategories() {
                                             await dispatch(saveData({ coreSettingsOnly: !copy }));
                                             await dispatch(loadData());
                                         } else {
-                                            message.error('Please select a data folder');
+                                            message.error('Veuillez sélectionner un dossier pour vos données');
                                         }
 
                                         resolve();
@@ -123,7 +124,7 @@ export function getCategories() {
                 },
                 {
                     id: 'confirmBeforeClosing',
-                    title: 'Confirm before closing',
+                    title: 'Confirmer avant de quitter',
                     type: 'boolean',
                     value: false,
                     editable: true
@@ -132,12 +133,12 @@ export function getCategories() {
         },
         {
             id: 'theme',
-            title: 'Theme & Colors',
+            title: 'Thème & Couleurs',
             icon: 'paint-roller',
             settings: [
                 {
                     id: 'resetDefaultColors',
-                    title: 'Reset default colors',
+                    title: 'Remettre les couleurs par défaut',
                     type: 'button',
                     value: async (settings, updateSettings) => {
                         await updateSettings({
@@ -151,14 +152,14 @@ export function getCategories() {
                 },
                 {
                     id: 'evenColor',
-                    title: 'Even color',
+                    title: 'Couleur pair',
                     type: 'color',
                     value: '#fafafa',
                     editable: true
                 },
                 {
                     id: 'oddColor',
-                    title: 'Odd color',
+                    title: 'Couleur impair',
                     type: 'color',
                     value: '#e3ebf2',
                     editable: true
@@ -166,13 +167,141 @@ export function getCategories() {
             ]
         },
         {
+            id: 'date',
+            title: 'Date & Heure',
+            icon: 'calendar-alt',
+            settings: [
+                {
+                    id: 'firstDayOfWeek',
+                    title: 'Premier jour de la semaine',
+                    type: 'select',
+                    options: {
+                        values: [
+                            {
+                                title: 'Lundi',
+                                value: 1
+                            },
+                            {
+                                title: 'Dimanche',
+                                value: 0
+                            }
+                        ]
+                    },
+                    value: 1,
+                    editable: true
+                },
+                {
+                    id: 'dateFormat',
+                    title: 'Format des dates',
+                    type: 'select',
+                    options: {
+                        values: [
+                            {
+                                title: `DD/MM/YYYY (${moment().format('DD/MM/YYYY')})`,
+                                value: 'DD/MM/YYYY'
+                            },
+                            {
+                                title: `DD-MM-YYYY (${moment().format('DD-MM-YYYY')})`,
+                                value: 'DD-MM-YYYY'
+                            },
+                            {
+                                title: `DD.MM.YYYY (${moment().format('DD.MM.YYYY')})`,
+                                value: 'DD.MM.YYYY'
+                            },
+                            {
+                                title: `MM/DD/YYYY (${moment().format('MM/DD/YYYY')})`,
+                                value: 'MM/DD/YYYY'
+                            },
+                            {
+                                title: `MM-DD-YYYY (${moment().format('MM-DD-YYYY')})`,
+                                value: 'MM-DD-YYYY'
+                            },
+                            {
+                                title: `MM.DD.YYYY (${moment().format('MM.DD.YYYY')})`,
+                                value: 'MM.DD.YYYY'
+                            },
+                            {
+                                title: `YYYY/MM/DD (${moment().format('YYYY/MM/DD')})`,
+                                value: 'YYYY/MM/DD'
+                            },
+                            {
+                                title: `YYYY-MM-DD (${moment().format('YYYY-MM-DD')})`,
+                                value: 'YYYY-MM-DD'
+                            },
+                            {
+                                title: `YYYY.MM.DD (${moment().format('YYYY.MM.DD')})`,
+                                value: 'YYYY.MM.DD'
+                            },
+                            {
+                                title: `ddd DD/MM/YYYY (${moment().format('ddd DD/MM/YYYY')})`,
+                                value: 'ddd DD/MM/YYYY'
+                            },
+                            {
+                                title: `ddd DD-MM-YYYY (${moment().format('ddd DD-MM-YYYY')})`,
+                                value: 'ddd DD-MM-YYYY'
+                            },
+                            {
+                                title: `ddd DD.MM.YYYY (${moment().format('ddd DD.MM.YYYY')})`,
+                                value: 'ddd DD.MM.YYYY'
+                            },
+                            {
+                                title: `ddd MM/DD/YYYY (${moment().format('ddd MM/DD/YYYY')})`,
+                                value: 'ddd MM/DD/YYYY'
+                            },
+                            {
+                                title: `ddd MM-DD-YYYY (${moment().format('ddd MM-DD-YYYY')})`,
+                                value: 'ddd MM-DD-YYYY'
+                            },
+                            {
+                                title: `ddd MM.DD.YYYY (${moment().format('ddd MM.DD.YYYY')})`,
+                                value: 'ddd MM.DD.YYYY'
+                            },
+                            {
+                                title: `ddd YYYY/MM/DD (${moment().format('ddd YYYY/MM/DD')})`,
+                                value: 'ddd YYYY/MM/DD'
+                            },
+                            {
+                                title: `ddd YYYY-MM-DD (${moment().format('ddd YYYY-MM-DD')})`,
+                                value: 'ddd YYYY-MM-DD'
+                            },
+                            {
+                                title: `ddd YYYY.MM.DD (${moment().format('ddd YYYY.MM.DD')})`,
+                                value: 'ddd YYYY.MM.DD'
+                            }
+                        ]
+                    },
+                    value: 'DD/MM/YYYY',
+                    editable: true
+                },
+                {
+                    id: 'timeFormat',
+                    title: 'Format des heures',
+                    type: 'select',
+                    options: {
+                        values: [
+                            {
+                                title: 'HH:mm',
+                                value: 'HH:mm'
+                            },
+                            {
+                                title: 'hh:mm a',
+                                value: 'hh:mm a'
+                            }
+                        ]
+                    },
+                    value: 'HH:mm',
+                    editable: true
+                }
+            ]
+        },
+        {
             id: 'window',
-            title: 'Window',
+            title: 'Fenêtre',
             icon: 'desktop',
             settings: [
                 {
                     id: 'selectedView',
-                    title: 'Selected view',
+                    title: 'Vue sélectionnée',
                     type: 'select',
                     options: {
                         values: [
@@ -200,7 +329,7 @@ export function getCategories() {
                 },
                 {
                     id: 'windowSizeWidth',
-                    title: 'Window size - Width',
+                    title: 'Taille de la fenêtre - Largeur',
                     type: 'number',
                     value: 1024,
                     editable: false,
@@ -209,7 +338,7 @@ export function getCategories() {
                 },
                 {
                     id: 'windowSizeHeight',
-                    title: 'Window size - Height',
+                    title: 'Taille de la fenêtre - Hauteur',
                     type: 'number',
                     value: 768,
                     editable: false,
@@ -218,7 +347,7 @@ export function getCategories() {
                 },
                 {
                     id: 'windowPositionX',
-                    title: 'Window position - X',
+                    title: 'Position de la fenêtre - X',
                     type: 'number',
                     value: null,
                     editable: false,
@@ -227,7 +356,7 @@ export function getCategories() {
                 },
                 {
                     id: 'windowPositionY',
-                    title: 'Window position - Y',
+                    title: 'Position de la fenêtre - Y',
                     type: 'number',
                     value: null,
                     editable: false,
@@ -238,12 +367,12 @@ export function getCategories() {
         },
         {
             id: 'advanced',
-            title: 'Advanced',
+            title: 'Avancé',
             icon: 'radiation',
             settings: [
                 {
                     id: 'electronLoggerLevel',
-                    title: 'Electron logger level',
+                    title: 'Niveau de log d\'Electron',
                     type: 'select',
                     value: 'info',
                     editable: true,
@@ -271,13 +400,13 @@ export function getCategories() {
                 },
                 {
                     id: 'saveElectronLogs',
-                    title: 'Save Electron logs',
+                    title: 'Sauver les logs d\'Electron',
                     type: 'button',
                     value: async () => {
                         const result = await showSaveDialog({
                             filters: [
                                 {
-                                    name: 'Log Files',
+                                    name: 'Fichiers de log',
                                     extensions: ['log']
                                 }
                             ]
