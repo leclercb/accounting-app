@@ -5,6 +5,7 @@ import RuleForm from 'components/rules/conditiontree/RuleForm';
 import RuleList from 'components/rules/conditiontree/RuleList';
 import { useMovementFieldApi } from 'hooks/UseMovementFieldApi';
 import { useRuleApi } from 'hooks/UseRuleApi';
+import { getRandomColor } from 'utils/ColorUtils';
 
 function RuleView() {
     const movementFieldApi = useMovementFieldApi();
@@ -18,7 +19,10 @@ function RuleView() {
     };
 
     const onDuplicateRule = async rule => {
-        rule = await ruleApi.duplicateRule(rule);
+        rule = await ruleApi.duplicateRule({
+            ...rule,
+            color: getRandomColor()
+        });
         ruleApi.setSelectedRuleIds(rule.id);
     };
 

@@ -4,8 +4,8 @@ import {
     saveToFile
 } from 'actions/ActionUtils';
 import { updateProcess } from 'actions/ThreadActions';
-import Constants from 'constants/Constants';
 import { getObjectsByIds } from 'selectors/ObjectSelectors';
+import { getRandomColor } from 'utils/ColorUtils';
 
 export function loadObjectsFromFile(property, file, converter) {
     return async dispatch => {
@@ -34,7 +34,7 @@ export function addObject(
     options = {},
     defaultValues = {
         title: '',
-        color: Constants.defaultObjectColor
+        color: getRandomColor()
     }) {
     return async (dispatch, getState) => {
         const processId = uuid();

@@ -48,6 +48,7 @@
         "redux-thunk": "^2.4.1",
         "redux-undo": "^1.0.1",
         "reselect": "^4.1.5",
+        "string-to-color": "^2.2.2",
         "uuid": "^8.3.2"
     },
     "devDependencies": {

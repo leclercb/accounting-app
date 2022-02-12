@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Icon from 'components/common/Icon';
 import { useRuleApi } from 'hooks/UseRuleApi';
 import { RulePropType } from 'proptypes/RulePropTypes';
+import { getRandomColor } from 'utils/ColorUtils';
 
 function RuleMenu({ selectedRules, children }) {
     const ruleApi = useRuleApi();
@@ -30,7 +31,10 @@ function RuleMenu({ selectedRules, children }) {
     };
 
     const onDuplicateRule = rule => {
-        ruleApi.duplicateRule(rule);
+        ruleApi.duplicateRule({
+            ...rule,
+            color: getRandomColor()
+        });
     };
 
     const onRemoveRules = ruleIds => {

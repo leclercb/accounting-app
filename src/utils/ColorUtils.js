@@ -1,3 +1,6 @@
+import stc from 'string-to-color';
+import { v4 as uuid } from 'uuid';
+
 export function getColorFromIndex(index) {
     const colors = [
         '#dc143c',
@@ -30,4 +33,12 @@ export function addColorsToArray(array) {
         item.color = getColorFromIndex(index);
         return item;
     });
+}
+
+export function getRandomColor() {
+    return getColorFromString(uuid());
+}
+
+export function getColorFromString(value) {
+    return stc(value);
 }
