@@ -41,20 +41,21 @@ export function loadMovementsFromFile(file, bank) {
 
                     return movement;
                 }, {
-                    id: uuid()
+                    id: uuid(),
+                    confidence: 'unknown'
                 }));
             }
 
             return JSON.parse(data);
         }));
-    }
+    };
 }
 
 export function saveMovementsToFile(file, data) {
     return async dispatch => {
         await dispatch(setMovementFile(file));
         return await dispatch(saveObjectsToFile('movements', file, data));
-    }
+    };
 }
 
 export function setMovements(movements) {
@@ -95,7 +96,7 @@ export function computeCategories() {
                 }
 
                 movement.category = null;
-                movement.confidence = null;
+                movement.confidence = 'unknown';
 
                 if (matchingRules.length === 1) {
                     movement.category = matchingRules[0].category;

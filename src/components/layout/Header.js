@@ -42,7 +42,7 @@ function Header() {
     const onSaveMovements = async () => {
         let file = appApi.movementFile;
         if (file) {
-            file = file.substr(0, file.lastIndexOf(".")) + '.json';
+            file = file.substr(0, file.lastIndexOf('.')) + '.json';
             await movementApi.saveMovementsToFile(file, movementApi.movements);
         }
     };

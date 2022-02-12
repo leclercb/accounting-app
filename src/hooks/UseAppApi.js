@@ -25,7 +25,7 @@ export function useAppApi() {
     const startDate = useSelector(getStartDate);
     const selectedView = useSelector(getSelectedView);
     const editingCell = useSelector(getEditingCell);
-    const movementFile = useSelector(getMovementFile)
+    const movementFile = useSelector(getMovementFile);
     const settingManager = useSelector(getSettingManager);
 
     const loadDataCallback = useCallback(
