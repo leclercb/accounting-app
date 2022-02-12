@@ -1,7 +1,6 @@
 import { getCategories } from 'data/DataCategories';
 import { createSelector } from 'reselect';
 import { getMovements } from 'selectors/MovementSelectors';
-import { getRules } from 'selectors/RuleSelectors';
 
 export const getComputedCategories = createSelector(
     getMovements,
@@ -14,7 +13,7 @@ export const getComputedCategories = createSelector(
                 if (movement.category === category.id) {
                     currentBalance += movement.amount;
                 }
-            })
+            });
 
             return {
                 ...category,

@@ -24,8 +24,6 @@ function RuleForm({ rule, updateRule }) {
         }
     }, [rule]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const onCommit = () => onCommitForm(form, rule, updateRule);
-
     return (
         <Form form={form} initialValues={rule} {...formItemLayout}>
             {fields.filter(field => field.visible !== false).map(field => (

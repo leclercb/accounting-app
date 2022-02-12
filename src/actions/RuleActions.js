@@ -7,7 +7,6 @@ import {
     setObjects,
     updateObject
 } from 'actions/ObjectActions';
-import Constants from 'constants/Constants';
 
 export function loadRulesFromFile(file) {
     return loadObjectsFromFile('rules', file);

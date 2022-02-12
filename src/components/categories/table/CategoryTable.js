@@ -11,6 +11,7 @@ import { useAppApi } from 'hooks/UseAppApi';
 import { useEditingCellApi } from 'hooks/UseEditingCellApi';
 import { useSettingsApi } from 'hooks/UseSettingsApi';
 import { useCategoryApi } from 'hooks/UseCategoryApi';
+import { CategoryTypePropType } from 'proptypes/CategoryPropTypes';
 import { getCategoryBackgroundColor, getCategoryForegroundColor } from 'utils/SettingUtils';
 import 'components/categories/table/CategoryTable.css';
 
@@ -253,5 +254,9 @@ function CategoryTable({ type }) {
         </div>
     );
 }
+
+CategoryTable.propTypes = {
+    type: CategoryTypePropType
+};
 
 export default CategoryTable;

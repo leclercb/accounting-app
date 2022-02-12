@@ -27,7 +27,7 @@ export function useCategoryApi() {
             default:
                 return [];
         }
-    }
+    };
 
     return {
         categories,

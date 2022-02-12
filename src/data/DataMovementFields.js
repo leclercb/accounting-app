@@ -17,7 +17,7 @@ export function getMovementFields() {
             csv: {
                 kbc: {
                     index: 5,
-                    convert: value => moment(value, "DD-MM-YY").toISOString()
+                    convert: value => moment(value, 'DD-MM-YY').toISOString()
                 }
             }
         },
