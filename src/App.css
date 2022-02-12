@@ -1,0 +1,193 @@
+/* Ant Design */
+
+.ant-avatar-sm {
+    width: 20px !important;
+    height: 20px !important;
+    line-height: 20px !important;
+    font-weight: bold !important;
+}
+
+.ant-badge-count {
+    height: 18px !important;
+    line-height: 18px !important;
+}
+
+.ant-btn {
+    border-width: 1px !important;
+}
+
+.ant-btn-primary svg {
+    color: #ffffff !important;
+}
+
+.ant-checkbox-group .ant-checkbox+span {
+    padding-left: 2px !important;
+    padding-right: 5px !important;
+}
+
+.ant-checkbox-group-item {
+    margin-right: 0px !important;
+    margin-bottom: 8px !important;
+}
+
+.ant-form-item {
+    margin-bottom: 8px !important;
+}
+
+.ant-input[disabled], .ant-select-disabled, .ant-input-number-disabled {
+    color: #000000 !important;
+}
+
+.ant-layout-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0px !important;
+}
+
+.ant-layout-sider {
+    overflow-y: auto;
+}
+
+.ant-list {
+    overflow-y: auto !important;
+    max-height: 500px !important;
+}
+
+.ant-list-item:hover {
+    cursor: pointer;
+}
+
+.ant-menu-item {
+    height: 24px !important;
+    line-height: 24px !important;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+}
+
+.ant-menu-item-active, .ant-dropdown-menu-item-active, .ant-dropdown-menu-submenu-active {
+    background-color: #e6f6ff !important;
+}
+
+.ant-menu-submenu-title {
+    height: 24px !important;
+    line-height: 24px !important;
+}
+
+.ant-modal-body {
+    max-height: 70vh;
+    overflow: auto;
+}
+
+.ant-select {
+    min-width: 100px;
+}
+
+.ant-spin-nested-loading, .ant-spin-container {
+    min-height: 100%;
+    height: 100%;
+}
+
+.ant-tag {
+    font-weight: bold;
+    text-shadow: -1px 0 #444444, 0 1px #444444, 1px 0 #444444, 0 -1px #444444;
+}
+
+/* React Color */
+
+.color-picker {
+    border: 1px solid #d9d9d9 !important;
+    width: 50px !important;
+    height: 32px !important;
+    box-shadow: 0 0 0 5px #ffffff inset !important;
+    margin-top: 3px !important;
+}
+
+/* React SplitPane */
+
+.Resizer {
+    background: #000000;
+    opacity: .2;
+    z-index: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+}
+
+.Resizer:hover {
+    -webkit-transition: all 2s ease;
+    transition: all 2s ease;
+}
+
+.Resizer.horizontal {
+    height: 11px;
+    margin: -5px 0;
+    border-top: 5px solid rgba(255, 255, 255, 0);
+    border-bottom: 5px solid rgba(255, 255, 255, 0);
+    cursor: row-resize;
+    width: 100%;
+}
+
+.Resizer.horizontal:hover {
+    border-top: 5px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+}
+
+.Resizer.vertical {
+    width: 11px;
+    margin: 0 -5px;
+    border-left: 5px solid rgba(255, 255, 255, 0);
+    border-right: 5px solid rgba(255, 255, 255, 0);
+    cursor: col-resize;
+}
+
+.Resizer.vertical:hover {
+    border-left: 5px solid rgba(0, 0, 0, 0.5);
+    border-right: 5px solid rgba(0, 0, 0, 0.5);
+}
+
+.Resizer.disabled {
+    cursor: not-allowed;
+}
+
+.Resizer.disabled:hover {
+    border-color: transparent;
+}
+
+/* React Virtualized */
+
+.ReactVirtualized__Grid {
+    outline: 0;
+}
+
+.ReactVirtualized__Table__Grid {
+    outline: 0;
+}
+
+.ReactVirtualized__Table__row {
+    outline: 0;
+}
+
+.ReactVirtualized__Table__headerRow {
+    text-transform: none !important;
+}
+
+.ReactVirtualized__Table__headerColumn, .ReactVirtualized__Table__rowColumn {
+    margin-right: 3px;
+}
+
+/* Accounting */
+
+.selected-list-item {
+    background-color: #0e67c4;
+    color: #ffffff;
+}
+
+.selected-list-item svg.colorable {
+    color: #ffffff !important;
+}
+
+.object-actions:hover {
+    color: #e6f6ff !important;
+}

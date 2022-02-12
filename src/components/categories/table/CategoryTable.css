@@ -1,0 +1,7 @@
+.category-selected .ant-progress-text {
+    color: #ffffff;
+}
+
+.category-selected svg.colorable {
+    color: #ffffff !important;
+}

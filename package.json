@@ -1,0 +1,111 @@
+{
+    "name": "accounting-app",
+    "description": "Accounting",
+    "author": "BL-IT",
+    "version": "1.0.0",
+    "private": true,
+    "main": "public/electron.js",
+    "homepage": "./",
+    "scripts": {
+        "react:start": "craco --max_old_space_size=4096 start",
+        "electron:start": "electron .",
+        "start": "REACT_APP_GIT_COMMIT_HASH=$(git rev-parse --short HEAD) craco --max_old_space_size=4096 start",
+        "build": "REACT_APP_GIT_COMMIT_HASH=$(git rev-parse --short HEAD) craco --max_old_space_size=4096 build",
+        "lint": "eslint public src",
+        "test": "craco test",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder --x64 --mac --win --c.extraMetadata.main=build/electron.js -p never",
+        "postinstall": "husky install"
+    },
+    "dependencies": {
+        "@craco/craco": "^6.4.3",
+        "@fortawesome/fontawesome-svg-core": "^1.2.36",
+        "@fortawesome/free-solid-svg-icons": "^5.15.4",
+        "@fortawesome/react-fontawesome": "^0.1.16",
+        "antd": "^4.18.2",
+        "craco-antd": "^1.19.0",
+        "csv-parse": "^5.0.4",
+        "electron-is-dev": "^2.0.0",
+        "electron-log": "^4.4.4",
+        "fs-extra": "^10.0.0",
+        "lodash": "^4.17.21",
+        "moment": "^2.29.1",
+        "mousetrap": "^1.6.5",
+        "qs": "^6.10.2",
+        "react": "^17.0.2",
+        "react-color": "^2.19.3",
+        "react-dnd": "^14.0.4",
+        "react-dnd-html5-backend": "^14.0.2",
+        "react-dom": "^17.0.2",
+        "react-draggable": "^4.4.4",
+        "react-redux": "^7.2.6",
+        "react-responsive": "^8.2.0",
+        "react-scripts": "4.0.3",
+        "react-split-pane": "^0.1.92",
+        "react-virtualized": "^9.22.3",
+        "reduce-reducers": "^1.0.4",
+        "redux": "^4.1.2",
+        "redux-thunk": "^2.4.1",
+        "redux-undo": "^1.0.1",
+        "reselect": "^4.1.5",
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
+        "babel-eslint": "^10.1.0",
+        "babel-jest": "^27.4.5",
+        "electron": "^16.0.5",
+        "electron-builder": "^22.14.5",
+        "electron-devtools-installer": "^3.2.0",
+        "enzyme": "^3.11.0",
+        "enzyme-to-json": "^3.6.2",
+        "eslint": "^7.32.0",
+        "eslint-plugin-react": "^7.28.0",
+        "eslint-plugin-react-hooks": "^4.3.0",
+        "husky": "^7.0.4",
+        "react-test-renderer": "^17.0.2",
+        "typescript": "^4.5.4",
+        "worker-loader": "^3.0.8"
+    },
+    "build": {
+        "appId": "com.bl-it.accounting",
+        "compression": "normal",
+        "productName": "Accounting",
+        "directories": {
+            "buildResources": "build",
+            "output": "dist"
+        },
+        "mac": {
+            "icon": "assets/icon.icns",
+            "type": "distribution",
+            "target": [
+                "dmg"
+            ],
+            "publish": {
+                "provider": "github"
+            },
+            "category": "public.app-category.productivity"
+        },
+        "win": {
+            "icon": "assets/icon.ico",
+            "target": [
+                "portable"
+            ],
+            "publish": {
+                "provider": "github"
+            },
+            "publisherName": "BL-IT"
+        }
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ],
+    "jest": {
+        "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ]
+    }
+}

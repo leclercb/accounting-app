@@ -1,0 +1,7 @@
+.movement-selected .ant-progress-text {
+    color: #ffffff;
+}
+
+.movement-selected svg.colorable {
+    color: #ffffff !important;
+}

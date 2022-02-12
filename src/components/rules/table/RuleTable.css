@@ -1,0 +1,7 @@
+.rule-selected .ant-progress-text {
+    color: #ffffff;
+}
+
+.rule-selected svg.colorable {
+    color: #ffffff !important;
+}
