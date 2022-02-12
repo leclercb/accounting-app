@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedMovementIds } from 'actions/AppActions';
-import { addMovement, computeCategories, deleteMovement, duplicateMovement, loadMovementsFromFile, updateMovement } from 'actions/MovementActions';
+import { addMovement, computeCategories, deleteMovement, duplicateMovement, loadMovementsFromFile, saveMovementsToFile, updateMovement } from 'actions/MovementActions';
 import { getMovements, getSelectedMovementIds, getSelectedMovements } from 'selectors/MovementSelectors';
 
 export function useMovementApi() {
@@ -42,6 +42,11 @@ export function useMovementApi() {
         [dispatch]
     );
 
+    const saveMovementsToFileCallback = useCallback(
+        (file, data) => dispatch(saveMovementsToFile(file, data)),
+        [dispatch]
+    );
+
     const computeCategoriesCallback = useCallback(
         () => dispatch(computeCategories()),
         [dispatch]
@@ -57,6 +62,7 @@ export function useMovementApi() {
         deleteMovement: deleteMovementCallback,
         setSelectedMovementIds: setSelectedMovementIdsCallback,
         loadMovementsFromFile: loadMovementsFromFileCallback,
+        saveMovementsToFile: saveMovementsToFileCallback,
         computeCategories: computeCategoriesCallback
     };
 }

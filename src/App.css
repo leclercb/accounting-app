@@ -179,6 +179,10 @@
 
 /* Accounting */
 
+.selected-view {
+    background-color: #c8d2dd !important;
+}
+
 .selected-list-item {
     background-color: #0e67c4;
     color: #ffffff;

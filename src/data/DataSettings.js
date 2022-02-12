@@ -60,8 +60,7 @@ export function getCategories() {
                     type: 'text',
                     value: getUserDataPath(),
                     editable: false,
-                    core: true,
-                    mode: 'electron'
+                    core: true
                 },
                 {
                     id: 'changeDataFolder',
@@ -120,16 +119,14 @@ export function getCategories() {
                         });
                     },
                     editable: true,
-                    core: true,
-                    mode: 'electron'
+                    core: true
                 },
                 {
                     id: 'confirmBeforeClosing',
                     title: 'Confirm before closing',
                     type: 'boolean',
                     value: false,
-                    editable: true,
-                    mode: 'electron'
+                    editable: true
                 }
             ]
         },
@@ -199,7 +196,7 @@ export function getCategories() {
                     },
                     value: 'task',
                     editable: false,
-                    visible: false
+                    visible: true
                 },
                 {
                     id: 'windowSizeWidth',
@@ -207,9 +204,8 @@ export function getCategories() {
                     type: 'number',
                     value: 1024,
                     editable: false,
-                    visible: true,
-                    core: true,
-                    mode: 'electron'
+                    visible: false,
+                    core: true
                 },
                 {
                     id: 'windowSizeHeight',
@@ -217,9 +213,8 @@ export function getCategories() {
                     type: 'number',
                     value: 768,
                     editable: false,
-                    visible: true,
-                    core: true,
-                    mode: 'electron'
+                    visible: false,
+                    core: true
                 },
                 {
                     id: 'windowPositionX',
@@ -227,9 +222,8 @@ export function getCategories() {
                     type: 'number',
                     value: null,
                     editable: false,
-                    visible: true,
-                    core: true,
-                    mode: 'electron'
+                    visible: false,
+                    core: true
                 },
                 {
                     id: 'windowPositionY',
@@ -237,9 +231,8 @@ export function getCategories() {
                     type: 'number',
                     value: null,
                     editable: false,
-                    visible: true,
-                    core: true,
-                    mode: 'electron'
+                    visible: false,
+                    core: true
                 }
             ]
         },
@@ -247,7 +240,6 @@ export function getCategories() {
             id: 'advanced',
             title: 'Advanced',
             icon: 'radiation',
-            mode: 'electron',
             settings: [
                 {
                     id: 'electronLoggerLevel',
@@ -275,8 +267,7 @@ export function getCategories() {
                             }
                         ]
                     },
-                    core: true,
-                    mode: 'electron'
+                    core: true
                 },
                 {
                     id: 'saveElectronLogs',
@@ -296,8 +287,7 @@ export function getCategories() {
                             await copyFile(await getLogFile(), result.filePath);
                         }
                     },
-                    editable: true,
-                    mode: 'electron'
+                    editable: true
                 }
             ]
         }

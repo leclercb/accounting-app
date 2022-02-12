@@ -75,7 +75,7 @@ class FileField extends React.Component {
         const { readOnly } = this.props;
 
         if (readOnly) {
-            if (process.env.REACT_APP_MODE === 'electron' && this.state.value) {
+            if (this.state.value) {
                 return (
                     <Icon
                         icon={'folder-open'}
@@ -102,12 +102,12 @@ class FileField extends React.Component {
                         }, 100);
                     }
                 }}
-                suffix={process.env.REACT_APP_MODE === 'electron' ? (
+                suffix={(
                     <Icon
                         icon={'folder-open'}
                         style={{ cursor: 'pointer' }}
                         onIconClick={this.onSelectFile} />
-                ) : null} />
+                )} />
         );
     }
 }

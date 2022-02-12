@@ -14,39 +14,47 @@ import { getMovementFields } from 'data/DataMovementFields';
 import { getMovements } from 'selectors/MovementSelectors';
 import { applyRule } from 'utils/RuleUtils';
 import { getRules } from 'selectors/RuleSelectors';
+import { setMovementFile } from 'actions/AppActions';
 
 export function loadMovementsFromFile(file, bank) {
-    return loadObjectsFromFile('movements', file, (file, data) => {
-        if (file.endsWith('.csv')) {
-            const records = parse(data, {
-                delimiter: ';',
-                columns: false,
-                skip_empty_lines: true
-            });
+    return async dispatch => {
+        await dispatch(setMovementFile(file));
 
-            records.shift();
+        return await dispatch(loadObjectsFromFile('movements', file, (file, data) => {
+            if (file.endsWith('.csv')) {
+                const records = parse(data, {
+                    delimiter: ';',
+                    columns: false,
+                    skip_empty_lines: true
+                });
 
-            const fields = getMovementFields();
+                records.shift();
 
-            return records.map(record => fields.reduce((movement, field) => {
-                if (field.csv && field.csv[bank]) {
-                    const fieldConfig = field.csv[bank];
-                    const value = record[fieldConfig.index];
-                    movement[field.id] = fieldConfig.convert ? fieldConfig.convert(value, record) : value;
-                }
+                const fields = getMovementFields();
 
-                return movement;
-            }, {
-                id: uuid()
-            }));
-        }
+                return records.map(record => fields.reduce((movement, field) => {
+                    if (field.csv && field.csv[bank]) {
+                        const fieldConfig = field.csv[bank];
+                        const value = record[fieldConfig.index];
+                        movement[field.id] = fieldConfig.convert ? fieldConfig.convert(value, record) : value;
+                    }
 
-        return JSON.parse(data);
-    });
+                    return movement;
+                }, {
+                    id: uuid()
+                }));
+            }
+
+            return JSON.parse(data);
+        }));
+    }
 }
 
 export function saveMovementsToFile(file, data) {
-    return saveObjectsToFile('movements', file, data);
+    return async dispatch => {
+        await dispatch(setMovementFile(file));
+        return await dispatch(saveObjectsToFile('movements', file, data));
+    }
 }
 
 export function setMovements(movements) {
@@ -82,7 +90,7 @@ export function computeCategories() {
             movements.forEach(movement => {
                 const matchingRules = rules.filter(rule => applyRule(rule, movement, movementFields));
 
-                if (movement.category === 'manual') {
+                if (movement.confidence === 'manual') {
                     return;
                 }
 

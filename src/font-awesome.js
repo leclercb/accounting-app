@@ -1,4 +1,3 @@
-
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faArchive,
@@ -52,6 +51,7 @@ import {
     faRetweet,
     faSave,
     faSearch,
+    faServer,
     faSpinner,
     faStar,
     faSyncAlt,
@@ -116,6 +116,7 @@ library.add(faRadiation);
 library.add(faRetweet);
 library.add(faSave);
 library.add(faSearch);
+library.add(faServer);
 library.add(faSpinner);
 library.add(faStar);
 library.add(faSyncAlt);

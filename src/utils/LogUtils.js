@@ -2,9 +2,7 @@ import moment from 'moment';
 import { log as electronLog, setLogLevel } from 'utils/ElectronIpc';
 
 export function setElectronLoggerLevel(level) {
-    if (process.env.REACT_APP_MODE === 'electron') {
-        setLogLevel(level);
-    }
+    setLogLevel(level);
 }
 
 export function error(...params) {
@@ -34,9 +32,7 @@ function log(type, ...params) {
         return param;
     });
 
-    if (process.env.REACT_APP_MODE === 'electron') {
-        electronLog(type, ...params);
-    }
+    electronLog(type, ...params);
 }
 
 export default {

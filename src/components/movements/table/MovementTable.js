@@ -31,7 +31,10 @@ function MovementTable() {
     }, [appApi.dataUuid]);
 
     const onUpdateMovement = movement => {
-        movementApi.updateMovement(movement);
+        movementApi.updateMovement({
+            ...movement,
+            confidence: 'manual'
+        });
     };
 
     const onResize = resizeHandler('movementColumnWidth_', settingsApi.updateSettings);

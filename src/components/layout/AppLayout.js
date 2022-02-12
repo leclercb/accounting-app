@@ -1,6 +1,8 @@
 import React from 'react';
 import { Layout, Spin } from 'antd';
 import { useSelector } from 'react-redux';
+import CategoryTable from 'components/categories/table/CategoryTable';
+import Footer from 'components/layout/Footer';
 import Header from 'components/layout/Header';
 import MovementTable from 'components/movements/table/MovementTable';
 import RuleView from 'components/rules/conditiontree/RuleView';
@@ -9,7 +11,6 @@ import NotificationManager from 'components/thread/NotificationManager';
 import ModalThreadManager from 'components/thread/ModalThreadManager';
 import { getSelectedView } from 'selectors/SettingSelectors';
 import { isBusy } from 'selectors/ThreadSelectors';
-import CategoryTable from 'components/categories/table/CategoryTable';
 
 function AppLayout() {
     const busy = useSelector(isBusy);
@@ -43,7 +44,7 @@ function AppLayout() {
                         {getView()}
                     </Layout>
                     <Layout.Footer>
-                        XXX
+                        <Footer />
                     </Layout.Footer>
                 </Layout>
             </Spin>

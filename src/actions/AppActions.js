@@ -78,17 +78,13 @@ export function _loadDataFromFile(path, options) {
 }
 
 export function saveData(options) {
-    if (process.env.REACT_APP_MODE === 'electron') {
-        return async dispatch => {
-            await dispatch(saveDataToFile(options));
+    return async dispatch => {
+        await dispatch(saveDataToFile(options));
 
-            await dispatch(updateSettings({
-                lastSaveDate: moment().toISOString()
-            }));
-        };
-    } else {
-        throw new Error('Unsupported Operation');
-    }
+        await dispatch(updateSettings({
+            lastSaveDate: moment().toISOString()
+        }));
+    };
 }
 
 export function saveDataToFile(options) {
@@ -212,6 +208,15 @@ export function setEditingCell(objectId, fieldId) {
             type: 'SET_EDITING_CELL',
             objectId,
             fieldId
+        });
+    };
+}
+
+export function setMovementFile(movementFile) {
+    return async dispatch => {
+        dispatch({
+            type: 'SET_MOVEMENT_FILE',
+            movementFile
         });
     };
 }

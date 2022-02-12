@@ -4,6 +4,7 @@ import {
     loadData,
     saveData,
     setEditingCell,
+    setMovementFile,
     setSettingManagerOptions
 } from 'actions/AppActions';
 import { setSelectedView } from 'actions/SettingActions';
@@ -11,6 +12,7 @@ import { checkIsBusy } from 'actions/ThreadActions';
 import {
     getDataUuid,
     getEditingCell,
+    getMovementFile,
     getSettingManager,
     getStartDate
 } from 'selectors/AppSelectors';
@@ -23,6 +25,7 @@ export function useAppApi() {
     const startDate = useSelector(getStartDate);
     const selectedView = useSelector(getSelectedView);
     const editingCell = useSelector(getEditingCell);
+    const movementFile = useSelector(getMovementFile)
     const settingManager = useSelector(getSettingManager);
 
     const loadDataCallback = useCallback(
@@ -45,6 +48,11 @@ export function useAppApi() {
         [dispatch]
     );
 
+    const setMovementFileCallback = useCallback(
+        movementFile => dispatch(setMovementFile(movementFile)),
+        [dispatch]
+    );
+
     const setSettingManagerOptionsCallback = useCallback(
         options => dispatch(setSettingManagerOptions(options)),
         [dispatch]
@@ -60,11 +68,13 @@ export function useAppApi() {
         startDate,
         selectedView,
         editingCell,
+        movementFile,
         settingManager,
         loadData: loadDataCallback,
         saveData: saveDataCallback,
         setSelectedView: setSelectedViewCallback,
         setEditingCell: setEditingCellCallback,
+        setMovementFile: setMovementFileCallback,
         setSettingManagerOptions: setSettingManagerOptionsCallback,
         checkIsBusy: checkIsBusyCallback
     };

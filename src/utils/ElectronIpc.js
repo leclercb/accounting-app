@@ -138,12 +138,8 @@ export function getProcessEnv() {
 
 // shell-open-external
 export function openExternal(url) {
-    if (process.env.REACT_APP_MODE === 'electron') {
-        const { ipcRenderer } = window.electron;
-        return ipcRenderer.invoke('shell-open-external', url);
-    } else {
-        window.open(url, '_blank').focus();
-    }
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.invoke('shell-open-external', url);
 }
 
 // shell-open-path

@@ -39,6 +39,14 @@ function Header() {
         }
     };
 
+    const onSaveMovements = async () => {
+        let file = appApi.movementFile;
+        if (file) {
+            file = file.substr(0, file.lastIndexOf(".")) + '.json';
+            await movementApi.saveMovementsToFile(file, movementApi.movements);
+        }
+    };
+
     const onComputeCategories = async () => {
         await movementApi.computeCategories();
     };
@@ -54,7 +62,7 @@ function Header() {
     const createButton = (icon, text, onClick, disabled = false) => {
         const button = (
             <Button onClick={onClick} disabled={disabled}>
-                <Icon icon={icon} />
+                <Icon icon={icon} text={text} />
             </Button>
         );
 
@@ -73,34 +81,35 @@ function Header() {
         <>
             <Button.Group style={{ marginRight: 20 }} className="joyride-header-selected-view">
                 <Button
-                    type={appApi.selectedView === 'expenses' ? 'primary' : 'default'}
+                    className={appApi.selectedView === 'expenses' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('expenses')}>
                     <Icon icon="tasks" text="Dépenses" />
                 </Button>
                 <Button
-                    type={appApi.selectedView === 'income' ? 'primary' : 'default'}
+                    className={appApi.selectedView === 'income' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('income')}>
                     <Icon icon="tasks" text="Revenus" />
                 </Button>
                 <Button
-                    type={appApi.selectedView === 'movements' ? 'primary' : 'default'}
+                    className={appApi.selectedView === 'movements' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('movements')}>
                     <Icon icon="tasks" text="Mouvements" />
                 </Button>
                 <Button
-                    type={appApi.selectedView === 'rules' ? 'primary' : 'default'}
+                    className={appApi.selectedView === 'rules' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('rules')}>
                     <Icon icon="tasks" text="Règles" />
                 </Button>
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>
-                {appApi.selectedView === 'rules' ? createButton('plus', 'Add Rule', onAddRule, false) : null}
-                {appApi.selectedView === 'movements' ? createButton('plus', 'Load Movements', onLoadMovements, false) : null}
-                {appApi.selectedView === 'movements' ? createButton('plus', 'Compute Categories', onComputeCategories, false) : null}
-            </Button.Group>
-            <Button.Group style={{ marginRight: 20 }}>
                 {createButton('save', 'Save', onSave, false)}
                 {createButton('cog', 'Settings', onSetSettingsVisible, false)}
+            </Button.Group>
+            <Button.Group style={{ marginRight: 20 }}>
+                {appApi.selectedView === 'rules' ? createButton('plus', 'Ajouter une règle', onAddRule, false) : null}
+                {appApi.selectedView === 'movements' ? createButton('folder-open', 'Charger des mouvements', onLoadMovements, false) : null}
+                {appApi.selectedView === 'movements' ? createButton('save', 'Sauver les mouvements', onSaveMovements, false) : null}
+                {appApi.selectedView === 'movements' ? createButton('server', 'Calculer les catégories', onComputeCategories, false) : null}
             </Button.Group>
         </>
     );
