@@ -15,6 +15,8 @@ log.info('Starting Accouting');
 initializeIpc();
 initializeMenu();
 
+app.commandLine.appendSwitch('disable-site-isolation-trials');
+
 app.on('ready', () => {
     createMainWindow(settings);
 });

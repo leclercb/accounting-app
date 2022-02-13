@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Tooltip } from 'antd';
 import Icon from 'components/common/Icon';
 import { useAppApi } from 'hooks/UseAppApi';
@@ -10,6 +10,8 @@ function Header() {
     const appApi = useAppApi();
     const movementApi = useMovementApi();
     const ruleApi = useRuleApi();
+
+    const [websiteWindow, setWebsiteWindow] = useState(null);
 
     const onSave = () => {
         appApi.saveData();
@@ -59,6 +61,14 @@ function Header() {
         appApi.setEditingCell(rule.id, 'title');
     };
 
+    const onOpenWebsite = async () => {
+        setWebsiteWindow(window.open('https://google.be', 'website'));
+    };
+
+    const onAutoFill = async () => {
+        websiteWindow.document.getElementsByName('q')[0].value = 'Working...';
+    };
+
     const createButton = (icon, text, onClick, disabled = false) => {
         const button = (
             <Button onClick={onClick} disabled={disabled}>
@@ -106,6 +116,8 @@ function Header() {
                 {createButton('cog', 'Préférences', onSetSettingsVisible, false)}
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>
+                {appApi.selectedView === 'expenses' ? createButton('folder-open', 'Ouvrir le site', onOpenWebsite, false) : null}
+                {appApi.selectedView === 'expenses' ? createButton('cog', 'Remplissage automatique', onAutoFill, false) : null}
                 {appApi.selectedView === 'rules' ? createButton('plus', 'Ajouter une règle', onAddRule, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('folder-open', 'Charger des mouvements', onLoadMovements, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('save', 'Sauver les mouvements', onSaveMovements, false) : null}
