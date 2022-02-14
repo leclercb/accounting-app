@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Tooltip } from 'antd';
 import Icon from 'components/common/Icon';
 import { useAppApi } from 'hooks/UseAppApi';
 import { useMovementApi } from 'hooks/UseMovementApi';
 import { useRuleApi } from 'hooks/UseRuleApi';
-import { showOpenDialog } from 'utils/ElectronIpc';
+import { autoFill, openWebsite, showOpenDialog } from 'utils/ElectronIpc';
 
 function Header() {
     const appApi = useAppApi();
     const movementApi = useMovementApi();
     const ruleApi = useRuleApi();
-
-    const [websiteWindow, setWebsiteWindow] = useState(null);
 
     const onSave = () => {
         appApi.saveData();
@@ -42,10 +40,11 @@ function Header() {
     };
 
     const onSaveMovements = async () => {
-        let file = appApi.movementFile;
-        if (file) {
-            file = file.substr(0, file.lastIndexOf('.')) + '.json';
-            await movementApi.saveMovementsToFile(file, movementApi.movements);
+        let movementFile = appApi.movementFile;
+
+        if (movementFile) {
+            movementFile = movementFile.substr(0, movementFile.lastIndexOf('.')) + '.json';
+            await movementApi.saveMovementsToFile(movementFile, movementApi.movements);
         }
     };
 
@@ -62,11 +61,11 @@ function Header() {
     };
 
     const onOpenWebsite = async () => {
-        setWebsiteWindow(window.open('https://google.be', 'website'));
+        openWebsite();
     };
 
     const onAutoFill = async () => {
-        websiteWindow.document.getElementsByName('q')[0].value = 'Working...';
+        autoFill({ value: 'XYZ' });
     };
 
     const createButton = (icon, text, onClick, disabled = false) => {

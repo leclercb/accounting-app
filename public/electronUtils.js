@@ -12,8 +12,7 @@ function createMainWindow(settings) {
             contextIsolation: true,
             enableRemoteModule: false,
             nodeIntegration: false,
-            preload: path.join(__dirname, 'electronPreload.js'),
-            webSecurity: false
+            preload: path.join(__dirname, 'electronPreload.js')
         }
     }, getWindowSettings(settings)));
 

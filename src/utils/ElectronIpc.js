@@ -147,3 +147,15 @@ export function openPath(path) {
     const { ipcRenderer } = window.electron;
     return ipcRenderer.invoke('shell-open-path', path);
 }
+
+// open-website
+export function openWebsite() {
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.invoke('open-website');
+}
+
+// auto-fill
+export function autoFill(options) {
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.invoke('auto-fill', options);
+}

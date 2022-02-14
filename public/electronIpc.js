@@ -4,6 +4,8 @@ const fse = require('fs-extra');
 const os = require('os');
 const path = require('path');
 
+let websiteWindow = null;
+
 function initializeIpc() {
     ipcMain.handle('app-get-path', (event, p) => {
         return app.getPath(p);
@@ -101,6 +103,45 @@ function initializeIpc() {
 
     ipcMain.handle('shell-open-path', (event, p) => {
         shell.openPath(p);
+    });
+
+    ipcMain.handle('open-website', () => {
+        const url = 'https://www.google.be';
+
+        if (!websiteWindow) {
+            websiteWindow = new BrowserWindow(Object.assign({
+                show: false,
+                icon: path.join(__dirname, 'resources', 'images', 'logo.png'),
+                webPreferences: {
+                    contextIsolation: true,
+                    enableRemoteModule: false,
+                    nodeIntegration: false,
+                    preload: path.join(__dirname, 'electronPreload.js'),
+                    webSecurity: false
+                }
+            }));
+
+            websiteWindow.setAlwaysOnTop(true);
+
+            websiteWindow.loadURL(url);
+
+            websiteWindow.once('ready-to-show', () => {
+                websiteWindow.show();
+            });
+
+            websiteWindow.on('close', () => {
+                websiteWindow = null;
+            });
+
+            return;
+        }
+
+        websiteWindow.loadURL(url);
+        websiteWindow.show();
+    });
+
+    ipcMain.handle('auto-fill', (event, options) => {
+        websiteWindow.webContents.executeJavaScript(`document.getElementsByName('q')[0].value="${options.value}"`);
     });
 }
 

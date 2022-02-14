@@ -2,9 +2,12 @@ import moment from 'moment';
 import { ActionCreators } from 'redux-undo';
 import { v4 as uuid } from 'uuid';
 import { getDataFolder, getUserDataPath } from 'actions/ActionUtils';
+import { saveMovementsToFile } from 'actions/MovementActions';
 import { loadRulesFromFile, saveRulesToFile } from 'actions/RuleActions';
-import { updateProcess } from 'actions/ThreadActions';
 import { loadSettingsFromFile, saveSettingsToFile, updateSettings } from 'actions/SettingActions';
+import { updateProcess } from 'actions/ThreadActions';
+import { getMovementFile } from 'selectors/AppSelectors';
+import { getMovements } from 'selectors/MovementSelectors';
 import { getRules } from 'selectors/RuleSelectors';
 import { getSettings } from 'selectors/SettingSelectors';
 import { ensureDir, joinSync } from 'utils/ElectronIpc';
@@ -128,6 +131,13 @@ export function _saveDataToFile(path, options) {
                     dispatch(saveSettingsToFile(getFile('settings.json'), filterSettings(getSettings(state), false))),
                     dispatch(saveRulesToFile(getFile('rules.json'), getRules(state)))
                 );
+
+                let movementFile = getMovementFile(state);
+
+                if (movementFile) {
+                    movementFile = movementFile.substr(0, movementFile.lastIndexOf('.')) + '.json';
+                    promises.push(dispatch(saveMovementsToFile(movementFile, getMovements(state))));
+                }
             }
 
             await Promise.all(promises);
