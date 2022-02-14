@@ -27,3 +27,5 @@ export const getSettingsSelector = () => {
 };
 
 export const getSelectedView = state => state.settings.selectedView;
+
+export const getMovementFile = state => state.settings.movementFile;

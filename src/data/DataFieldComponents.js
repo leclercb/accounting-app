@@ -73,6 +73,7 @@ export function getFieldComponents(type, options) {
                 input: props => (
                     <CategorySelect
                         onBlur={props.onCommit}
+                        onClear={props.onCommit}
                         dropdownMatchSelectWidth={false}
                         {...removeExtraProps(props)} />
                 )
@@ -100,6 +101,7 @@ export function getFieldComponents(type, options) {
                 input: props => (
                     <ConfidenceSelect
                         onBlur={props.onCommit}
+                        onClear={props.onCommit}
                         dropdownMatchSelectWidth={false}
                         {...removeExtraProps(props)} />
                 )
@@ -263,6 +265,7 @@ export function getFieldComponents(type, options) {
                 input: props => (
                     <MovementFieldSelect
                         onBlur={props.onCommit}
+                        onClear={props.onCommit}
                         dropdownMatchSelectWidth={false}
                         {...removeExtraProps(props)} />
                 )
@@ -295,6 +298,7 @@ export function getFieldComponents(type, options) {
                 input: props => (
                     <OperationSelect
                         onBlur={props.onCommit}
+                        onClear={props.onCommit}
                         dropdownMatchSelectWidth={false}
                         {...removeExtraProps(props)} />
                 )
@@ -313,6 +317,7 @@ export function getFieldComponents(type, options) {
                 input: props => (
                     <Select
                         onBlur={props.onCommit}
+                        onClear={props.onCommit}
                         dropdownMatchSelectWidth={false}
                         {...removeExtraProps(props)}>
                         {values.map(value => {
@@ -345,6 +350,7 @@ export function getFieldComponents(type, options) {
                     return (
                         <Select
                             onBlur={props.onCommit}
+                            onClear={props.onCommit}
                             dropdownMatchSelectWidth={false}
                             mode="multiple"
                             {...removeExtraProps(props)}>
@@ -379,6 +385,7 @@ export function getFieldComponents(type, options) {
                     return (
                         <Select
                             onBlur={props.onCommit}
+                            onClear={props.onCommit}
                             dropdownMatchSelectWidth={false}
                             mode="tags"
                             {...removeExtraProps(props)}>

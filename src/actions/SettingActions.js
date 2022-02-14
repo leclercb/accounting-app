@@ -27,7 +27,6 @@ export const setSettings = (settings, core = false) => {
 
 export function updateSettings(settings, options) {
     options = Object.assign({
-        skipServerUpdate: false,
         skipDiff: false
     }, options);
 
@@ -56,5 +55,11 @@ export function updateSettings(settings, options) {
 export function setSelectedView(view) {
     return updateSettings({
         selectedView: view
-    }, { skipServerUpdate: true });
+    });
+}
+
+export function setMovementFile(movementFile) {
+    return updateSettings({
+        movementFile
+    });
 }

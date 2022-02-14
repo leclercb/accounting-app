@@ -4,19 +4,17 @@ import {
     loadData,
     saveData,
     setEditingCell,
-    setMovementFile,
     setSettingManagerOptions
 } from 'actions/AppActions';
-import { setSelectedView } from 'actions/SettingActions';
+import { setMovementFile, setSelectedView } from 'actions/SettingActions';
 import { checkIsBusy } from 'actions/ThreadActions';
 import {
     getDataUuid,
     getEditingCell,
-    getMovementFile,
     getSettingManager,
     getStartDate
 } from 'selectors/AppSelectors';
-import { getSelectedView } from 'selectors/SettingSelectors';
+import { getMovementFile, getSelectedView } from 'selectors/SettingSelectors';
 
 export function useAppApi() {
     const dispatch = useDispatch();

@@ -22,7 +22,8 @@ export function getRuleFields() {
             id: 'color',
             title: 'Couleur',
             type: 'color',
-            editable: true
+            editable: true,
+            visible: false
         },
         {
             static: true,

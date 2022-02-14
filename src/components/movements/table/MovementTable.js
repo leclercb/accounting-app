@@ -34,7 +34,7 @@ function MovementTable() {
     const onUpdateMovement = movement => {
         movementApi.updateMovement({
             ...movement,
-            confidence: 'manual'
+            confidence: movement.category ? 'manual' : null
         });
     };
 

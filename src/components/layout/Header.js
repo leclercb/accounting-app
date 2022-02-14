@@ -1,10 +1,12 @@
 import React from 'react';
-import { Button, Tooltip } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Button, Modal, Tooltip } from 'antd';
 import Icon from 'components/common/Icon';
 import { useAppApi } from 'hooks/UseAppApi';
 import { useMovementApi } from 'hooks/UseMovementApi';
 import { useRuleApi } from 'hooks/UseRuleApi';
-import { autoFill, openWebsite, showOpenDialog } from 'utils/ElectronIpc';
+import { autoFill, exists, openWebsite, showOpenDialog } from 'utils/ElectronIpc';
+import { changeExtension } from 'utils/FileUtils';
 
 function Header() {
     const appApi = useAppApi();
@@ -35,16 +37,35 @@ function Header() {
         let filePath = result.filePaths && result.filePaths.length === 1 ? result.filePaths[0] : null;
 
         if (!result.canceled && filePath) {
+            if (!filePath.endsWith('.json') && exists(changeExtension(filePath, 'json'))) {
+                const override = await new Promise(resolve => {
+                    Modal.confirm({
+                        title: 'Un fichier "Accounting" existe déjà, êtes-vous sûr de vouloir l\'écraser ?',
+                        icon: <ExclamationCircleOutlined />,
+                        okText: 'Oui',
+                        cancelText: 'Non',
+                        onOk() {
+                            resolve(true);
+                        },
+                        onCancel() {
+                            resolve(false);
+                        }
+                    });
+                });
+
+                if (!override) {
+                    return;
+                }
+            }
+
             await movementApi.loadMovementsFromFile(filePath, 'kbc');
+
         }
     };
 
     const onSaveMovements = async () => {
-        let movementFile = appApi.movementFile;
-
-        if (movementFile) {
-            movementFile = movementFile.substr(0, movementFile.lastIndexOf('.')) + '.json';
-            await movementApi.saveMovementsToFile(movementFile, movementApi.movements);
+        if (appApi.movementFile) {
+            await movementApi.saveMovementsToFile(appApi.movementFile, movementApi.movements);
         }
     };
 

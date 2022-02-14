@@ -56,6 +56,14 @@ export function getCategories() {
             icon: 'home',
             settings: [
                 {
+                    id: 'movementFile',
+                    title: 'Fichier des mouvements courants',
+                    type: 'text',
+                    value: null,
+                    editable: false,
+                    core: true
+                },
+                {
                     id: 'dataFolder',
                     title: 'Dossier des données',
                     type: 'text',

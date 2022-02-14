@@ -12,7 +12,6 @@ export const resizeHandler = (prefix, updateSettings) => (data, fieldId, width) 
             [prefix + fieldId]: Math.max(10, width)
         },
         {
-            skipServerUpdate: !data.stop,
             skipDiff: true
         });
 };

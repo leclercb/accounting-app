@@ -2,14 +2,13 @@ import moment from 'moment';
 import { ActionCreators } from 'redux-undo';
 import { v4 as uuid } from 'uuid';
 import { getDataFolder, getUserDataPath } from 'actions/ActionUtils';
-import { saveMovementsToFile } from 'actions/MovementActions';
+import { loadMovementsFromFile, saveMovementsToFile } from 'actions/MovementActions';
 import { loadRulesFromFile, saveRulesToFile } from 'actions/RuleActions';
 import { loadSettingsFromFile, saveSettingsToFile, updateSettings } from 'actions/SettingActions';
 import { updateProcess } from 'actions/ThreadActions';
-import { getMovementFile } from 'selectors/AppSelectors';
 import { getMovements } from 'selectors/MovementSelectors';
 import { getRules } from 'selectors/RuleSelectors';
-import { getSettings } from 'selectors/SettingSelectors';
+import { getMovementFile, getSettings } from 'selectors/SettingSelectors';
 import { ensureDir, joinSync } from 'utils/ElectronIpc';
 import { filterSettings } from 'utils/SettingUtils';
 
@@ -52,6 +51,12 @@ export function _loadDataFromFile(path, options) {
             const promises = [
                 dispatch(loadRulesFromFile(getFile('rules.json')))
             ];
+
+            let movementFile = getMovementFile(getState());
+
+            if (movementFile) {
+                promises.push(dispatch(loadMovementsFromFile(movementFile)));
+            }
 
             if (!options.skipSettings) {
                 promises.unshift(dispatch(loadSettingsFromFile(getFile('settings.json'))));
@@ -132,10 +137,9 @@ export function _saveDataToFile(path, options) {
                     dispatch(saveRulesToFile(getFile('rules.json'), getRules(state)))
                 );
 
-                let movementFile = getMovementFile(state);
+                const movementFile = getMovementFile(state);
 
                 if (movementFile) {
-                    movementFile = movementFile.substr(0, movementFile.lastIndexOf('.')) + '.json';
                     promises.push(dispatch(saveMovementsToFile(movementFile, getMovements(state))));
                 }
             }
@@ -218,15 +222,6 @@ export function setEditingCell(objectId, fieldId) {
             type: 'SET_EDITING_CELL',
             objectId,
             fieldId
-        });
-    };
-}
-
-export function setMovementFile(movementFile) {
-    return async dispatch => {
-        dispatch({
-            type: 'SET_MOVEMENT_FILE',
-            movementFile
         });
     };
 }

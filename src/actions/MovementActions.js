@@ -10,19 +10,20 @@ import {
     setObjects,
     updateObject
 } from 'actions/ObjectActions';
+import { setMovementFile } from 'actions/SettingActions';
 import { getMovementFields } from 'data/DataMovementFields';
 import { getMovements } from 'selectors/MovementSelectors';
-import { applyRule } from 'utils/RuleUtils';
 import { getRules } from 'selectors/RuleSelectors';
-import { setMovementFile } from 'actions/AppActions';
 import { getSettings } from 'selectors/SettingSelectors';
+import { applyRule } from 'utils/RuleUtils';
+import { changeExtension } from 'utils/FileUtils';
 
-export function loadMovementsFromFile(file, bank) {
+export function loadMovementsFromFile(file, bank = null) {
     return async (dispatch, getState) => {
         const state = getState();
         const settings = getSettings(state);
 
-        await dispatch(setMovementFile(file));
+        await dispatch(setMovementFile(changeExtension(file, 'json')));
 
         return await dispatch(loadObjectsFromFile('movements', file, (file, data) => {
             if (file.endsWith('.csv')) {

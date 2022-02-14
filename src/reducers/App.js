@@ -7,7 +7,6 @@ const App = () => (state = {
         objectId: null,
         fieldId: null
     },
-    movementFile: null,
     selectedCategoryIds: [],
     selectedMovementIds: [],
     selectedRuleIds: [],
@@ -29,11 +28,6 @@ const App = () => (state = {
                     objectId: action.objectId,
                     fieldId: action.fieldId
                 }
-            };
-        case 'SET_MOVEMENT_FILE':
-            return {
-                ...state,
-                movementFile: action.movementFile
             };
         case 'SET_SELECTED_CATEGORY_IDS':
             return {
