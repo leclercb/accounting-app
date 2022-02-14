@@ -25,7 +25,7 @@ function CellRenderer(props) {
         setEditing(newEditing);
     };
 
-    if (editing || isAlwaysInEditionForType(props.field.type)) {
+    if (props.field.editable && (editing || isAlwaysInEditionForType(props.field.type))) {
         return (
             <EditableCell
                 record={props.record}

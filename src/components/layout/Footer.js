@@ -22,6 +22,9 @@ function Footer() {
             <div className="footer-element">
                 Total: {movementApi.movements.length}
             </div>
+            <div className="footer-element">
+                Développé par BL-IT
+            </div>
         </div>
     );
 }

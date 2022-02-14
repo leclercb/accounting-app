@@ -245,7 +245,7 @@ export function getFieldComponents(type, options) {
             const currency = options && options.currency ? options.currency : '€';
 
             configuration = {
-                render: value => value ? toStringNumber(value, currency + ' ') : <span>&nbsp;</span>,
+                render: value => (typeof value !== 'undefined' && value !== null) ? toStringNumber(value, currency + ' ') : <span>&nbsp;</span>,
                 input: props => (
                     <InputNumber
                         onBlur={props.onCommit}
@@ -278,7 +278,7 @@ export function getFieldComponents(type, options) {
             const max = options && options.max ? options.max : Infinity;
 
             configuration = {
-                render: value => value ? value : <span>&nbsp;</span>,
+                render: value => (typeof value !== 'undefined' && value !== null) ? value : <span>&nbsp;</span>,
                 input: props => (
                     <InputNumber
                         onBlur={props.onCommit}
