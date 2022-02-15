@@ -16,6 +16,30 @@ export function getAppVersion() {
     return ipcRenderer.invoke('app-get-version');
 }
 
+// app-set-badge-count
+export function setBadgeCount(count) {
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.invoke('app-set-badge-count', count);
+}
+
+// auto-updater-check-updates
+export function checkForUpdates() {
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.invoke('auto-updater-check-updates');
+}
+
+// auto-updater-download-update
+export function downloadUpdate() {
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.invoke('auto-updater-download-update');
+}
+
+// auto-updater-quit-and-install
+export function quitAndInstall() {
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.invoke('auto-updater-quit-and-install');
+}
+
 // current-window-close
 export function closeCurrentWindow() {
     const { ipcRenderer } = window.electron;
@@ -92,6 +116,12 @@ export function remove(path) {
 export function writeFile(file, data) {
     const { ipcRenderer } = window.electron;
     return ipcRenderer.invoke('fse-write-file', file, data);
+}
+
+// initiate-quit
+export function initiateQuit() {
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.invoke('initiate-quit');
 }
 
 // log
