@@ -37,10 +37,12 @@ import {
     faLock,
     faLockOpen,
     faMagic,
+    faMagicWandSparkles,
     faMinusSquare,
     faNetworkWired,
     faPaintRoller,
     faPause,
+    faPencil,
     faPepperHot,
     faPlay,
     faPlus,
@@ -49,6 +51,9 @@ import {
     faQuestionCircle,
     faRadiation,
     faRetweet,
+    faRightFromBracket,
+    faRightToBracket,
+    faRulerCombined,
     faSave,
     faSearch,
     faServer,
@@ -62,6 +67,7 @@ import {
     faTimes,
     faTrashAlt,
     faUpload,
+    faUpRightAndDownLeftFromCenter,
     faUser
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -102,10 +108,12 @@ library.add(faListOl);
 library.add(faLock);
 library.add(faLockOpen);
 library.add(faMagic);
+library.add(faMagicWandSparkles);
 library.add(faMinusSquare);
 library.add(faNetworkWired);
 library.add(faPaintRoller);
 library.add(faPause);
+library.add(faPencil);
 library.add(faPepperHot);
 library.add(faPlay);
 library.add(faPlus);
@@ -114,6 +122,9 @@ library.add(faPrint);
 library.add(faQuestionCircle);
 library.add(faRadiation);
 library.add(faRetweet);
+library.add(faRightFromBracket);
+library.add(faRightToBracket);
+library.add(faRulerCombined);
 library.add(faSave);
 library.add(faSearch);
 library.add(faServer);
@@ -127,4 +138,5 @@ library.add(faThumbtack);
 library.add(faTimes);
 library.add(faTrashAlt);
 library.add(faUpload);
+library.add(faUpRightAndDownLeftFromCenter);
 library.add(faUser);

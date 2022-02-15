@@ -109,26 +109,26 @@ function Header() {
 
     return (
         <>
-            <Button.Group style={{ marginRight: 20 }} className="joyride-header-selected-view">
+            <Button.Group style={{ marginRight: 20 }}>
                 <Button
                     className={appApi.selectedView === 'expenses' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('expenses')}>
-                    <Icon icon="tasks" text="Dépenses" />
+                    <Icon icon="right-from-bracket" text="Dépenses" />
                 </Button>
                 <Button
                     className={appApi.selectedView === 'income' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('income')}>
-                    <Icon icon="tasks" text="Revenus" />
+                    <Icon icon="right-to-bracket" text="Revenus" />
                 </Button>
                 <Button
                     className={appApi.selectedView === 'movements' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('movements')}>
-                    <Icon icon="tasks" text="Mouvements" />
+                    <Icon icon="up-right-and-down-left-from-center" text="Mouvements" />
                 </Button>
                 <Button
                     className={appApi.selectedView === 'rules' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('rules')}>
-                    <Icon icon="tasks" text="Règles" />
+                    <Icon icon="ruler-combined" text="Règles" />
                 </Button>
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>
@@ -137,11 +137,11 @@ function Header() {
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>
                 {appApi.selectedView === 'expenses' ? createButton('folder-open', 'Ouvrir le site', onOpenWebsite, false) : null}
-                {appApi.selectedView === 'expenses' ? createButton('cog', 'Remplissage automatique', onAutoFill, false) : null}
+                {appApi.selectedView === 'expenses' ? createButton('pencil', 'Remplissage automatique', onAutoFill, false) : null}
                 {appApi.selectedView === 'rules' ? createButton('plus', 'Ajouter une règle', onAddRule, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('folder-open', 'Charger des mouvements', onLoadMovements, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('save', 'Sauver les mouvements', onSaveMovements, false) : null}
-                {appApi.selectedView === 'movements' ? createButton('server', 'Calculer les catégories', onComputeCategories, false) : null}
+                {appApi.selectedView === 'movements' ? createButton('wand-magic-sparkles', 'Calculer les catégories', onComputeCategories, false) : null}
             </Button.Group>
         </>
     );
