@@ -27,8 +27,6 @@ export function getSettingValues() {
                 case 'component':
                 case 'label':
                     break;
-                case 'sorters':
-                case 'timeDurations':
                 default:
                     settings[setting.id] = setting.value;
                     break;
