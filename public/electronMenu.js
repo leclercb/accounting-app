@@ -41,6 +41,20 @@ function initializeMenu() {
         {
             label: 'Edit',
             submenu: [
+                {
+                    label: 'Undo',
+                    accelerator: isMac ? 'Cmd+Z' : 'Ctrl+Z',
+                    click: async () => {
+                        BrowserWindow.getFocusedWindow().webContents.send('menu-undo');
+                    }
+                },
+                {
+                    label: 'Redo',
+                    accelerator: isMac ? 'Cmd+Y' : 'Ctrl+Y',
+                    click: async () => {
+                        BrowserWindow.getFocusedWindow().webContents.send('menu-redo');
+                    }
+                },
                 { type: 'separator' },
                 { role: 'cut' },
                 { role: 'copy' },

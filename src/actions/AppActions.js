@@ -164,49 +164,6 @@ export function _saveDataToFile(path, options) {
     };
 }
 
-export function resetData(options) {
-    options = Object.assign({
-        resetAll: false,
-        resetRules: false
-    }, options);
-
-    return async dispatch => {
-        const processId = uuid();
-
-        dispatch(updateProcess({
-            id: processId,
-            state: 'RUNNING',
-            title: 'Reset database',
-            notify: true
-        }));
-
-        try {
-            const promises = [];
-
-            if (options.resetAll || options.resetRules) {
-                //promises.push(dispatch(setContacts()));
-            }
-
-            await Promise.all(promises);
-
-            await dispatch(ActionCreators.clearHistory());
-
-            dispatch(updateProcess({
-                id: processId,
-                state: 'COMPLETED'
-            }));
-        } catch (error) {
-            dispatch(updateProcess({
-                id: processId,
-                state: 'ERROR',
-                error: error.toString()
-            }));
-
-            throw error;
-        }
-    };
-}
-
 function refreshDataUuid() {
     return async dispatch => {
         dispatch({

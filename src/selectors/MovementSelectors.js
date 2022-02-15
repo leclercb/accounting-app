@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect';
 
-export const getMovements = state => state.movements;
+export const canUndoMovementStateUpdate = state => state.movements.past.length > 0;
+export const canRedoMovementStateUpdate = state => state.movements.future.length > 0;
+
+export const getMovements = state => state.movements.present;
 
 export const getSelectedMovements = createSelector(
     getMovements,

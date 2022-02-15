@@ -5,6 +5,7 @@ import {
 } from 'actions/ActionUtils';
 import { updateProcess } from 'actions/ThreadActions';
 import { getObjectsByIds } from 'selectors/ObjectSelectors';
+import { filterByStatic } from 'utils/CategoryUtils';
 import { getRandomColor } from 'utils/ColorUtils';
 
 export function loadObjectsFromFile(property, file, converter) {
@@ -15,7 +16,7 @@ export function loadObjectsFromFile(property, file, converter) {
 }
 
 export function saveObjectsToFile(property, file, data) {
-    return saveToFile(property, file, data);
+    return saveToFile(property, file, filterByStatic(data));
 }
 
 export function setObjects(property, objects) {

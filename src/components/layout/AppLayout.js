@@ -23,10 +23,11 @@ function AppLayout() {
                 return (<CategoryTable type="expenses" />);
             case 'income':
                 return (<CategoryTable type="income" />);
-            case 'movements':
-                return (<MovementTable />);
-            default:
+            case 'rules':
                 return (<RuleView />);
+            case 'movements':
+            default:
+                return (<MovementTable />);
         }
     };
 

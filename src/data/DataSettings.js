@@ -349,7 +349,7 @@ export function getCategories() {
                             }
                         ]
                     },
-                    value: 'task',
+                    value: 'movements',
                     editable: false,
                     visible: true
                 },

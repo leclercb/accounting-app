@@ -83,6 +83,22 @@ export function deleteMovement(movementId, options = {}) {
     return deleteObject('movements', movementId, options);
 }
 
+export function undoMovementStateUpdate() {
+    return async dispatch => {
+        dispatch({
+            type: 'MOVEMENT_UNDO'
+        });
+    };
+}
+
+export function redoMovementStateUpdate() {
+    return async dispatch => {
+        dispatch({
+            type: 'MOVEMENT_REDO'
+        });
+    };
+}
+
 export function computeCategories() {
     return async (dispatch, getState) => {
         const processId = uuid();

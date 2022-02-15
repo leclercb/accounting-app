@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect';
 
-export const getRules = state => state.rules;
+export const canUndoRuleStateUpdate = state => state.rules.past.length > 0;
+export const canRedoRuleStateUpdate = state => state.rules.future.length > 0;
+
+export const getRules = state => state.rules.present;
 
 export const getSelectedRules = createSelector(
     getRules,

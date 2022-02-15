@@ -35,3 +35,19 @@ export function updateRule(rule, options = {}) {
 export function deleteRule(ruleId, options = {}) {
     return deleteObject('rules', ruleId, options);
 }
+
+export function undoRuleStateUpdate() {
+    return async dispatch => {
+        dispatch({
+            type: 'RULE_UNDO'
+        });
+    };
+}
+
+export function redoRuleStateUpdate() {
+    return async dispatch => {
+        dispatch({
+            type: 'RULE_REDO'
+        });
+    };
+}
