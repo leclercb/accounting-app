@@ -2,6 +2,7 @@ import React from 'react';
 import { Checkbox, Modal, message } from 'antd';
 import moment from 'moment';
 import { loadData, saveData } from 'actions/AppActions';
+import { checkForUpdates } from 'actions/AutoUpdaterActions';
 import { getUserDataPath } from 'actions/ActionUtils';
 import FileField from 'components/common/FileField';
 import { copyFile, getLogFile, showSaveDialog } from 'utils/ElectronIpc';
@@ -55,6 +56,15 @@ export function getCategories() {
             title: 'Général',
             icon: 'home',
             settings: [
+                {
+                    id: 'checkVersion',
+                    title: 'Check version',
+                    type: 'button',
+                    value: async (settings, updateSettings, dispatch) => {
+                        await dispatch(checkForUpdates(false));
+                    },
+                    editable: true
+                },
                 {
                     id: 'movementFile',
                     title: 'Fichier des mouvements courants',
@@ -127,6 +137,14 @@ export function getCategories() {
                             });
                         });
                     },
+                    editable: true,
+                    core: true
+                },
+                {
+                    id: 'useTray',
+                    title: 'Use system tray instead of task bar',
+                    type: 'boolean',
+                    value: false,
                     editable: true,
                     core: true
                 },

@@ -11,10 +11,11 @@
         "electron:start": "electron .",
         "start": "REACT_APP_GIT_COMMIT_HASH=$(git rev-parse --short HEAD) craco --max_old_space_size=4096 start",
         "build": "REACT_APP_GIT_COMMIT_HASH=$(git rev-parse --short HEAD) craco --max_old_space_size=4096 build",
+        "build:github": "craco --max_old_space_size=4096 build",
         "lint": "eslint public src",
         "test": "craco test",
         "pack": "electron-builder --dir",
-        "dist": "electron-builder --x64 --mac --win --c.extraMetadata.main=build/electron.js -p never",
+        "dist": "electron-builder --x64 --mac --win --linux --c.extraMetadata.main=build/electron.js -p never",
         "postinstall": "husky install"
     },
     "dependencies": {
@@ -27,6 +28,7 @@
         "csv-parse": "^5.0.4",
         "electron-is-dev": "^2.0.0",
         "electron-log": "^4.4.6",
+        "electron-updater": "^4.6.1",
         "fs-extra": "^10.0.0",
         "lodash": "^4.17.21",
         "moment": "^2.29.1",
@@ -80,7 +82,8 @@
             "icon": "assets/icon.icns",
             "type": "distribution",
             "target": [
-                "dmg"
+                "dmg",
+                "zip"
             ],
             "publish": {
                 "provider": "github"
@@ -90,12 +93,26 @@
         "win": {
             "icon": "assets/icon.ico",
             "target": [
-                "portable"
+                "portable",
+                "nsis"
             ],
             "publish": {
                 "provider": "github"
             },
             "publisherName": "BL-IT"
+        },
+        "linux": {
+            "icon": "assets/icon.png",
+            "target": [
+                "tar.gz",
+                "snap",
+                "AppImage"
+            ],
+            "publish": {
+                "provider": "github"
+            },
+            "description": "Accounting",
+            "category": "Office;ProjectManagement"
         }
     },
     "browserslist": [

@@ -1,4 +1,5 @@
 const { app, dialog, ipcMain, shell, BrowserWindow } = require('electron');
+const { autoUpdater, CancellationToken } = require('electron-updater');
 const log = require('electron-log');
 const fse = require('fs-extra');
 const os = require('os');
@@ -6,13 +7,52 @@ const path = require('path');
 
 let websiteWindow = null;
 
-function initializeIpc() {
+function initializeIpc(setQuitInitiated) {
     ipcMain.handle('app-get-path', (event, p) => {
         return app.getPath(p);
     });
 
     ipcMain.on('app-get-path-sync', (event, p) => {
         event.returnValue = app.getPath(p);
+    });
+
+    ipcMain.handle('app-get-version', () => {
+        return app.getVersion();
+    });
+
+    ipcMain.handle('app-set-badge-count', (event, count) => {
+        app.setBadgeCount(count);
+    });
+
+    ipcMain.handle('auto-updater-check-updates', () => {
+        return autoUpdater.checkForUpdates();
+    });
+
+    ipcMain.handle('auto-updater-download-update', async event => {
+        const downloadProgressHandler = info => {
+            event.sender.send('download-progress', info);
+        };
+
+        const updateDownloadedHandler = info => {
+            autoUpdater.removeListener('download-progress', downloadProgressHandler);
+            autoUpdater.removeListener('update-downloaded', updateDownloadedHandler);
+            event.sender.send('update-downloaded', info);
+        };
+
+        autoUpdater.on('download-progress', downloadProgressHandler);
+        autoUpdater.on('update-downloaded', updateDownloadedHandler);
+
+        try {
+            return await autoUpdater.downloadUpdate(new CancellationToken());
+        } catch (e) {
+            autoUpdater.removeListener('download-progress', downloadProgressHandler);
+            autoUpdater.removeListener('update-downloaded', updateDownloadedHandler);
+            throw e;
+        }
+    });
+
+    ipcMain.handle('auto-updater-quit-and-install', () => {
+        autoUpdater.quitAndInstall();
     });
 
     ipcMain.handle('current-window-close', event => {
@@ -65,6 +105,10 @@ function initializeIpc() {
 
     ipcMain.handle('fse-write-file', (event, file, data) => {
         return fse.writeFile(file, data);
+    });
+
+    ipcMain.handle('initiate-quit', () => {
+        setQuitInitiated(true);
     });
 
     ipcMain.handle('log', (event, type, ...params) => {

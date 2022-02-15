@@ -1,13 +1,16 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Tray } = require('electron');
 const isDevelopment = require('electron-is-dev');
 const log = require('electron-log');
 const fs = require('fs');
 const path = require('path');
 
-function createMainWindow(settings) {
+const isMac = process.platform === 'darwin';
+
+function createMainWindow(settings, isQuitInitiated) {
     const window = new BrowserWindow(Object.assign({
         show: false,
         icon: path.join(__dirname, 'resources', 'images', 'logo.png'),
+        skipTaskbar: settings.useTray,
         webPreferences: {
             contextIsolation: true,
             enableRemoteModule: false,
@@ -46,6 +49,18 @@ function createMainWindow(settings) {
         window.show();
     });
 
+    window.on('show', () => {
+        if (settings.useTray && isMac) {
+            app.dock.show();
+        }
+    });
+
+    window.on('hide', () => {
+        if (settings.useTray && isMac) {
+            app.dock.hide();
+        }
+    });
+
     window.on('session-end', () => {
         log.info('Session end');
 
@@ -57,6 +72,12 @@ function createMainWindow(settings) {
     });
 
     window.on('close', event => {
+        if (settings.useTray && !isQuitInitiated()) {
+            event.preventDefault();
+            window.hide();
+            return;
+        }
+
         if (!closed) {
             event.preventDefault();
             closed = true;
@@ -71,6 +92,17 @@ function createMainWindow(settings) {
     });
 
     return window;
+}
+
+function createTray() {
+    const tray = new Tray(path.join(__dirname, 'resources', 'icons', 'logo.png'));
+    tray.setToolTip('TaskUnifier');
+
+    tray.on('click', () => {
+        getDefaultWindow().show();
+    });
+
+    return tray;
 }
 
 function getCoreSettings() {
@@ -124,6 +156,7 @@ function getWindowSettings(settings) {
 
 module.exports = {
     createMainWindow,
+    createTray,
     getCoreSettings,
     getDefaultWindow,
     getWindowSettings

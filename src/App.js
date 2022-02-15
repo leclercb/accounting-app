@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from 'antd';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import AutoUpdater from 'components/autoupdater/AutoUpdater';
 import AppLayout from 'components/layout/AppLayout';
 import { useAppApi } from 'hooks/UseAppApi';
+import { useAutoUpdaterApi } from 'hooks/UseAutoUpdaterApi';
+import { useConfidenceApi } from 'hooks/UseConfidenceApi';
 import { useSettingsApi } from 'hooks/UseSettingsApi';
-import { closeCurrentWindow, getCurrentWindowPosition, getCurrentWindowSize } from 'utils/ElectronIpc';
+import { closeCurrentWindow, getCurrentWindowPosition, getCurrentWindowSize, setBadgeCount } from 'utils/ElectronIpc';
 
 import 'App.css';
 import 'font-awesome.js';
@@ -14,15 +17,30 @@ import 'components/common/table/VirtualizedTable.css';
 
 function App() {
     const appApi = useAppApi();
+    const autoUpdaterApi = useAutoUpdaterApi();
+    const confidenceApi = useConfidenceApi();
     const settingsApi = useSettingsApi();
+
+    const [started, setStarted] = useState(false);
 
     useEffect(() => {
         const onStart = async () => {
             await appApi.loadData();
+            setStarted(true);
         };
 
         onStart();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
+        const onStarted = async () => {
+            autoUpdaterApi.checkForUpdates(true);
+        };
+
+        if (started) {
+            onStarted();
+        }
+    }, [started]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         const onClose = () => {
@@ -62,8 +80,14 @@ function App() {
         settingsApi.settings.confirmBeforeClosing
     ]);
 
+    useEffect(() => {
+        const unknownConfidence = confidenceApi.confidenceStats.find(confidence => confidence.id === 'unknown');
+        setBadgeCount(unknownConfidence.count);
+    }, [confidenceApi.confidenceStats]);
+
     return (
         <DndProvider backend={HTML5Backend}>
+            <AutoUpdater />
             <AppLayout />
         </DndProvider>
     );

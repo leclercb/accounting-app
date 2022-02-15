@@ -14,5 +14,7 @@ export default {
     conditionTreeGroupOrColor: '#e8ebf6',
     conditionTreeGroupOrActiveColor: '#d4d7e2',
     conditionTreeGroupNotColor: '#ffc8c5',
-    conditionTreeGroupNotActiveColor: '#e3afac'
+    conditionTreeGroupNotActiveColor: '#e3afac',
+    badgeColor: '#0e67c4',
+    inactiveBadgeColor: '#e3ebf2'
 };
