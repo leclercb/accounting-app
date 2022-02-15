@@ -3,7 +3,6 @@ import { getConfidences } from 'data/DataConfidences';
 import { getMovementFields } from 'data/DataMovementFields';
 import { getOperations } from 'data/DataOperations';
 import moment from 'moment';
-import { getComputedCategories } from 'selectors/CategorySelectors';
 import { getSettings } from 'selectors/SettingSelectors';
 import {
     compareBooleans,

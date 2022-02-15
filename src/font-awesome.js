@@ -66,8 +66,8 @@ import {
     faThumbtack,
     faTimes,
     faTrashAlt,
-    faUpload,
     faUpRightAndDownLeftFromCenter,
+    faUpload,
     faUser
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -137,6 +137,6 @@ library.add(faTasks);
 library.add(faThumbtack);
 library.add(faTimes);
 library.add(faTrashAlt);
-library.add(faUpload);
 library.add(faUpRightAndDownLeftFromCenter);
+library.add(faUpload);
 library.add(faUser);

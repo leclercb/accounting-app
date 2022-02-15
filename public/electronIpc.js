@@ -185,6 +185,10 @@ function initializeIpc(setQuitInitiated) {
     });
 
     ipcMain.handle('auto-fill', (event, options) => {
+        if (!websiteWindow) {
+            return;
+        }
+
         websiteWindow.webContents.executeJavaScript(`document.getElementsByName('q')[0].value="${options.value}"`);
     });
 }
