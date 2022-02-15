@@ -42,15 +42,6 @@ export function getFieldTypes() {
     ];
 }
 
-export function getObjectsForFieldType(state, type) {
-    switch (type) {
-        case 'category':
-            return getComputedCategories(state);
-        default:
-            return null;
-    }
-}
-
 export function getWidthForType(type) {
     return getFieldType(type).width;
 }

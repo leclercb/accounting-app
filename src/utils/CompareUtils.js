@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { getCompareForType } from 'data/DataFieldTypes';
 
 export function compareBooleans(a, b) {
     const boolA = a ? true : false;
@@ -33,6 +34,19 @@ export function compareObjects(a, b, objects) {
     const objectB = objects.find(object => object.id === b);
 
     return compareStrings(objectA ? objectA.title : '', objectB ? objectB.title : '');
+}
+
+export function compareObjectsHierarchy(field, a, b, sortDirection, state) {
+    const valueA = a[field.id];
+    const valueB = b[field.id];
+
+    let result = getCompareForType(field.type, valueA, valueB, state);
+
+    if (sortDirection === 'descending') {
+        result *= -1;
+    }
+
+    return result;
 }
 
 export function compareStrings(a, b) {
