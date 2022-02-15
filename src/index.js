@@ -6,6 +6,7 @@ import App from 'App';
 import { initializeShortcuts } from './shortcuts';
 import LoadingIndicator from 'components/common/LoadingIndicator';
 import { store } from 'store/Store';
+import 'i18n.js';
 import 'index.css';
 
 initializeShortcuts();

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Button, Modal, Tooltip } from 'antd';
+import { useTranslation } from 'react-i18next';
 import Icon from 'components/common/Icon';
 import { useAppApi } from 'hooks/UseAppApi';
 import { useMovementApi } from 'hooks/UseMovementApi';
@@ -9,6 +10,8 @@ import { autoFill, exists, openWebsite, showOpenDialog } from 'utils/ElectronIpc
 import { changeExtension } from 'utils/FileUtils';
 
 function Header() {
+    const { t } = useTranslation();
+
     const appApi = useAppApi();
     const movementApi = useMovementApi();
     const ruleApi = useRuleApi();
@@ -113,22 +116,22 @@ function Header() {
                 <Button
                     className={appApi.selectedView === 'expenses' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('expenses')}>
-                    <Icon icon="right-from-bracket" text="Dépenses" />
+                    <Icon icon="right-from-bracket" text={t('Expenses')} />
                 </Button>
                 <Button
                     className={appApi.selectedView === 'income' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('income')}>
-                    <Icon icon="right-to-bracket" text="Revenus" />
+                    <Icon icon="right-to-bracket" text={t('Income')} />
                 </Button>
                 <Button
                     className={appApi.selectedView === 'movements' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('movements')}>
-                    <Icon icon="up-right-and-down-left-from-center" text="Mouvements" />
+                    <Icon icon="up-right-and-down-left-from-center" text={t('Movements')} />
                 </Button>
                 <Button
                     className={appApi.selectedView === 'rules' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('rules')}>
-                    <Icon icon="ruler-combined" text="Règles" />
+                    <Icon icon="ruler-combined" text={t('Rules')} />
                 </Button>
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>
