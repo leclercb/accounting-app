@@ -13,8 +13,7 @@ export function ProLockedMessage({ info }) {
     return (
         <Empty
             image={(<Icon color="#ffecb3" icon="lock" size={64} />)}
-            description={description}>
-        </Empty>
+            description={description} />
     );
 }
 

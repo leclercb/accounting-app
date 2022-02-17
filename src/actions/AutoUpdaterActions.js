@@ -1,7 +1,7 @@
 import { notification } from 'antd';
+import { t } from 'i18next';
 import { updateSettings } from 'actions/SettingActions';
 import { getSettings } from 'selectors/SettingSelectors';
-import { t } from 'translations/i18n';
 import { compareVersions } from 'utils/CompareUtils';
 import {
     checkForUpdates as electronCheckForUpdates,

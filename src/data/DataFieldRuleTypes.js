@@ -1,4 +1,4 @@
-import { t } from 'translations/i18n';
+import { t } from 'i18next';
 import moment from 'moment';
 
 export function getConditionsForType(type) {

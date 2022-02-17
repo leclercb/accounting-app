@@ -1,7 +1,6 @@
 import moment from 'moment';
 import { getSettingValues, isCoreSetting } from 'data/DataSettings';
 import { setElectronLoggerLevel } from 'utils/LogUtils';
-import i18n from 'translations/i18n';
 
 const Settings = () => (state = {
     ...getSettingValues()
@@ -45,8 +44,6 @@ const Settings = () => (state = {
 
 function onUpdateSettings(settings) {
     setElectronLoggerLevel(settings.electronLoggerLevel || 'info');
-
-    i18n.changeLanguage(settings.language);
 
     moment.updateLocale('en', {
         week: {

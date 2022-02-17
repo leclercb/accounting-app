@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import { v4 as uuid } from 'uuid';
 import {
     loadFromFile,
@@ -5,7 +6,6 @@ import {
 } from 'actions/ActionUtils';
 import { updateProcess } from 'actions/ThreadActions';
 import { getObjectsByIds } from 'selectors/ObjectSelectors';
-import { t } from 'translations/i18n';
 import { filterByStatic } from 'utils/CategoryUtils';
 
 export function loadObjectsFromFile(property, file, converter) {

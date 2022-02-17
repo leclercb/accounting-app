@@ -1,5 +1,6 @@
 import React from 'react';
 import { Checkbox, Modal, message } from 'antd';
+import i18next, { t } from 'i18next';
 import moment from 'moment';
 import { getUserDataPath } from 'actions/ActionUtils';
 import { loadData, saveData } from 'actions/AppActions';
@@ -10,7 +11,6 @@ import ProUnlockedMessage from 'components/pro/ProUnlockedMessage';
 import { getLicenseInfo } from 'selectors/AppSelectors';
 import { store } from 'store/Store';
 import { copyFile, getLogFile, showSaveDialog } from 'utils/ElectronIpc';
-import i18n, { t } from 'translations/i18n';
 
 export function isCoreSetting(settingId) {
     return !!getCategories().find(category => {
@@ -63,10 +63,10 @@ export function getCategories() {
                     id: 'language',
                     title: t('settings.language'),
                     type: 'select',
-                    value: 'info',
+                    value: 'en',
                     editable: true,
                     options: {
-                        values: i18n.languages.map(language => ({
+                        values: (i18next.languages || []).map(language => ({
                             title: language,
                             value: language
                         }))

@@ -1,4 +1,5 @@
 import { message } from 'antd';
+import { t } from 'i18next';
 import {
     saveData,
     setSettingManagerOptions
@@ -9,7 +10,6 @@ import { canRedoMovementStateUpdate, canUndoMovementStateUpdate } from 'selector
 import { canRedoRuleStateUpdate, canUndoRuleStateUpdate } from 'selectors/RuleSelectors';
 import { getSelectedView } from 'selectors/SettingSelectors';
 import { store } from 'store/Store';
-import { t } from 'translations/i18n';
 
 export function initializeShortcuts() {
     const { ipcRenderer } = window.electron;

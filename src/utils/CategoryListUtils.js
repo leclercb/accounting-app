@@ -1,9 +1,9 @@
 import React from 'react';
 import { Popconfirm, Tooltip } from 'antd';
+import { t } from 'i18next';
 import Icon from 'components/common/Icon';
 import Constants from 'constants/Constants';
 import Spacer from 'components/common/Spacer';
-import { t } from 'translations/i18n';
 
 export function createAction(icon, text, onClick, color) {
     return (

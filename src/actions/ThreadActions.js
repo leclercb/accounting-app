@@ -1,6 +1,6 @@
+import { t } from 'i18next';
 import { v4 as uuid } from 'uuid';
 import { isBusy } from 'selectors/ThreadSelectors';
-import { t } from 'translations/i18n';
 
 export function checkIsBusy(fn = null, silent = false) {
     return async (dispatch, getState) => {

@@ -1,14 +1,16 @@
 import React from 'react';
 import { notification } from 'antd';
+import { t } from 'i18next';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from 'App';
 import { initializeShortcuts } from './shortcuts';
 import LoadingIndicator from 'components/common/LoadingIndicator';
 import { store } from 'store/Store';
-import { t } from 'translations/i18n';
+import { initializeI18N } from 'translations/i18n';
 import 'index.css';
 
+initializeI18N();
 initializeShortcuts();
 
 window.addEventListener('error', function (e) {

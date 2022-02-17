@@ -1,5 +1,5 @@
 import { parse } from 'csv-parse/dist/esm/sync';
-import { updateProcess } from 'actions/ThreadActions';
+import { t } from 'i18next';
 import { v4 as uuid } from 'uuid';
 import {
     addObject,
@@ -11,11 +11,11 @@ import {
     updateObject
 } from 'actions/ObjectActions';
 import { setMovementFile } from 'actions/SettingActions';
+import { updateProcess } from 'actions/ThreadActions';
 import { getMovementFields } from 'data/DataMovementFields';
 import { getMovements } from 'selectors/MovementSelectors';
 import { getRules } from 'selectors/RuleSelectors';
 import { getSettings } from 'selectors/SettingSelectors';
-import { t } from 'translations/i18n';
 import { applyRule } from 'utils/RuleUtils';
 import { changeExtension } from 'utils/FileUtils';
 

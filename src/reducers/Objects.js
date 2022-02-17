@@ -1,4 +1,4 @@
-import { t } from 'translations/i18n';
+import { t } from 'i18next';
 import { clone, removePrivateKeys } from 'utils/ObjectUtils';
 
 const Objects = property => (state = [], action) => {

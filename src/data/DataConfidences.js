@@ -1,4 +1,4 @@
-import { t } from 'translations/i18n';
+import { t } from 'i18next';
 
 export function getConfidence(confidenceId) {
     return getConfidences().find(confidence => confidence.id === confidenceId);

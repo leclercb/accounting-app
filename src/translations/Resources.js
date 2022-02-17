@@ -3,11 +3,11 @@ export default {
         translation: {
             'add_objects_one': 'Add object of type "{{property}}"',
             'add_objects_one_other': 'Add {{count}} objects of type "{{property}}"',
-            'process_running': 'Another process is currently running',
+            'already_latest_version': 'You already have the latest version',
             'category_field': {
                 'id': 'ID',
                 'lastBalance': 'Last annual balance',
-                'currentBalance': 'Current annual balance',
+                'currentBalance': 'Current annual balance'
             },
             'compute_categories': 'Compute categories',
             'condition': {
@@ -46,10 +46,18 @@ export default {
             'confirm_close': 'Do you want to close Accounting ?',
             'delete_objects_one': 'Delete object of type "{{property}}"',
             'delete_objects_other': 'Delete {{count}} objects of type "{{property}}"',
-            'duplicate_object_question': 'Duplicate "{{title}}" ?',
             'delete_object_confirm_question': 'Do you really want to delete "{{title}}" ?',
             'delete_object_question': 'Delete "{{title}}" ?',
+            'duplicate_object_question': 'Duplicate "{{title}}" ?',
             'error_occurred': 'An error occurred',
+            'field_option': {
+                'dateFormat': 'Date format',
+                'timeFormat': 'Time format',
+                'currency': 'Currency',
+                'min': 'Minimum',
+                'max': 'Maximum',
+                'values': 'Values'
+            },
             'field_type': {
                 'boolean': 'Boolean',
                 'category': 'Category',
@@ -68,14 +76,6 @@ export default {
                 'textarea': 'Textarea',
                 'text': 'Text'
             },
-            'field_option': {
-                'dateFormat': 'Date format',
-                'timeFormat': 'Time format',
-                'currency': 'Currency',
-                'min': 'Minimum',
-                'max': 'Maximum',
-                'values': 'Values'
-            },
             'load_database': 'Load database',
             'load_from_file': 'Load "{{property}}" from file',
             'movement_field': {
@@ -88,10 +88,17 @@ export default {
                 'currency': 'Currency',
                 'category': 'Category'
             },
+            'nothing_to_undo': 'Nothing to undo',
+            'nothing_to_redo': 'Nothing to redo',
+            'object_duplicate': 'The object with id "{{objectId}}" cannot be added as it already exists',
+            'object_id_missing': 'The object doesn\'t have an ID',
+            'object_not_found': 'The object with id "{{object.id}}" cannot be updated as it doesn\'t exist',
             'operation': {
                 'debit': 'Debit',
                 'credit': 'Credit'
             },
+            'process_running': 'Another process is currently running',
+            'redo_action': 'Redo action',
             'rule_field': {
                 'id': 'ID',
                 'title': 'Title',
@@ -140,27 +147,164 @@ export default {
                 'saveElectronLogs': 'Save Electron logs',
                 'saveElectronLogs_log_files': 'Log Files'
             },
-            'object_id_missing': 'The object doesn\'t have an ID',
-            'object_duplicate': 'The object with id "{{objectId}}" cannot be added as it already exists',
-            'object_not_found': 'The object with id "{{object.id}}" cannot be updated as it doesn\'t exist',
             'undo_action': 'Undo action',
-            'redo_action': 'Redo action',
-            'nothing_to_undo': 'Nothing to undo',
-            'nothing_to_redo': 'Nothing to redo',
             'update_objects_one': 'Update object of type "{{property}}"',
             'update_objects_other': 'Update {{count}} objects of type "{{property}}"',
-            'user_action': 'User action',
-            'already_latest_version': 'You already have the latest version'
+            'user_action': 'User action'
         }
     },
     fr: {
         translation: {
-            'current_annual_balance': 'Solde annuel actuel',
-            'expenses': 'Dépenses',
-            'income': 'Revenus',
-            'last_annual_balance': 'Dernier solde annuel',
-            'movements': 'Mouvements',
-            'rules': 'Règles'
+            'add_objects_one': 'Ajouter un objet de type "{{property}}"',
+            'add_objects_one_other': 'Ajouter {{count}} objets de type "{{property}}"',
+            'already_latest_version': 'Vous avez déjà la dernière version',
+            'category_field': {
+                'id': 'ID',
+                'lastBalance': 'Dernier solde annuel',
+                'currentBalance': 'Solde annuel actuel'
+            },
+            'compute_categories': 'Calculer les catégories',
+            'condition': {
+                'equal': 'Egal',
+                'notEqual': 'Pas égal',
+                'dateBefore': 'Avant (comparer seulement la date)',
+                'dateBeforeOrEqual': 'Avant ou égal (comparer seulement la date)',
+                'dateAfter': 'Après (comparer seulement la date)',
+                'dateAfterOrEqual': 'Après ou égal (comparer seulement la date)',
+                'dateTimeEqual': 'Egal (comparer la date et l\'heure)',
+                'dateTimeNotEqual': 'Pas égal (comparer la date et l\'heure)',
+                'dateTimeBefore': 'Avant (comparer la date et l\'heure)',
+                'dateTimeBeforeOrEqual': 'Avant ou égal (comparer la date et l\'heure)',
+                'dateTimeAfter': 'Après (comparer la date et l\'heure)',
+                'dateTimeAfterOrEqual': 'Après ou égal (comparer la date et l\'heure)',
+                'dateEqual': 'Egal (comparer seulement la date)',
+                'dateNotEqual': 'Pas égal (comparer seulement la date)',
+                'contain': 'Contient',
+                'notContain': 'Ne contient pas',
+                'greaterThan': 'Plus grand que',
+                'greaterThanOrEqual': 'Plus grand que ou égal',
+                'lessThan': 'Plus petit que',
+                'lessThanOrEqual': 'Plus petit que ou égal',
+                'equalIgnoreCase': 'Egal (ignorer la casse)',
+                'notEqualIgnoreCase': 'Pas égal (ignorer la casse)',
+                'containIgnoreCase': 'Contient (ignorer la casse)',
+                'notContainIgnoreCase': 'Ne contient pas (ignorer la casse)'
+            },
+            'confidence': {
+                'unknown': 'Inconnu',
+                'automaticLow': 'Automatique Faible',
+                'automaticHigh': 'Automatique Elevé',
+                'manual': 'Manuel',
+                'error': 'Erreur'
+            },
+            'confirm_close': 'Voulez vous fermer Accounting ?',
+            'delete_objects_one': 'Supprimer un objet de type "{{property}}"',
+            'delete_objects_other': 'Supprimer {{count}} objecs de type "{{property}}"',
+            'delete_object_confirm_question': 'Voulez vous vraiment supprimer "{{title}}" ?',
+            'delete_object_question': 'Supprimer "{{title}}" ?',
+            'duplicate_object_question': 'Dupliquer "{{title}}" ?',
+            'error_occurred': 'Une erreur est servenue',
+            'field_option': {
+                'dateFormat': 'Date format',
+                'timeFormat': 'Time format',
+                'currency': 'Currency',
+                'min': 'Minimum',
+                'max': 'Maximum',
+                'values': 'Values'
+            },
+            'field_type': {
+                'boolean': 'Boolean',
+                'category': 'Category',
+                'color': 'Color',
+                'confidence': 'Confidence',
+                'date': 'Date',
+                'dateTime': 'Date time',
+                'file': 'File',
+                'money': 'Money',
+                'movementField': 'Mouvement Field',
+                'number': 'Number',
+                'operation': 'Operation',
+                'select': 'Select',
+                'selectMultiple': 'Select Multiple',
+                'selectTags': 'Select Tags',
+                'textarea': 'Textarea',
+                'text': 'Text'
+            },
+            'load_database': 'Load database',
+            'load_from_file': 'Load "{{property}}" from file',
+            'movement_field': {
+                'id': 'ID',
+                'date': 'Date',
+                'counterpartyName': 'Counterparty Name',
+                'description': 'Description',
+                'freeCommunication': 'Free Communication',
+                'amount': 'Amount',
+                'currency': 'Currency',
+                'category': 'Category'
+            },
+            'nothing_to_undo': 'Nothing to undo',
+            'nothing_to_redo': 'Nothing to redo',
+            'object_duplicate': 'The object with id "{{objectId}}" cannot be added as it already exists',
+            'object_id_missing': 'The object doesn\'t have an ID',
+            'object_not_found': 'The object with id "{{object.id}}" cannot be updated as it doesn\'t exist',
+            'operation': {
+                'debit': 'Debit',
+                'credit': 'Credit'
+            },
+            'process_running': 'Another process is currently running',
+            'redo_action': 'Redo action',
+            'rule_field': {
+                'id': 'ID',
+                'title': 'Title',
+                'color': 'Color',
+                'category': 'Category',
+                'confidence': 'Confidence'
+            },
+            'save_database': 'Save database',
+            'save_to_file': 'Save "{{property}}" to file',
+            'settings': {
+                'general': 'General',
+                'language': 'Language',
+                'checkVersion': 'Check version',
+                'movementFile': 'Current movement file',
+                'dataFolder': 'Data folder location',
+                'changeDataFolder': 'Change data folder location',
+                'changeDataFolder_copy': 'Copy current data to the new data folder location.',
+                'changeDataFolder_override': 'This will override any data in the selected folder !',
+                'changeDataFolder_change': 'Change',
+                'changeDataFolder_select_folder': 'Please select a data folder',
+                'useTray': 'Use system tray instead of task bar',
+                'confirmBeforeClosing': 'Confirm before closing',
+                'license': 'License',
+                'dateTime': 'Date & Time',
+                'firstDayOfWeek': 'First day of the week',
+                'firstDayOfWeek_monday': 'Monday',
+                'firstDayOfWeek_sunday': 'Sunday',
+                'dateFormat': 'Date format',
+                'timeFormat': 'Time format',
+                'theme': 'Theme & Colors',
+                'resetDefaultColors': 'Reset default colors',
+                'evenColor': 'Even color',
+                'oddColor': 'Odd color',
+                'window': 'Window',
+                'selectedView': 'Vue sélectionnée',
+                'selectedView_expenses': 'Dépenses',
+                'selectedView_income': 'Revenus',
+                'selectedView_movements': 'Mouvements',
+                'selectedView_rules': 'Règles',
+                'windowSizeWidth': 'Window size - Width',
+                'windowSizeHeight': 'Window size - Height',
+                'windowPositionX': 'Window position - X',
+                'windowPositionY': 'Window position - Y',
+                'advanced': 'Advanced',
+                'electronLoggerLevel': 'Electron logger level',
+                'saveElectronLogs': 'Save Electron logs',
+                'saveElectronLogs_log_files': 'Log Files'
+            },
+            'undo_action': 'Undo action',
+            'update_objects_one': 'Update object of type "{{property}}"',
+            'update_objects_other': 'Update {{count}} objects of type "{{property}}"',
+            'user_action': 'User action'
         }
     }
 };

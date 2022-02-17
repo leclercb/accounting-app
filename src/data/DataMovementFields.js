@@ -1,5 +1,5 @@
+import { t } from 'i18next';
 import moment from 'moment';
-import { t } from 'translations/i18n';
 import { addColorsToArray } from 'utils/ColorUtils';
 
 export function getMovementFields(settings) {

@@ -1,4 +1,4 @@
-import { t } from 'translations/i18n';
+import { t } from 'i18next';
 import { addColorsToArray } from 'utils/ColorUtils';
 
 export function getRuleFields() {

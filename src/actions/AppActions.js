@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import moment from 'moment';
 import { ActionCreators } from 'redux-undo';
 import { v4 as uuid } from 'uuid';
@@ -9,7 +10,6 @@ import { updateProcess } from 'actions/ThreadActions';
 import { getMovements } from 'selectors/MovementSelectors';
 import { getRules } from 'selectors/RuleSelectors';
 import { getMovementFile, getSettings } from 'selectors/SettingSelectors';
-import { t } from 'translations/i18n';
 import { ensureDir, joinSync } from 'utils/ElectronIpc';
 import { filterSettings } from 'utils/SettingUtils';
 

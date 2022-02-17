@@ -1,6 +1,6 @@
+import { t } from 'i18next';
 import { v4 as uuid } from 'uuid';
 import { updateProcess } from 'actions/ThreadActions';
-import { t } from 'translations/i18n';
 import {
     exists,
     getPathSync,

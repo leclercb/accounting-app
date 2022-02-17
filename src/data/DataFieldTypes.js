@@ -1,10 +1,10 @@
+import { t } from 'i18next';
 import moment from 'moment';
 import { getCategories } from 'data/DataCategories';
 import { getConfidences } from 'data/DataConfidences';
 import { getMovementFields } from 'data/DataMovementFields';
 import { getOperations } from 'data/DataOperations';
 import { getSettings } from 'selectors/SettingSelectors';
-import { t } from 'translations/i18n';
 import {
     compareBooleans,
     compareDates,

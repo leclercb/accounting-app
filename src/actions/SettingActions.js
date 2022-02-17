@@ -25,9 +25,7 @@ export const setSettings = (settings, core = false) => {
     };
 };
 
-export function updateSettings(settings, options) {
-    options = Object.assign({}, options);
-
+export function updateSettings(settings) {
     return async (dispatch, getState) => {
         await dispatch({
             type: 'UPDATE_SETTINGS',

@@ -1,4 +1,4 @@
-import { t } from 'translations/i18n';
+import { t } from 'i18next';
 import { addColorsToArray } from 'utils/ColorUtils';
 
 export function getOperation(operationId) {
@@ -9,11 +9,11 @@ export function getOperations() {
     return addColorsToArray([
         {
             id: 'credit',
-            title: t('operation.credit'),
+            title: t('operation.credit')
         },
         {
             id: 'debit',
-            title: t('operation.debit'),
+            title: t('operation.debit')
         }
     ]);
 }
