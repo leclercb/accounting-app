@@ -10,7 +10,7 @@ export function ProUnlockedMessage({ licenseInfo }) {
             image={(<Icon color={Constants.fadeIconColor} icon="lock-open" size={64} />)}
             description={(
                 <span>
-                    TaskUnifier Pro has been successfully activated !<br />
+                    Accounting Pro has been successfully activated !<br />
                     <strong>Email: </strong>{licenseInfo.email}<br />
                     {licenseInfo.expirationDate && (
                         <React.Fragment>

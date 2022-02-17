@@ -96,7 +96,7 @@ function createMainWindow(settings, isQuitInitiated) {
 
 function createTray() {
     const tray = new Tray(path.join(__dirname, 'resources', 'icons', 'logo.png'));
-    tray.setToolTip('TaskUnifier');
+    tray.setToolTip('Accounting');
 
     tray.on('click', () => {
         getDefaultWindow().show();

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import Icon from 'components/common/Icon';
 
 export function ProLockedMessage({ info }) {
-    let description = 'This feature requires a TaskUnifier App Pro license !';
+    let description = 'This feature requires a Accounting Pro license !';
 
     if (info) {
-        description = 'TaskUnifier Pro has not been activated !';
+        description = 'Accounting Pro has not been activated !';
     }
 
     return (
