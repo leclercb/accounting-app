@@ -12,12 +12,14 @@ export function getConfidences() {
         {
             id: 'automaticLow',
             title: 'Automatique Faible',
-            color: '#fcf3cf'
+            color: '#fcf3cf',
+            type: 'automatic'
         },
         {
             id: 'automaticHigh',
             title: 'Automatique Elevé',
-            color: '#a2d9ce'
+            color: '#a2d9ce',
+            type: 'automatic'
         },
         {
             id: 'manual',

@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const { app, dialog, ipcMain, shell, BrowserWindow } = require('electron');
 const { autoUpdater, CancellationToken } = require('electron-updater');
 const log = require('electron-log');
@@ -53,6 +54,12 @@ function initializeIpc(setQuitInitiated) {
 
     ipcMain.handle('auto-updater-quit-and-install', () => {
         autoUpdater.quitAndInstall();
+    });
+
+    ipcMain.on('crypto-verify-sync', (event, algorithm, message, object, signature, signatureFormat) => {
+        const verifier = crypto.createVerify(algorithm);
+        verifier.update(message);
+        event.returnValue = verifier.verify(object, signature, signatureFormat);
     });
 
     ipcMain.handle('current-window-close', event => {

@@ -1,10 +1,14 @@
 import React from 'react';
 import { Checkbox, Modal, message } from 'antd';
 import moment from 'moment';
+import { getUserDataPath } from 'actions/ActionUtils';
 import { loadData, saveData } from 'actions/AppActions';
 import { checkForUpdates } from 'actions/AutoUpdaterActions';
-import { getUserDataPath } from 'actions/ActionUtils';
 import FileField from 'components/common/FileField';
+import ProLockedMessage from 'components/pro/ProLockedMessage';
+import ProUnlockedMessage from 'components/pro/ProUnlockedMessage';
+import { getLicenseInfo } from 'selectors/AppSelectors';
+import { store } from 'store/Store';
 import { copyFile, getLogFile, showSaveDialog } from 'utils/ElectronIpc';
 
 export function isCoreSetting(settingId) {
@@ -152,6 +156,41 @@ export function getCategories() {
                     type: 'boolean',
                     value: false,
                     editable: true
+                }
+            ]
+        },
+        {
+            id: 'license',
+            title: 'License',
+            icon: 'key',
+            settings: [
+                {
+                    id: 'license',
+                    title: 'Accounting Pro license',
+                    type: 'textarea',
+                    options: {
+                        autoSize: {
+                            minRows: 3,
+                            maxRows: 3
+                        }
+                    },
+                    value: null,
+                    editable: true
+                },
+                {
+                    id: 'licenseInfo',
+                    title: '',
+                    type: 'component',
+                    value: () => { // eslint-disable-line react/display-name
+                        const licenseInfo = getLicenseInfo(store.getState());
+
+                        if (licenseInfo) {
+                            return (<ProUnlockedMessage licenseInfo={licenseInfo} />);
+                        } else {
+                            return (<ProLockedMessage info={true} />);
+                        }
+                    },
+                    editable: false
                 }
             ]
         },

@@ -37,6 +37,9 @@ export function getRuleFields() {
             id: 'confidence',
             title: 'Confiance',
             type: 'confidence',
+            options: {
+                type: 'automatic'
+            },
             editable: true
         }
     ]);

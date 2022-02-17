@@ -40,6 +40,12 @@ export function quitAndInstall() {
     return ipcRenderer.invoke('auto-updater-quit-and-install');
 }
 
+// crypto-verify-sync
+export function verifyCryptoSync(algorithm, message, object, signature, signatureFormat) {
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.sendSync('crypto-verify-sync', algorithm, message, object, signature, signatureFormat);
+}
+
 // current-window-close
 export function closeCurrentWindow() {
     const { ipcRenderer } = window.electron;

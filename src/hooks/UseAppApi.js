@@ -12,7 +12,8 @@ import {
     getDataUuid,
     getEditingCell,
     getSettingManager,
-    getStartDate
+    getStartDate,
+    isPro
 } from 'selectors/AppSelectors';
 import { getMovementFile, getSelectedView } from 'selectors/SettingSelectors';
 
@@ -21,6 +22,7 @@ export function useAppApi() {
 
     const dataUuid = useSelector(getDataUuid);
     const startDate = useSelector(getStartDate);
+    const pro = useSelector(isPro);
     const selectedView = useSelector(getSelectedView);
     const editingCell = useSelector(getEditingCell);
     const movementFile = useSelector(getMovementFile);
@@ -64,6 +66,7 @@ export function useAppApi() {
     return {
         dataUuid,
         startDate,
+        isPro: pro,
         selectedView,
         editingCell,
         movementFile,

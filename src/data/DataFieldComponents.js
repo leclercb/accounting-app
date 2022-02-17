@@ -94,12 +94,15 @@ export function getFieldComponents(type, options) {
             break;
         }
         case 'confidence': {
+            const type = options && options.type ? options.type : undefined;
+
             configuration = {
                 render: value => (
                     <ConfidenceTitle confidenceId={value} />
                 ),
                 input: props => (
                     <ConfidenceSelect
+                        type={type}
                         onBlur={props.onCommit}
                         onClear={props.onCommit}
                         dropdownMatchSelectWidth={false}
