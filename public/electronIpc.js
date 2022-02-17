@@ -117,8 +117,8 @@ function initializeIpc(setQuitInitiated) {
         return fse.writeFile(file, data);
     });
 
-    ipcMain.handle('get-core-settings', (event) => {
-        return settings;
+    ipcMain.on('get-core-settings-sync', (event) => {
+        event.returnValue = settings;
     });
 
     ipcMain.handle('initiate-quit', () => {

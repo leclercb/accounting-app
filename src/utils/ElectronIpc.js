@@ -125,9 +125,9 @@ export function writeFile(file, data) {
 }
 
 // get-core-settings
-export function getCoreSettings() {
+export function getCoreSettingsSync() {
     const { ipcRenderer } = window.electron;
-    return ipcRenderer.invoke('get-core-settings');
+    return ipcRenderer.sendSync('get-core-settings-sync');
 }
 
 // initiate-quit

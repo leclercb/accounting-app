@@ -113,6 +113,8 @@ export default {
             'settings': {
                 'general': 'General',
                 'language': 'Language',
+                'language_english': 'English',
+                'language_french': 'French',
                 'checkVersion': 'Check version',
                 'movementFile': 'Current movement file',
                 'dataFolder': 'Data folder location',
@@ -269,6 +271,8 @@ export default {
             'settings': {
                 'general': 'Général',
                 'language': 'Langue',
+                'language_english': 'Anglais',
+                'language_french': 'Français',
                 'checkVersion': 'Vérifier la version',
                 'movementFile': 'Fichier des mouvements chargé',
                 'dataFolder': 'Localisation du dossier des données',

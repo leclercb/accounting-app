@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, Modal, message } from 'antd';
-import i18next, { t } from 'i18next';
+import { t } from 'i18next';
 import moment from 'moment';
 import { getUserDataPath } from 'actions/ActionUtils';
 import { loadData, saveData } from 'actions/AppActions';
@@ -66,10 +66,16 @@ export function getCategories() {
                     value: 'en',
                     editable: true,
                     options: {
-                        values: (i18next.languages || []).map(language => ({
-                            title: language,
-                            value: language
-                        }))
+                        values: [
+                            {
+                                title: t('settings.language_english'),
+                                value: 'en'
+                            },
+                            {
+                                title: t('settings.language_french'),
+                                value: 'fr'
+                            }
+                        ]
                     },
                     core: true
                 },
