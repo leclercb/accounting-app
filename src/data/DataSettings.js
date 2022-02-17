@@ -10,6 +10,7 @@ import ProUnlockedMessage from 'components/pro/ProUnlockedMessage';
 import { getLicenseInfo } from 'selectors/AppSelectors';
 import { store } from 'store/Store';
 import { copyFile, getLogFile, showSaveDialog } from 'utils/ElectronIpc';
+import i18n, { t } from 'translations/i18n';
 
 export function isCoreSetting(settingId) {
     return !!getCategories().find(category => {
@@ -58,6 +59,20 @@ export function getCategories() {
             title: t('settings.general'),
             icon: 'home',
             settings: [
+                {
+                    id: 'language',
+                    title: t('settings.language'),
+                    type: 'select',
+                    value: 'info',
+                    editable: true,
+                    options: {
+                        values: i18n.languages.map(language => ({
+                            title: language,
+                            value: language
+                        }))
+                    },
+                    core: true
+                },
                 {
                     id: 'checkVersion',
                     title: t('settings.checkVersion'),

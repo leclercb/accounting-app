@@ -74,6 +74,27 @@ function getFieldFilterType(type) {
                 conditionsFieldType: 'color'
             };
         }
+        case 'confidence': {
+            return {
+                conditions: [
+                    {
+                        type: 'equal',
+                        title: t('condition.equal'),
+                        apply: (conditionValue, objectValue) => {
+                            return (conditionValue || '') === (objectValue || '');
+                        }
+                    },
+                    {
+                        type: 'notEqual',
+                        title: t('condition.notEqual'),
+                        apply: (conditionValue, objectValue) => {
+                            return (conditionValue || '') !== (objectValue || '');
+                        }
+                    }
+                ],
+                conditionsFieldType: 'confidence'
+            };
+        }
         case 'date': {
             return {
                 conditions: [
@@ -570,6 +591,27 @@ function getFieldFilterType(type) {
                 conditionsFieldType: 'money'
             };
         }
+        case 'movementField': {
+            return {
+                conditions: [
+                    {
+                        type: 'equal',
+                        title: t('condition.equal'),
+                        apply: (conditionValue, objectValue) => {
+                            return (conditionValue || '') === (objectValue || '');
+                        }
+                    },
+                    {
+                        type: 'notEqual',
+                        title: t('condition.notEqual'),
+                        apply: (conditionValue, objectValue) => {
+                            return (conditionValue || '') !== (objectValue || '');
+                        }
+                    }
+                ],
+                conditionsFieldType: 'movementField'
+            };
+        }
         case 'number': {
             return {
                 conditions: [
@@ -617,6 +659,27 @@ function getFieldFilterType(type) {
                     }
                 ],
                 conditionsFieldType: 'number'
+            };
+        }
+        case 'operation': {
+            return {
+                conditions: [
+                    {
+                        type: 'equal',
+                        title: t('condition.equal'),
+                        apply: (conditionValue, objectValue) => {
+                            return (conditionValue || '') === (objectValue || '');
+                        }
+                    },
+                    {
+                        type: 'notEqual',
+                        title: t('condition.notEqual'),
+                        apply: (conditionValue, objectValue) => {
+                            return (conditionValue || '') !== (objectValue || '');
+                        }
+                    }
+                ],
+                conditionsFieldType: 'operation'
             };
         }
         case 'select': {

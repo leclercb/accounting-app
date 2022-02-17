@@ -3,6 +3,7 @@ import { Popconfirm, Tooltip } from 'antd';
 import Icon from 'components/common/Icon';
 import Constants from 'constants/Constants';
 import Spacer from 'components/common/Spacer';
+import { t } from 'translations/i18n';
 
 export function createAction(icon, text, onClick, color) {
     return (
@@ -26,7 +27,7 @@ export function createAction(icon, text, onClick, color) {
 export function createActions(item, onDuplicate, onDelete, getTitle = item => item.title) {
     return (
         <React.Fragment>
-            {onDuplicate ? createAction('copy', `Duplicate "${getTitle(item)}" ?`, onDuplicate) : null}
+            {onDuplicate ? createAction('copy', t('duplicate_object_question', { title: getTitle(item) }), onDuplicate) : null}
             <Spacer />
             {onDelete ? (
                 <Popconfirm
@@ -34,13 +35,13 @@ export function createActions(item, onDuplicate, onDelete, getTitle = item => it
                         <Icon
                             icon="trash-alt"
                             color={Constants.color}
-                            text={`Do you really want to delete "${getTitle(item)}" ?`} />
+                            text={t('delete_object_confirm_question', { title: getTitle(item) })} />
                     )}
                     placement="right"
                     onConfirm={() => onDelete(item.id)}
                     okText="Yes"
                     cancelText="No">
-                    {createAction('trash-alt', `Delete "${getTitle(item)}" ?`)}
+                    {createAction('trash-alt', t('delete_object_question', { title: getTitle(item) }))}
                 </Popconfirm>
             ) : null}
         </React.Fragment>

@@ -46,6 +46,9 @@ export default {
             'confirm_close': 'Do you want to close Accounting ?',
             'delete_objects_one': 'Delete object of type "{{property}}"',
             'delete_objects_other': 'Delete {{count}} objects of type "{{property}}"',
+            'duplicate_object_question': 'Duplicate "{{title}}" ?',
+            'delete_object_confirm_question': 'Do you really want to delete "{{title}}" ?',
+            'delete_object_question': 'Delete "{{title}}" ?',
             'error_occurred': 'An error occurred',
             'field_type': {
                 'boolean': 'Boolean',
@@ -100,6 +103,7 @@ export default {
             'save_to_file': 'Save "{{property}}" to file',
             'settings': {
                 'general': 'General',
+                'language': 'Language',
                 'checkVersion': 'Check version',
                 'movementFile': 'Current movement file',
                 'dataFolder': 'Data folder location',
