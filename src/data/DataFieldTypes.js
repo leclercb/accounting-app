@@ -81,7 +81,7 @@ export function getFieldType(type, options) {
                 title: t('field_type.category'),
                 allowCreation: true,
                 width: 200,
-                alwaysInEdition: true,
+                alwaysInEdition: false,
                 valuePropName: 'value',
                 compare: (a, b) => compareObjects(a, b, getCategories()),
                 toString: (value) => toStringObject(value, getCategories()),
