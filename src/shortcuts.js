@@ -9,6 +9,7 @@ import { canRedoMovementStateUpdate, canUndoMovementStateUpdate } from 'selector
 import { canRedoRuleStateUpdate, canUndoRuleStateUpdate } from 'selectors/RuleSelectors';
 import { getSelectedView } from 'selectors/SettingSelectors';
 import { store } from 'store/Store';
+import { t } from 'translations/i18n';
 
 export function initializeShortcuts() {
     const { ipcRenderer } = window.electron;
@@ -46,17 +47,17 @@ async function executeUndo() {
         case 'movements':
             if (canUndoMovementStateUpdate(state)) {
                 await store.dispatch(undoMovementStateUpdate());
-                message.success('Undo action');
+                message.success(t('undo_action'));
             } else {
-                message.warning('Nothing to undo');
+                message.warning(t('nothing_to_undo'));
             }
             break;
         case 'rules':
             if (canUndoRuleStateUpdate(state)) {
                 await store.dispatch(undoRuleStateUpdate());
-                message.success('Undo action');
+                message.success(t('undo_action'));
             } else {
-                message.warning('Nothing to undo');
+                message.warning(t('nothing_to_undo'));
             }
             break;
         default:
@@ -72,18 +73,18 @@ async function executeRedo() {
         case 'note':
             if (canRedoMovementStateUpdate(state)) {
                 await store.dispatch(redoMovementStateUpdate());
-                message.success('Redo action');
+                message.success(t('redo_action'));
             } else {
-                message.warning('Nothing to redo');
+                message.warning(t('nothing_to_redo'));
             }
             break;
         case 'task':
         case 'taskCalendar':
             if (canRedoRuleStateUpdate(state)) {
                 await store.dispatch(redoRuleStateUpdate());
-                message.success('Redo action');
+                message.success(t('redo_action'));
             } else {
-                message.warning('Nothing to redo');
+                message.warning(t('nothing_to_redo'));
             }
             break;
         default:

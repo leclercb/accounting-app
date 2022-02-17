@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { isBusy } from 'selectors/ThreadSelectors';
+import { t } from 'translations/i18n';
 
 export function checkIsBusy(fn = null, silent = false) {
     return async (dispatch, getState) => {
@@ -7,7 +8,7 @@ export function checkIsBusy(fn = null, silent = false) {
 
         if (isBusy(state)) {
             if (!silent) {
-                throw Error('Another process is currently running');
+                throw Error(t('process_running'));
             }
 
             return;
@@ -19,7 +20,7 @@ export function checkIsBusy(fn = null, silent = false) {
     };
 }
 
-export function runProcess(fn = null, title = 'User action') {
+export function runProcess(fn = null, title = t('user_action')) {
     return async dispatch => {
         const processId = uuid();
 

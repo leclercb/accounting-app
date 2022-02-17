@@ -1,12 +1,12 @@
 import React from 'react';
+import { notification } from 'antd';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { notification } from 'antd';
 import App from 'App';
 import { initializeShortcuts } from './shortcuts';
 import LoadingIndicator from 'components/common/LoadingIndicator';
 import { store } from 'store/Store';
-import 'i18n.js';
+import { t } from 'translations/i18n';
 import 'index.css';
 
 initializeShortcuts();
@@ -19,7 +19,7 @@ window.addEventListener('error', function (e) {
     // logger.error('Uncaught error', e);
 
     notification.error({
-        message: 'An error occurred',
+        message: t('error_occurred'),
         description: e.error ? e.error.toString() : e.message
     });
 

@@ -1,18 +1,28 @@
 import moment from 'moment';
+import { t } from 'translations/i18n';
 import { addColorsToArray } from 'utils/ColorUtils';
 
 export function getMovementFields(settings) {
     return addColorsToArray([
         {
             static: true,
+            id: 'id',
+            title: t('movement_field.id'),
+            type: 'text',
+            editable: false,
+            visible: false,
+            defaultOrder: 1
+        },
+        {
+            static: true,
             id: 'date',
-            title: 'Date',
+            title: t('movement_field.date'),
             type: 'date',
             options: {
                 dateFormat: settings.dateFormat
             },
             editable: false,
-            defaultOrder: 1,
+            defaultOrder: 2,
             csv: {
                 kbc: {
                     index: 5,
@@ -23,10 +33,10 @@ export function getMovementFields(settings) {
         {
             static: true,
             id: 'counterpartyName',
-            title: 'Nom Contrepartie',
+            title: t('movement_field.counterpartyName'),
             type: 'text',
             editable: false,
-            defaultOrder: 2,
+            defaultOrder: 3,
             csv: {
                 kbc: {
                     index: 14
@@ -36,10 +46,10 @@ export function getMovementFields(settings) {
         {
             static: true,
             id: 'description',
-            title: 'Description',
+            title: t('movement_field.description'),
             type: 'text',
             editable: false,
-            defaultOrder: 3,
+            defaultOrder: 4,
             csv: {
                 kbc: {
                     index: 6
@@ -49,10 +59,10 @@ export function getMovementFields(settings) {
         {
             static: true,
             id: 'freeCommunication',
-            title: 'Communication Libre',
+            title: t('movement_field.freeCommunication'),
             type: 'text',
             editable: false,
-            defaultOrder: 4,
+            defaultOrder: 5,
             csv: {
                 kbc: {
                     index: 17
@@ -62,10 +72,10 @@ export function getMovementFields(settings) {
         {
             static: true,
             id: 'amount',
-            title: 'Montant',
+            title: t('movement_field.amount'),
             type: 'money',
             editable: false,
-            defaultOrder: 5,
+            defaultOrder: 6,
             csv: {
                 kbc: {
                     index: 8,
@@ -76,10 +86,10 @@ export function getMovementFields(settings) {
         {
             static: true,
             id: 'currency',
-            title: 'Devise',
+            title: t('movement_field.currency'),
             type: 'text',
             editable: false,
-            defaultOrder: 6,
+            defaultOrder: 7,
             csv: {
                 kbc: {
                     index: 3
@@ -89,10 +99,10 @@ export function getMovementFields(settings) {
         {
             static: true,
             id: 'category',
-            title: 'Catégorie',
+            title: t('movement_field.category'),
             type: 'category',
             editable: true,
-            defaultOrder: 6
+            defaultOrder: 8
         }
     ]);
 }

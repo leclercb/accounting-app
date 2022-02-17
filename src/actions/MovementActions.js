@@ -15,6 +15,7 @@ import { getMovementFields } from 'data/DataMovementFields';
 import { getMovements } from 'selectors/MovementSelectors';
 import { getRules } from 'selectors/RuleSelectors';
 import { getSettings } from 'selectors/SettingSelectors';
+import { t } from 'translations/i18n';
 import { applyRule } from 'utils/RuleUtils';
 import { changeExtension } from 'utils/FileUtils';
 
@@ -136,7 +137,7 @@ export function computeCategories() {
             dispatch(updateProcess({
                 id: processId,
                 state: 'ERROR',
-                title: 'Compute categories',
+                title: t('compute_categories'),
                 error: error.toString()
             }));
 

@@ -55,12 +55,12 @@ export function getCategories() {
     return [
         {
             id: 'general',
-            title: 'Général',
+            title: t('settings.general'),
             icon: 'home',
             settings: [
                 {
                     id: 'checkVersion',
-                    title: 'Check version',
+                    title: t('settings.checkVersion'),
                     type: 'button',
                     value: async (settings, updateSettings, dispatch) => {
                         await dispatch(checkForUpdates(false));
@@ -69,7 +69,7 @@ export function getCategories() {
                 },
                 {
                     id: 'movementFile',
-                    title: 'Fichier des mouvements courants',
+                    title: t('settings.movementFile'),
                     type: 'text',
                     value: null,
                     editable: false,
@@ -77,7 +77,7 @@ export function getCategories() {
                 },
                 {
                     id: 'dataFolder',
-                    title: 'Dossier des données',
+                    title: t('settings.dataFolder'),
                     type: 'text',
                     value: getUserDataPath(),
                     editable: false,
@@ -85,7 +85,7 @@ export function getCategories() {
                 },
                 {
                     id: 'changeDataFolder',
-                    title: 'Changer le dossier des données',
+                    title: t('settings.changeDataFolder'),
                     type: 'button',
                     value: (settings, updateSettings, dispatch) => {
                         return new Promise((resolve, reject) => {
@@ -93,7 +93,7 @@ export function getCategories() {
                             let copy = false;
 
                             Modal.confirm({
-                                title: 'Changer le dossier des données',
+                                title: t('settings.changeDataFolder'),
                                 content: (
                                     <React.Fragment>
                                         <FileField
@@ -109,13 +109,13 @@ export function getCategories() {
                                             }} />
                                         <Checkbox
                                             onChange={event => copy = event.target.checked}>
-                                            Copier les données courantes vers le nouveau dossier.
+                                            {t('settings.changeDataFolder_copy')}
                                             <br />
-                                            Ceci va écraser toutes les données de ce dossier !
+                                            {t('settings.changeDataFolder_override')}
                                         </Checkbox>
                                     </React.Fragment>
                                 ),
-                                okText: 'Changer',
+                                okText: t('settings.changeDataFolder_change'),
                                 onOk: async () => {
                                     try {
                                         if (dataFolder) {
@@ -124,7 +124,7 @@ export function getCategories() {
                                             await dispatch(saveData({ coreSettingsOnly: !copy }));
                                             await dispatch(loadData());
                                         } else {
-                                            message.error('Veuillez sélectionner un dossier pour vos données');
+                                            message.error(t('settings.changeDataFolder_select_folder'));
                                         }
 
                                         resolve();
@@ -144,7 +144,7 @@ export function getCategories() {
                 },
                 {
                     id: 'useTray',
-                    title: 'Use system tray instead of task bar',
+                    title: t('settings.useTray'),
                     type: 'boolean',
                     value: false,
                     editable: true,
@@ -152,7 +152,7 @@ export function getCategories() {
                 },
                 {
                     id: 'confirmBeforeClosing',
-                    title: 'Confirmer avant de quitter',
+                    title: t('settings.confirmBeforeClosing'),
                     type: 'boolean',
                     value: false,
                     editable: true
@@ -161,12 +161,12 @@ export function getCategories() {
         },
         {
             id: 'license',
-            title: 'License',
+            title: t('settings.license'),
             icon: 'key',
             settings: [
                 {
                     id: 'license',
-                    title: 'Accounting Pro license',
+                    title: t('settings.license'),
                     type: 'textarea',
                     options: {
                         autoSize: {
@@ -195,57 +195,22 @@ export function getCategories() {
             ]
         },
         {
-            id: 'theme',
-            title: 'Thème & Couleurs',
-            icon: 'paint-roller',
-            settings: [
-                {
-                    id: 'resetDefaultColors',
-                    title: 'Remettre les couleurs par défaut',
-                    type: 'button',
-                    value: async (settings, updateSettings) => {
-                        await updateSettings({
-                            evenColor: '#fafafa',
-                            oddColor: '#e3ebf2',
-                            dueTodayForegroundColor: '#1b5e20',
-                            overdueForegroundColor: '#b71c1c'
-                        });
-                    },
-                    editable: true
-                },
-                {
-                    id: 'evenColor',
-                    title: 'Couleur pair',
-                    type: 'color',
-                    value: '#fafafa',
-                    editable: true
-                },
-                {
-                    id: 'oddColor',
-                    title: 'Couleur impair',
-                    type: 'color',
-                    value: '#e3ebf2',
-                    editable: true
-                }
-            ]
-        },
-        {
-            id: 'date',
-            title: 'Date & Heure',
+            id: 'dateTime',
+            title: t('settings.dateTime'),
             icon: 'calendar-alt',
             settings: [
                 {
                     id: 'firstDayOfWeek',
-                    title: 'Premier jour de la semaine',
+                    title: t('settings.firstDayOfWeek'),
                     type: 'select',
                     options: {
                         values: [
                             {
-                                title: 'Lundi',
+                                title: t('settings.firstDayOfWeek_monday'),
                                 value: 1
                             },
                             {
-                                title: 'Dimanche',
+                                title: t('settings.firstDayOfWeek_sunday'),
                                 value: 0
                             }
                         ]
@@ -255,7 +220,7 @@ export function getCategories() {
                 },
                 {
                     id: 'dateFormat',
-                    title: 'Format des dates',
+                    title: t('settings.dateFormat'),
                     type: 'select',
                     options: {
                         values: [
@@ -338,7 +303,7 @@ export function getCategories() {
                 },
                 {
                     id: 'timeFormat',
-                    title: 'Format des heures',
+                    title: t('settings.timeFormat'),
                     type: 'select',
                     options: {
                         values: [
@@ -358,30 +323,63 @@ export function getCategories() {
             ]
         },
         {
+            id: 'theme',
+            title: t('settings.theme'),
+            icon: 'paint-roller',
+            settings: [
+                {
+                    id: 'resetDefaultColors',
+                    title: t('settings.resetDefaultColors'),
+                    type: 'button',
+                    value: async (settings, updateSettings) => {
+                        await updateSettings({
+                            evenColor: '#fafafa',
+                            oddColor: '#e3ebf2'
+                        });
+                    },
+                    editable: true
+                },
+                {
+                    id: 'evenColor',
+                    title: t('settings.evenColor'),
+                    type: 'color',
+                    value: '#fafafa',
+                    editable: true
+                },
+                {
+                    id: 'oddColor',
+                    title: t('settings.oddColor'),
+                    type: 'color',
+                    value: '#e3ebf2',
+                    editable: true
+                }
+            ]
+        },
+        {
             id: 'window',
-            title: 'Fenêtre',
+            title: t('settings.window'),
             icon: 'desktop',
             settings: [
                 {
                     id: 'selectedView',
-                    title: 'Vue sélectionnée',
+                    title: t('settings.selectedView'),
                     type: 'select',
                     options: {
                         values: [
                             {
-                                title: 'Dépenses',
+                                title: t('settings.selectedView_expenses'),
                                 value: 'expenses'
                             },
                             {
-                                title: 'Revenus',
+                                title: t('settings.selectedView_income'),
                                 value: 'income'
                             },
                             {
-                                title: 'Mouvements',
+                                title: t('settings.selectedView_movements'),
                                 value: 'movements'
                             },
                             {
-                                title: 'Règles',
+                                title: t('settings.selectedView_rules'),
                                 value: 'rules'
                             }
                         ]
@@ -392,7 +390,7 @@ export function getCategories() {
                 },
                 {
                     id: 'windowSizeWidth',
-                    title: 'Taille de la fenêtre - Largeur',
+                    title: t('settings.windowSizeWidth'),
                     type: 'number',
                     value: 1024,
                     editable: false,
@@ -401,7 +399,7 @@ export function getCategories() {
                 },
                 {
                     id: 'windowSizeHeight',
-                    title: 'Taille de la fenêtre - Hauteur',
+                    title: t('settings.windowSizeHeight'),
                     type: 'number',
                     value: 768,
                     editable: false,
@@ -410,7 +408,7 @@ export function getCategories() {
                 },
                 {
                     id: 'windowPositionX',
-                    title: 'Position de la fenêtre - X',
+                    title: t('settings.windowPositionX'),
                     type: 'number',
                     value: null,
                     editable: false,
@@ -419,7 +417,7 @@ export function getCategories() {
                 },
                 {
                     id: 'windowPositionY',
-                    title: 'Position de la fenêtre - Y',
+                    title: t('settings.windowPositionY'),
                     type: 'number',
                     value: null,
                     editable: false,
@@ -430,7 +428,7 @@ export function getCategories() {
         },
         {
             id: 'advanced',
-            title: 'Avancé',
+            title: t('settings.advanced'),
             icon: 'radiation',
             settings: [
                 {
@@ -463,13 +461,13 @@ export function getCategories() {
                 },
                 {
                     id: 'saveElectronLogs',
-                    title: 'Sauver les logs d\'Electron',
+                    title: t('settings.saveElectronLogs'),
                     type: 'button',
                     value: async () => {
                         const result = await showSaveDialog({
                             filters: [
                                 {
-                                    name: 'Fichiers de log',
+                                    name: t('settings.saveElectronLogs_log_files'),
                                     extensions: ['log']
                                 }
                             ]

@@ -1,3 +1,4 @@
+import { t } from 'translations/i18n';
 import { addColorsToArray } from 'utils/ColorUtils';
 
 export function getCategoryFields() {
@@ -5,7 +6,7 @@ export function getCategoryFields() {
         {
             static: true,
             id: 'id',
-            title: 'Catégorie',
+            title: t('category_field.id'),
             type: 'category',
             editable: false,
             defaultOrder: 1
@@ -13,7 +14,7 @@ export function getCategoryFields() {
         {
             static: true,
             id: 'lastBalance',
-            title: 'Dernier solde annuel',
+            title: t('category_field.lastBalance'),
             type: 'money',
             editable: false,
             defaultOrder: 2
@@ -21,7 +22,7 @@ export function getCategoryFields() {
         {
             static: true,
             id: 'currentBalance',
-            title: 'Solde annuel actuel',
+            title: t('category_field.currentBalance'),
             type: 'money',
             editable: false,
             defaultOrder: 3

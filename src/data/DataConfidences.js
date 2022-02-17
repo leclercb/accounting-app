@@ -1,3 +1,5 @@
+import { t } from 'translations/i18n';
+
 export function getConfidence(confidenceId) {
     return getConfidences().find(confidence => confidence.id === confidenceId);
 }
@@ -6,29 +8,29 @@ export function getConfidences() {
     return [
         {
             id: 'unknown',
-            title: 'Inconnu',
+            title: t('confidence.unknown'),
             color: '#fdfefe'
         },
         {
             id: 'automaticLow',
-            title: 'Automatique Faible',
+            title: t('confidence.automaticLow'),
             color: '#fcf3cf',
             type: 'automatic'
         },
         {
             id: 'automaticHigh',
-            title: 'Automatique Elevé',
+            title: t('confidence.automaticHigh'),
             color: '#a2d9ce',
             type: 'automatic'
         },
         {
             id: 'manual',
-            title: 'Manuel',
+            title: t('confidence.manual'),
             color: '#aed6f1'
         },
         {
             id: 'error',
-            title: 'Erreur',
+            title: t('confidence.error'),
             color: '#e6b0aa'
         }
     ];

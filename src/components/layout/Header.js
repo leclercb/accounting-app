@@ -116,22 +116,22 @@ function Header() {
                 <Button
                     className={appApi.selectedView === 'expenses' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('expenses')}>
-                    <Icon icon="right-from-bracket" text={t('Expenses')} />
+                    <Icon icon="right-from-bracket" text={t('settings.selectedView_expenses')} />
                 </Button>
                 <Button
                     className={appApi.selectedView === 'income' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('income')}>
-                    <Icon icon="right-to-bracket" text={t('Income')} />
+                    <Icon icon="right-to-bracket" text={t('settings.selectedView_income')} />
                 </Button>
                 <Button
                     className={appApi.selectedView === 'movements' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('movements')}>
-                    <Icon icon="up-right-and-down-left-from-center" text={t('Movements')} />
+                    <Icon icon="up-right-and-down-left-from-center" text={t('settings.selectedView_movements')} />
                 </Button>
                 <Button
                     className={appApi.selectedView === 'rules' ? 'selected-view' : ''}
                     onClick={() => appApi.setSelectedView('rules')}>
-                    <Icon icon="ruler-combined" text={t('Rules')} />
+                    <Icon icon="ruler-combined" text={t('settings.selectedView_rules')} />
                 </Button>
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>

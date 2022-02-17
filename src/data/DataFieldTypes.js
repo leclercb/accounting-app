@@ -1,9 +1,10 @@
+import moment from 'moment';
 import { getCategories } from 'data/DataCategories';
 import { getConfidences } from 'data/DataConfidences';
 import { getMovementFields } from 'data/DataMovementFields';
 import { getOperations } from 'data/DataOperations';
-import moment from 'moment';
 import { getSettings } from 'selectors/SettingSelectors';
+import { t } from 'translations/i18n';
 import {
     compareBooleans,
     compareDates,
@@ -65,7 +66,7 @@ export function getFieldType(type, options) {
     switch (type) {
         case 'boolean': {
             return {
-                title: 'Boolean',
+                title: t('field_type.boolean'),
                 allowCreation: true,
                 width: 80,
                 alwaysInEdition: true,
@@ -77,7 +78,7 @@ export function getFieldType(type, options) {
         }
         case 'category': {
             return {
-                title: 'Category',
+                title: t('field_type.category'),
                 allowCreation: true,
                 width: 200,
                 alwaysInEdition: true,
@@ -89,7 +90,7 @@ export function getFieldType(type, options) {
         }
         case 'color': {
             return {
-                title: 'Color',
+                title: t('field_type.color'),
                 allowCreation: true,
                 width: 100,
                 alwaysInEdition: false,
@@ -101,7 +102,7 @@ export function getFieldType(type, options) {
         }
         case 'confidence': {
             return {
-                title: 'Confidence',
+                title: t('field_type.confidence'),
                 allowCreation: true,
                 width: 200,
                 alwaysInEdition: false,
@@ -115,7 +116,7 @@ export function getFieldType(type, options) {
             const dateFormat = options && options.dateFormat ? options.dateFormat : 'DD/MM/YYYY';
 
             return {
-                title: 'Date',
+                title: t('field_type.date'),
                 allowCreation: true,
                 width: 250,
                 alwaysInEdition: false,
@@ -141,7 +142,7 @@ export function getFieldType(type, options) {
                 options: [
                     {
                         id: 'dateFormat',
-                        title: 'Date format',
+                        title: t('field_option.dateFormat'),
                         type: 'text'
                     }
                 ]
@@ -152,7 +153,7 @@ export function getFieldType(type, options) {
             const timeFormat = options && options.timeFormat ? options.timeFormat : 'HH:mm';
 
             return {
-                title: 'Date time',
+                title: t('field_type.dateTime'),
                 allowCreation: true,
                 width: 250,
                 alwaysInEdition: false,
@@ -178,12 +179,12 @@ export function getFieldType(type, options) {
                 options: [
                     {
                         id: 'dateFormat',
-                        title: 'Date format',
+                        title: t('field_option.dateFormat'),
                         type: 'text'
                     },
                     {
                         id: 'timeFormat',
-                        title: 'Time format',
+                        title: t('field_option.timeFormat'),
                         type: 'text'
                     }
                 ]
@@ -191,7 +192,7 @@ export function getFieldType(type, options) {
         }
         case 'file': {
             return {
-                title: 'File',
+                title: t('field_type.file'),
                 allowCreation: true,
                 width: 250,
                 alwaysInEdition: false,
@@ -205,7 +206,7 @@ export function getFieldType(type, options) {
             const currency = options && options.currency ? options.currency : '€';
 
             return {
-                title: 'Money',
+                title: t('field_type.money'),
                 allowCreation: true,
                 width: 150,
                 alwaysInEdition: false,
@@ -215,7 +216,7 @@ export function getFieldType(type, options) {
                 options: [
                     {
                         id: 'currency',
-                        title: 'Currency',
+                        title: t('field_option.currency'),
                         type: 'text'
                     }
                 ]
@@ -223,7 +224,7 @@ export function getFieldType(type, options) {
         }
         case 'movementField': {
             return {
-                title: 'Mouvement Field',
+                title: t('field_type.movementField'),
                 allowCreation: true,
                 width: 200,
                 alwaysInEdition: false,
@@ -235,7 +236,7 @@ export function getFieldType(type, options) {
         }
         case 'number': {
             return {
-                title: 'Number',
+                title: t('field_type.number'),
                 allowCreation: true,
                 width: 150,
                 alwaysInEdition: false,
@@ -245,12 +246,12 @@ export function getFieldType(type, options) {
                 options: [
                     {
                         id: 'min',
-                        title: 'Minimum',
+                        title: t('field_option.min'),
                         type: 'number'
                     },
                     {
                         id: 'max',
-                        title: 'Maximum',
+                        title: t('field_option.max'),
                         type: 'number'
                     }
                 ]
@@ -258,7 +259,7 @@ export function getFieldType(type, options) {
         }
         case 'operation': {
             return {
-                title: 'Operation',
+                title: t('field_type.operation'),
                 allowCreation: true,
                 width: 200,
                 alwaysInEdition: false,
@@ -270,7 +271,7 @@ export function getFieldType(type, options) {
         }
         case 'select': {
             return {
-                title: 'Select',
+                title: t('field_type.select'),
                 allowCreation: true,
                 width: 200,
                 alwaysInEdition: false,
@@ -280,7 +281,7 @@ export function getFieldType(type, options) {
                 options: [
                     {
                         id: 'values',
-                        title: 'Values',
+                        title: t('field_option.values'),
                         type: 'selectTags'
                     }
                 ]
@@ -288,7 +289,7 @@ export function getFieldType(type, options) {
         }
         case 'selectMultiple': {
             return {
-                title: 'Select Multiple',
+                title: t('field_type.selectMultiple'),
                 allowCreation: true,
                 width: 200,
                 alwaysInEdition: false,
@@ -306,7 +307,7 @@ export function getFieldType(type, options) {
         }
         case 'selectTags': {
             return {
-                title: 'Select Tags',
+                title: t('field_type.selectTags'),
                 allowCreation: true,
                 width: 200,
                 alwaysInEdition: false,
@@ -324,7 +325,7 @@ export function getFieldType(type, options) {
         }
         case 'textarea': {
             return {
-                title: 'Text Area',
+                title: t('field_type.textarea'),
                 allowCreation: false,
                 width: 250,
                 alwaysInEdition: false,
@@ -337,7 +338,7 @@ export function getFieldType(type, options) {
         case 'text':
         default: {
             return {
-                title: 'Text',
+                title: t('field_type.text'),
                 allowCreation: true,
                 width: 250,
                 alwaysInEdition: false,

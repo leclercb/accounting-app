@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { updateProcess } from 'actions/ThreadActions';
+import { t } from 'translations/i18n';
 import {
     exists,
     getPathSync,
@@ -23,7 +24,7 @@ export function loadFromFile(property, file, converter) {
         dispatch(updateProcess({
             id: processId,
             state: 'RUNNING',
-            title: `Load "${property}" from file`
+            title: t('load_from_file', { property: t(property) })
         }));
 
         try {
@@ -76,7 +77,7 @@ export function saveToFile(property, file, data) {
         dispatch(updateProcess({
             id: processId,
             state: 'RUNNING',
-            title: `Save "${property}" to file`
+            title: t('save_to_file', { property: t(property) })
         }));
 
         try {

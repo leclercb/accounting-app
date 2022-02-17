@@ -9,6 +9,7 @@ import { updateProcess } from 'actions/ThreadActions';
 import { getMovements } from 'selectors/MovementSelectors';
 import { getRules } from 'selectors/RuleSelectors';
 import { getMovementFile, getSettings } from 'selectors/SettingSelectors';
+import { t } from 'translations/i18n';
 import { ensureDir, joinSync } from 'utils/ElectronIpc';
 import { filterSettings } from 'utils/SettingUtils';
 
@@ -31,7 +32,7 @@ export function _loadDataFromFile(path, options) {
         dispatch(updateProcess({
             id: processId,
             state: 'RUNNING',
-            title: 'Load database',
+            title: t('load_database'),
             notify: true
         }));
 
@@ -112,7 +113,7 @@ export function _saveDataToFile(path, options) {
         dispatch(updateProcess({
             id: processId,
             state: 'RUNNING',
-            title: options.message ? options.message : 'Save database',
+            title: options.message ? options.message : t('save_database'),
             notify: true
         }));
 

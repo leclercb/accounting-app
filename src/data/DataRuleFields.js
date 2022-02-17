@@ -1,3 +1,4 @@
+import { t } from 'translations/i18n';
 import { addColorsToArray } from 'utils/ColorUtils';
 
 export function getRuleFields() {
@@ -5,7 +6,7 @@ export function getRuleFields() {
         {
             static: true,
             id: 'id',
-            title: 'ID',
+            title: t('rule_field.id'),
             type: 'text',
             editable: false,
             visible: false
@@ -13,14 +14,14 @@ export function getRuleFields() {
         {
             static: true,
             id: 'title',
-            title: 'Titre',
+            title: t('rule_field.title'),
             type: 'text',
             editable: true
         },
         {
             static: true,
             id: 'color',
-            title: 'Couleur',
+            title: t('rule_field.color'),
             type: 'color',
             editable: true,
             visible: false
@@ -28,14 +29,14 @@ export function getRuleFields() {
         {
             static: true,
             id: 'category',
-            title: 'Catégorie',
+            title: t('rule_field.category'),
             type: 'category',
             editable: true
         },
         {
             static: true,
             id: 'confidence',
-            title: 'Confiance',
+            title: t('rule_field.confidence'),
             type: 'confidence',
             options: {
                 type: 'automatic'

@@ -5,8 +5,8 @@ import {
 } from 'actions/ActionUtils';
 import { updateProcess } from 'actions/ThreadActions';
 import { getObjectsByIds } from 'selectors/ObjectSelectors';
+import { t } from 'translations/i18n';
 import { filterByStatic } from 'utils/CategoryUtils';
-import { getRandomColor } from 'utils/ColorUtils';
 
 export function loadObjectsFromFile(property, file, converter) {
     return async dispatch => {
@@ -33,10 +33,7 @@ export function addObject(
     property,
     object,
     options = {},
-    defaultValues = {
-        title: '',
-        color: getRandomColor()
-    }) {
+    defaultValues = {}) {
     return async (dispatch, getState) => {
         const processId = uuid();
 
@@ -68,7 +65,7 @@ export function addObject(
             dispatch(updateProcess({
                 id: processId,
                 state: 'ERROR',
-                title: objects.length === 1 ? `Add "${object && object.title ? object.title : ''}" of type "${property}"` : `Add ${objects.length} objects of type "${property}"`,
+                title: t('add_objects', { count: objects.length, property: t(property) }),
                 error: error.toString()
             }));
 
@@ -108,7 +105,7 @@ export function updateObject(property, object, options = {}) {
             dispatch(updateProcess({
                 id: processId,
                 state: 'ERROR',
-                title: objects.length === 1 ? `Update "${object.title}" of type "${property}"` : `Update ${objects.length} objects of type "${property}"`,
+                title: t('update_objects', { count: objects.length, property: t(property) }),
                 error: error.toString()
             }));
 
@@ -137,7 +134,7 @@ export function deleteObject(property, objectId, options = {}) {
             dispatch(updateProcess({
                 id: processId,
                 state: 'ERROR',
-                title: objectIds.length === 1 ? `Remove object of type "${property}"` : `Remove ${objectIds.length} objects of type "${property}"`,
+                title: t('delete_objects', { count: objectIds.length, property: t(property) }),
                 error: error.toString()
             }));
 

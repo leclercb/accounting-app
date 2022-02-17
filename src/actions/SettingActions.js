@@ -26,29 +26,15 @@ export const setSettings = (settings, core = false) => {
 };
 
 export function updateSettings(settings, options) {
-    options = Object.assign({
-        skipDiff: false
-    }, options);
+    options = Object.assign({}, options);
 
     return async (dispatch, getState) => {
-        const oldSettings = getSettings(getState());
-
         await dispatch({
             type: 'UPDATE_SETTINGS',
             settings
         });
 
-        const newSettings = getSettings(getState());
-
-        await dispatch({
-            type: 'POST_UPDATE_SETTINGS',
-            settings,
-            oldSettings,
-            newSettings,
-            options
-        });
-
-        return newSettings;
+        return getSettings(getState());
     };
 }
 

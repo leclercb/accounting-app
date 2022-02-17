@@ -1,6 +1,7 @@
 import { notification } from 'antd';
-import { getSettings } from 'selectors/SettingSelectors';
 import { updateSettings } from 'actions/SettingActions';
+import { getSettings } from 'selectors/SettingSelectors';
+import { t } from 'translations/i18n';
 import { compareVersions } from 'utils/CompareUtils';
 import {
     checkForUpdates as electronCheckForUpdates,
@@ -72,7 +73,7 @@ export function checkForUpdates(quiet) {
         } else {
             if (!quiet) {
                 notification.success({
-                    message: 'You already have the latest version'
+                    message: t('already_latest_version')
                 });
             }
 

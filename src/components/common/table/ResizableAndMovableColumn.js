@@ -10,9 +10,6 @@ export const resizeHandler = (prefix, updateSettings) => (data, fieldId, width) 
     return updateSettings(
         {
             [prefix + fieldId]: Math.max(10, width)
-        },
-        {
-            skipDiff: true
         });
 };
 

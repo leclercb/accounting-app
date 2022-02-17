@@ -1,3 +1,4 @@
+import { t } from 'translations/i18n';
 import moment from 'moment';
 
 export function getConditionsForType(type) {
@@ -15,14 +16,14 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'equal',
-                        title: 'Equals',
+                        title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
                             return !!conditionValue === !!objectValue;
                         }
                     },
                     {
                         type: 'notEqual',
-                        title: 'Does not equal',
+                        title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
                             return !!conditionValue !== !!objectValue;
                         }
@@ -36,14 +37,14 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'equal',
-                        title: 'Equals',
+                        title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') === (objectValue || '');
                         }
                     },
                     {
                         type: 'notEqual',
-                        title: 'Does not equal',
+                        title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') !== (objectValue || '');
                         }
@@ -57,14 +58,14 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'equal',
-                        title: 'Equals',
+                        title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') === (objectValue || '');
                         }
                     },
                     {
                         type: 'notEqual',
-                        title: 'Does not equal',
+                        title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') !== (objectValue || '');
                         }
@@ -78,7 +79,7 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'dateEqual',
-                        title: 'Equals',
+                        title: t('condition.dateEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -97,7 +98,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateNotEqual',
-                        title: 'Does not equal',
+                        title: t('condition.dateNotEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -116,7 +117,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateBefore',
-                        title: 'Before',
+                        title: t('condition.dateBefore'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -131,7 +132,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateBeforeOrEqual',
-                        title: 'Before or equals',
+                        title: t('condition.dateBeforeOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -146,7 +147,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateAfter',
-                        title: 'After',
+                        title: t('condition.dateAfter'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -161,7 +162,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateAfterOrEqual',
-                        title: 'After or equals',
+                        title: t('condition.dateAfterOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -176,7 +177,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeEqual',
-                        title: 'Equals',
+                        title: t('condition.dateTimeEqual'),
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
@@ -196,7 +197,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeNotEqual',
-                        title: 'Does not equal',
+                        title: t('condition.dateTimeNotEqual'),
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
@@ -216,7 +217,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeBefore',
-                        title: 'Before',
+                        title: t('condition.dateTimeBefore'),
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
@@ -232,7 +233,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeBeforeOrEqual',
-                        title: 'Before or equals',
+                        title: t('condition.dateTimeBeforeOrEqual'),
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
@@ -248,7 +249,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeAfter',
-                        title: 'After',
+                        title: t('condition.dateTimeAfter'),
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
@@ -264,7 +265,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeAfterOrEqual',
-                        title: 'After or equals',
+                        title: t('condition.dateTimeAfterOrEqual'),
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
@@ -287,7 +288,7 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'dateEqual',
-                        title: 'Equals (compare date only)',
+                        title: t('condition.dateEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -306,7 +307,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateNotEqual',
-                        title: 'Does not equal (compare date only)',
+                        title: t('condition.dateNotEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -325,7 +326,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateBefore',
-                        title: 'Before (compare date only)',
+                        title: t('condition.dateBefore'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -340,7 +341,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateBeforeOrEqual',
-                        title: 'Before or equals (compare date only)',
+                        title: t('condition.dateBeforeOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -355,7 +356,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateAfter',
-                        title: 'After (compare date only)',
+                        title: t('condition.dateAfter'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -370,7 +371,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateAfterOrEqual',
-                        title: 'After or equals (compare date only)',
+                        title: t('condition.dateAfterOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -385,7 +386,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeEqual',
-                        title: 'Equals (compare date and time)',
+                        title: t('condition.dateTimeEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -404,7 +405,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeNotEqual',
-                        title: 'Does not equal (compare date and time)',
+                        title: t('condition.dateTimeNotEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -423,7 +424,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeBefore',
-                        title: 'Before (compare date and time)',
+                        title: t('condition.dateTimeBefore'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -438,7 +439,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeBeforeOrEqual',
-                        title: 'Before or equals (compare date and time)',
+                        title: t('condition.dateTimeBeforeOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -453,7 +454,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeAfter',
-                        title: 'After (compare date and time)',
+                        title: t('condition.dateTimeAfter'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -468,7 +469,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'dateTimeAfterOrEqual',
-                        title: 'After or equals (compare date and time)',
+                        title: t('condition.dateTimeAfterOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
                                 conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
@@ -490,28 +491,28 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'equal',
-                        title: 'Equals',
+                        title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') === (objectValue || '');
                         }
                     },
                     {
                         type: 'notEqual',
-                        title: 'Does not equal',
+                        title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') !== (objectValue || '');
                         }
                     },
                     {
                         type: 'contain',
-                        title: 'Contains',
+                        title: t('condition.contain'),
                         apply: (conditionValue, objectValue) => {
                             return (objectValue || '').includes(conditionValue || '');
                         }
                     },
                     {
                         type: 'notContain',
-                        title: 'Does not contain',
+                        title: t('condition.notContain'),
                         apply: (conditionValue, objectValue) => {
                             return !(objectValue || '').includes(conditionValue || '');
                         }
@@ -525,42 +526,42 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'equal',
-                        title: 'Equals',
+                        title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) === (objectValue || 0);
                         }
                     },
                     {
                         type: 'notEqual',
-                        title: 'Does not equal',
+                        title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) !== (objectValue || 0);
                         }
                     },
                     {
                         type: 'greaterThan',
-                        title: 'Greater than',
+                        title: t('condition.greaterThan'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) < (objectValue || 0);
                         }
                     },
                     {
                         type: 'greaterThanOrEqual',
-                        title: 'Greater than or equal',
+                        title: t('condition.greaterThanOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) <= (objectValue || 0);
                         }
                     },
                     {
                         type: 'lessThan',
-                        title: 'Less than',
+                        title: t('condition.lessThan'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) > (objectValue || 0);
                         }
                     },
                     {
                         type: 'lessThanOrEqual',
-                        title: 'Less than or equal',
+                        title: t('condition.lessThanOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) >= (objectValue || 0);
                         }
@@ -574,42 +575,42 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'equal',
-                        title: 'Equals',
+                        title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) === (objectValue || 0);
                         }
                     },
                     {
                         type: 'notEqual',
-                        title: 'Does not equal',
+                        title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) !== (objectValue || 0);
                         }
                     },
                     {
                         type: 'greaterThan',
-                        title: 'Greater than',
+                        title: t('condition.greaterThan'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) < (objectValue || 0);
                         }
                     },
                     {
                         type: 'greaterThanOrEqual',
-                        title: 'Greater than or equal',
+                        title: t('condition.greaterThanOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) <= (objectValue || 0);
                         }
                     },
                     {
                         type: 'lessThan',
-                        title: 'Less than',
+                        title: t('condition.lessThan'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) > (objectValue || 0);
                         }
                     },
                     {
                         type: 'lessThanOrEqual',
-                        title: 'Less than or equal',
+                        title: t('condition.lessThanOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || 0) >= (objectValue || 0);
                         }
@@ -623,14 +624,14 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'equal',
-                        title: 'Equals',
+                        title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') === (objectValue || '');
                         }
                     },
                     {
                         type: 'notEqual',
-                        title: 'Does not equal',
+                        title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') !== (objectValue || '');
                         }
@@ -644,7 +645,7 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'contain',
-                        title: 'Contains',
+                        title: t('condition.contain'),
                         apply: (conditionValue, objectValue) => {
                             const objectValues = objectValue || [];
                             const conditionValues = conditionValue || [];
@@ -654,7 +655,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'notContain',
-                        title: 'Does not contain',
+                        title: t('condition.notContain'),
                         apply: (conditionValue, objectValue) => {
                             const objectValues = objectValue || [];
                             const conditionValues = conditionValue || [];
@@ -671,7 +672,7 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'contain',
-                        title: 'Contains',
+                        title: t('condition.contain'),
                         apply: (conditionValue, objectValue) => {
                             const objectTags = objectValue || [];
                             const conditionTags = conditionValue || [];
@@ -681,7 +682,7 @@ function getFieldFilterType(type) {
                     },
                     {
                         type: 'notContain',
-                        title: 'Does not contain',
+                        title: t('condition.notContain'),
                         apply: (conditionValue, objectValue) => {
                             const objectTags = objectValue || [];
                             const conditionTags = conditionValue || [];
@@ -698,56 +699,56 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'equal',
-                        title: 'Equals',
+                        title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') === (objectValue || '');
                         }
                     },
                     {
                         type: 'equalIgnoreCase',
-                        title: 'Equals (ignore case)',
+                        title: t('condition.equalIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '').toUpperCase() === (objectValue || '').toUpperCase();
                         }
                     },
                     {
                         type: 'notEqual',
-                        title: 'Does not equal',
+                        title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') !== (objectValue || '');
                         }
                     },
                     {
                         type: 'notEqualIgnoreCase',
-                        title: 'Does not equal (ignore case)',
+                        title: t('condition.notEqualIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '').toUpperCase() !== (objectValue || '').toUpperCase();
                         }
                     },
                     {
                         type: 'contain',
-                        title: 'Contains',
+                        title: t('condition.contain'),
                         apply: (conditionValue, objectValue) => {
                             return (objectValue || '').includes(conditionValue || '');
                         }
                     },
                     {
                         type: 'containIgnoreCase',
-                        title: 'Contains (ignore case)',
+                        title: t('condition.containIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
                             return (objectValue || '').toUpperCase().includes((conditionValue || '').toUpperCase());
                         }
                     },
                     {
                         type: 'notContain',
-                        title: 'Does not contain',
+                        title: t('condition.notContain'),
                         apply: (conditionValue, objectValue) => {
                             return !(objectValue || '').includes(conditionValue || '');
                         }
                     },
                     {
                         type: 'notContainIgnoreCase',
-                        title: 'Does not contain (ignore case)',
+                        title: t('condition.notContainIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
                             return !(objectValue || '').toUpperCase().includes((conditionValue || '').toUpperCase());
                         }
@@ -762,56 +763,56 @@ function getFieldFilterType(type) {
                 conditions: [
                     {
                         type: 'equal',
-                        title: 'Equals',
+                        title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') === (objectValue || '');
                         }
                     },
                     {
                         type: 'equalIgnoreCase',
-                        title: 'Equals (ignore case)',
+                        title: t('condition.equalIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '').toUpperCase() === (objectValue || '').toUpperCase();
                         }
                     },
                     {
                         type: 'notEqual',
-                        title: 'Does not equal',
+                        title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '') !== (objectValue || '');
                         }
                     },
                     {
                         type: 'notEqualIgnoreCase',
-                        title: 'Does not equal (ignore case)',
+                        title: t('condition.notEqualIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
                             return (conditionValue || '').toUpperCase() !== (objectValue || '').toUpperCase();
                         }
                     },
                     {
                         type: 'contain',
-                        title: 'Contains',
+                        title: t('condition.contain'),
                         apply: (conditionValue, objectValue) => {
                             return (objectValue || '').includes(conditionValue || '');
                         }
                     },
                     {
                         type: 'containIgnoreCase',
-                        title: 'Contains (ignore case)',
+                        title: t('condition.containIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
                             return (objectValue || '').toUpperCase().includes((conditionValue || '').toUpperCase());
                         }
                     },
                     {
                         type: 'notContain',
-                        title: 'Does not contain',
+                        title: t('condition.notContain'),
                         apply: (conditionValue, objectValue) => {
                             return !(objectValue || '').includes(conditionValue || '');
                         }
                     },
                     {
                         type: 'notContainIgnoreCase',
-                        title: 'Does not contain (ignore case)',
+                        title: t('condition.notContainIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
                             return !(objectValue || '').toUpperCase().includes((conditionValue || '').toUpperCase());
                         }

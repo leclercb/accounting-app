@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from 'antd';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useTranslation } from 'react-i18next';
 import AutoUpdater from 'components/autoupdater/AutoUpdater';
 import AppLayout from 'components/layout/AppLayout';
 import { useAppApi } from 'hooks/UseAppApi';
@@ -16,6 +17,8 @@ import 'react-virtualized/styles.css';
 import 'components/common/table/VirtualizedTable.css';
 
 function App() {
+    const { t } = useTranslation();
+
     const appApi = useAppApi();
     const autoUpdaterApi = useAutoUpdaterApi();
     const confidenceApi = useConfidenceApi();
@@ -62,7 +65,7 @@ function App() {
 
             if (settingsApi.settings.confirmBeforeClosing) {
                 Modal.confirm({
-                    title: 'Do you want to close Accounting ?',
+                    title: t('confirm_close'),
                     onOk: () => {
                         close();
                     }

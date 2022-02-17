@@ -1,3 +1,4 @@
+import { t } from 'translations/i18n';
 import { clone, removePrivateKeys } from 'utils/ObjectUtils';
 
 const Objects = property => (state = [], action) => {
@@ -28,13 +29,13 @@ const addObjects = (state, action) => {
 
     for (let object of action.objects) {
         if (!object.id) {
-            throw Error('The object doesn\'t have an ID');
+            throw Error(t('object_id_missing'));
         }
 
         const index = newState.findIndex(o => o.id === object.id);
 
         if (index >= 0) {
-            throw Error(`The object with id "${object.id}" cannot be added as it already exists`);
+            throw Error(t('object_duplicate', { objectId: object.id }));
         }
 
         const newObject = clone(object);
@@ -52,13 +53,13 @@ const updateObjects = (state, action) => {
 
     for (let object of action.objects) {
         if (!object.id) {
-            throw Error('The object doesn\'t have an ID');
+            throw Error(t('object_id_missing'));
         }
 
         const index = newState.findIndex(o => o.id === object.id);
 
         if (index < 0) {
-            throw Error(`The object with id "${object.id}" cannot be updated as it doesn't exist`);
+            throw Error(t('object_not_found', { objectId: object.id }));
         }
 
         const updatedObject = {

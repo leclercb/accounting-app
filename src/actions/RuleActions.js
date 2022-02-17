@@ -7,6 +7,7 @@ import {
     setObjects,
     updateObject
 } from 'actions/ObjectActions';
+import { getRandomColor } from 'utils/ColorUtils';
 
 export function loadRulesFromFile(file) {
     return loadObjectsFromFile('rules', file);
@@ -21,7 +22,10 @@ export function setRules(rules) {
 }
 
 export function addRule(rule, options = {}) {
-    return addObject('rules', rule, options);
+    return addObject('rules', rule, options, {
+        title: '',
+        color: getRandomColor()
+    });
 }
 
 export function duplicateRule(rule, options = {}) {
