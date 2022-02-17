@@ -9,6 +9,7 @@ export default {
                 'lastBalance': 'Last annual balance',
                 'currentBalance': 'Current annual balance'
             },
+            'close': 'Fermer',
             'compute_categories': 'Compute categories',
             'condition': {
                 'equal': 'Equals',
@@ -99,6 +100,7 @@ export default {
                 'credit': 'Credit'
             },
             'process_running': 'Another process is currently running',
+            'progress': 'Progress',
             'redo_action': 'Redo action',
             'rule_field': {
                 'id': 'ID',
@@ -111,6 +113,7 @@ export default {
             'save_database': 'Save database',
             'save_to_file': 'Save "{{property}}" to file',
             'settings': {
+                '_': 'Settings',
                 'general': 'General',
                 'language': 'Language',
                 'language_english': 'English',
@@ -154,7 +157,8 @@ export default {
             'undo_action': 'Undo action',
             'update_objects_one': 'Update object of type "{{property}}"',
             'update_objects_other': 'Update {{count}} objects of type "{{property}}"',
-            'user_action': 'User action'
+            'user_action': 'User action',
+            'version': 'Version'
         }
     },
     fr: {
@@ -167,6 +171,7 @@ export default {
                 'lastBalance': 'Dernier solde annuel',
                 'currentBalance': 'Solde annuel actuel'
             },
+            'close': 'Fermer',
             'compute_categories': 'Calculer les catégories',
             'condition': {
                 'equal': 'Egal',
@@ -257,6 +262,7 @@ export default {
                 'credit': 'Crédit'
             },
             'process_running': 'Un autre processus est déjà en cours d\'exécution',
+            'progress': 'Progrès',
             'redo_action': 'Rétablir l\'action',
             'rule_field': {
                 'id': 'ID',
@@ -269,6 +275,7 @@ export default {
             'save_database': 'Sauver la base de données',
             'save_to_file': 'Sauver les "{{property}}" vers un fichier',
             'settings': {
+                '_': 'Préférences',
                 'general': 'Général',
                 'language': 'Langue',
                 'language_english': 'Anglais',
@@ -312,7 +319,8 @@ export default {
             'undo_action': 'Annuler l\'action',
             'update_objects_one': 'Editer un objet de type "{{property}}"',
             'update_objects_other': 'Editer {{count}} objets de type "{{property}}"',
-            'user_action': 'Action utilisateur'
+            'user_action': 'Action utilisateur',
+            'version': 'Version'
         }
     }
 };

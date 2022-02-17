@@ -1,11 +1,14 @@
 import React from 'react';
 import { Button, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import Icon from 'components/common/Icon';
 import LeftRight from 'components/common/LeftRight';
 import SettingManager from 'components/settings/SettingManager';
 import { useAppApi } from 'hooks/UseAppApi';
 
 function ModalSettingManager() {
+    const { t } = useTranslation();
+
     const appApi = useAppApi();
 
     const onClose = () => {
@@ -16,7 +19,7 @@ function ModalSettingManager() {
 
     return (
         <Modal
-            title={<Icon icon="cog" text="Settings" />}
+            title={<Icon icon="cog" text={t('settings._')} />}
             visible={appApi.settingManager.visible}
             width="80%"
             closable={false}
@@ -25,11 +28,11 @@ function ModalSettingManager() {
             footer={(
                 <LeftRight right={(
                     <Button onClick={onClose}>
-                        Fermer
+                        {t('close')}
                     </Button>
                 )}>
                     <div style={{ textAlign: 'left', fontSize: 10 }}>
-                        Version: <strong>{process.env.REACT_APP_VERSION}</strong> ({shortHash})
+                        {t('version')}: <strong>{process.env.REACT_APP_VERSION}</strong> ({shortHash})
                     </div>
                 </LeftRight>
             )}>

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Button, Modal } from 'antd';
+import { useTranslation } from 'react-i18next';
 import ProcessList from 'components/thread/ProcessList';
 import Icon from 'components/common/Icon';
 import { useThreadApi } from 'hooks/UseThreadApi';
 
 function ModalThreadManager() {
+    const { t } = useTranslation();
+
     const threadApi = useThreadApi();
 
     const onClose = () => {
@@ -13,14 +16,14 @@ function ModalThreadManager() {
 
     return (
         <Modal
-            title={<Icon icon="cogs" text="Progress" />}
+            title={<Icon icon="cogs" text={t('progress')} />}
             visible={threadApi.threadManagerVisible}
             closable={false}
             onOk={onClose}
             onCancel={onClose}
             footer={(
                 <Button onClick={onClose}>
-                    Fermer
+                    {t('close')}
                 </Button>
             )}>
             <ProcessList processes={threadApi.processes} />
