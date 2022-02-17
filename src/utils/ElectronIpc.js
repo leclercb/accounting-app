@@ -124,6 +124,12 @@ export function writeFile(file, data) {
     return ipcRenderer.invoke('fse-write-file', file, data);
 }
 
+// get-core-settings
+export function getCoreSettings() {
+    const { ipcRenderer } = window.electron;
+    return ipcRenderer.invoke('get-core-settings');
+}
+
 // initiate-quit
 export function initiateQuit() {
     const { ipcRenderer } = window.electron;

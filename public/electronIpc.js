@@ -5,8 +5,11 @@ const log = require('electron-log');
 const fse = require('fs-extra');
 const os = require('os');
 const path = require('path');
+const { getCoreSettings } = require('./electronUtils');
 
 let websiteWindow = null;
+
+const settings = getCoreSettings();
 
 function initializeIpc(setQuitInitiated) {
     ipcMain.handle('app-get-path', (event, p) => {
@@ -112,6 +115,10 @@ function initializeIpc(setQuitInitiated) {
 
     ipcMain.handle('fse-write-file', (event, file, data) => {
         return fse.writeFile(file, data);
+    });
+
+    ipcMain.handle('get-core-settings', (event) => {
+        return settings;
     });
 
     ipcMain.handle('initiate-quit', () => {
