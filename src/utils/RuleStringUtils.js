@@ -50,6 +50,11 @@ function toStringCondition(condition, fields, state) {
         }
 
         const conditionDesc = getConditionsForType(field.type).find(c => c.type === condition.type);
+
+        if (!conditionDesc) {
+            return '';
+        }
+
         const conditionFieldType = getFieldType(getConditionsFieldTypeForType(field.conditionsFieldType || field.type), null);
 
         return `${field.title} ${conditionDesc.title.toLocaleLowerCase()} "${conditionFieldType.toString(condition.value, state)}"`;
