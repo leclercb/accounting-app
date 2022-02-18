@@ -21,4 +21,6 @@ export const getStartDate = state => state.app.startDate;
 
 export const getEditingCell = state => state.app.editingCell;
 
+export const getMovementTableScrollProps = state => state.app.movementTableScrollProps;
+
 export const getSettingManager = state => state.app.settingManager;

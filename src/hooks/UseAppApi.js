@@ -4,6 +4,7 @@ import {
     loadData,
     saveData,
     setEditingCell,
+    setMovementTableScrollProps,
     setSettingManagerOptions
 } from 'actions/AppActions';
 import { setMovementFile, setSelectedView } from 'actions/SettingActions';
@@ -11,6 +12,7 @@ import { checkIsBusy } from 'actions/ThreadActions';
 import {
     getDataUuid,
     getEditingCell,
+    getMovementTableScrollProps,
     getSettingManager,
     getStartDate,
     isPro
@@ -25,8 +27,9 @@ export function useAppApi() {
     const pro = useSelector(isPro);
     const selectedView = useSelector(getSelectedView);
     const editingCell = useSelector(getEditingCell);
-    const movementFile = useSelector(getMovementFile);
+    const movementTableScrollProps = useSelector(getMovementTableScrollProps);
     const settingManager = useSelector(getSettingManager);
+    const movementFile = useSelector(getMovementFile);
 
     const loadDataCallback = useCallback(
         () => dispatch(loadData()),
@@ -48,13 +51,18 @@ export function useAppApi() {
         [dispatch]
     );
 
-    const setMovementFileCallback = useCallback(
-        movementFile => dispatch(setMovementFile(movementFile)),
+    const setMovementTableScrollPropsCallback = useCallback(
+        scrollProps => dispatch(setMovementTableScrollProps(scrollProps)),
         [dispatch]
     );
 
     const setSettingManagerOptionsCallback = useCallback(
         options => dispatch(setSettingManagerOptions(options)),
+        [dispatch]
+    );
+
+    const setMovementFileCallback = useCallback(
+        movementFile => dispatch(setMovementFile(movementFile)),
         [dispatch]
     );
 
@@ -69,14 +77,16 @@ export function useAppApi() {
         isPro: pro,
         selectedView,
         editingCell,
-        movementFile,
+        movementTableScrollProps,
         settingManager,
+        movementFile,
         loadData: loadDataCallback,
         saveData: saveDataCallback,
         setSelectedView: setSelectedViewCallback,
         setEditingCell: setEditingCellCallback,
-        setMovementFile: setMovementFileCallback,
+        setMovementTableScrollProps: setMovementTableScrollPropsCallback,
         setSettingManagerOptions: setSettingManagerOptionsCallback,
+        setMovementFile: setMovementFileCallback,
         checkIsBusy: checkIsBusyCallback
     };
 }

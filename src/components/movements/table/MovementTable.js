@@ -23,6 +23,8 @@ function MovementTable() {
 
     const gridRef = useRef();
 
+    console.log(appApi.movementTableScrollProps);
+
     const dataSource = movementApi.movements;
 
     useEffect(() => {
@@ -153,6 +155,8 @@ function MovementTable() {
                                 ref={gridRef}
                                 width={width}
                                 height={height}
+                                {...appApi.movementTableScrollProps}
+                                onScroll={scrollProps => appApi.setMovementTableScrollProps(scrollProps)}
                                 scrollToRow={scrollToIndex ? scrollToIndex + 1 : undefined}
                                 onSectionRendered={onSectionRendered}
                                 columnCount={sortedFields.length}

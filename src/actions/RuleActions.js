@@ -26,6 +26,7 @@ export function addRule(rule, options = {}) {
     return addObject('rules', rule, options, {
         title: '',
         color: getRandomColor(),
+        confidence: 'automaticHigh',
         condition: {
             id: uuid(),
             operator: 'AND',

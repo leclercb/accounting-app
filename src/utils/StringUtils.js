@@ -38,5 +38,5 @@ export function toStringNumber(value, prefix = '', suffix = '') {
         return '';
     }
 
-    return prefix + value + suffix;
+    return prefix + value.toFixed(2) + suffix;
 }

@@ -10,6 +10,7 @@ const App = () => (state = {
     selectedCategoryIds: [],
     selectedMovementIds: [],
     selectedRuleIds: [],
+    movementTableScrollProps: {},
     settingManager: {
         visible: false,
         category: 'general'
@@ -43,6 +44,11 @@ const App = () => (state = {
             return {
                 ...state,
                 selectedRuleIds: Array.isArray(action.ruleIds) ? action.ruleIds : [action.ruleIds]
+            };
+        case 'SET_MOVEMENT_TABLE_SCROLL_PROPS':
+            return {
+                ...state,
+                movementTableScrollProps: action.scrollProps
             };
         case 'SET_SETTING_MANAGER_OPTIONS':
             return {

@@ -1,7 +1,6 @@
 # Todo List
 
 * Sort and filter tables
-* Keep scroll position when switching tabs
 * Change license config
 * Review
     * components

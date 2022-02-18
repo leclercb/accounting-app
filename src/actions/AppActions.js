@@ -211,6 +211,15 @@ export function setSelectedRuleIds(ruleIds) {
     };
 }
 
+export function setMovementTableScrollProps(scrollProps) {
+    return async dispatch => {
+        dispatch({
+            type: 'SET_MOVEMENT_TABLE_SCROLL_PROPS',
+            scrollProps
+        });
+    };
+}
+
 export function setSettingManagerOptions(options) {
     return async dispatch => {
         dispatch({

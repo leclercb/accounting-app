@@ -17,8 +17,8 @@ export const getComputedCategories = createSelector(
 
             return {
                 ...category,
-                lastBalance,
-                currentBalance
+                lastBalance: Math.abs(lastBalance),
+                currentBalance: Math.abs(currentBalance)
             };
         });
 
