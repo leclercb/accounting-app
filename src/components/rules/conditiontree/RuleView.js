@@ -3,11 +3,13 @@ import { Col, Divider, Empty, Row } from 'antd';
 import RuleConditionTree from 'components/rules/conditiontree/RuleConditionTree';
 import RuleForm from 'components/rules/conditiontree/RuleForm';
 import RuleList from 'components/rules/conditiontree/RuleList';
+import { useAppApi } from 'hooks/UseAppApi';
 import { useMovementFieldApi } from 'hooks/UseMovementFieldApi';
 import { useRuleApi } from 'hooks/UseRuleApi';
 import { getRandomColor } from 'utils/ColorUtils';
 
 function RuleView() {
+    const appApi = useAppApi();
     const movementFieldApi = useMovementFieldApi();
     const ruleApi = useRuleApi();
 
@@ -16,6 +18,7 @@ function RuleView() {
     const onAddRule = async rule => {
         rule = await ruleApi.addRule(rule);
         ruleApi.setSelectedRuleIds(rule.id);
+        appApi.setEditingCell(rule.id, 'title');
     };
 
     const onDuplicateRule = async rule => {

@@ -26,7 +26,7 @@ function RuleConditionForm({ condition, context, onUpdate, disabled }) {
     }, [condition]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const field = context.fields.find(field => field.id === condition.field);
-    const conditionFieldType = getConditionsFieldTypeForType(field.type);
+    const conditionFieldType = getConditionsFieldTypeForType(field.conditionsFieldType || field.type);
 
     const onCommit = () => onCommitForm(form, condition, onUpdate, { assign: true });
 

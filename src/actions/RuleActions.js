@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import {
     addObject,
     deleteObject,
@@ -24,7 +25,25 @@ export function setRules(rules) {
 export function addRule(rule, options = {}) {
     return addObject('rules', rule, options, {
         title: '',
-        color: getRandomColor()
+        color: getRandomColor(),
+        condition: {
+            id: uuid(),
+            operator: 'AND',
+            conditions: [
+                {
+                    id: uuid(),
+                    field: 'counterpartyName',
+                    type: 'containIgnoreCase',
+                    value: []
+                },
+                {
+                    id: uuid(),
+                    field: 'freeCommunication',
+                    type: 'containIgnoreCase',
+                    value: []
+                }
+            ]
+        }
     });
 }
 

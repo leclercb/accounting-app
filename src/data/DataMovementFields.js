@@ -41,7 +41,8 @@ export function getMovementFields(settings) {
                 kbc: {
                     index: 14
                 }
-            }
+            },
+            conditionsFieldType: 'selectTags'
         },
         {
             static: true,
@@ -67,7 +68,8 @@ export function getMovementFields(settings) {
                 kbc: {
                     index: 17
                 }
-            }
+            },
+            conditionsFieldType: 'selectTags'
         },
         {
             static: true,

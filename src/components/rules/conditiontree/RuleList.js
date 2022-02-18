@@ -7,16 +7,6 @@ import LeftRight from 'components/common/LeftRight';
 import { createActions } from 'utils/CategoryListUtils';
 
 function RuleList(props) {
-    const createNewRule = () => {
-        return {
-            condition: {
-                id: uuid(),
-                operator: 'AND',
-                conditions: []
-            }
-        };
-    };
-
     return (
         <React.Fragment>
             <List
@@ -34,7 +24,7 @@ function RuleList(props) {
                     </List.Item>
                 )}
             />
-            <Button onClick={() => props.addRule(createNewRule())} style={{ marginTop: 5 }}>
+            <Button onClick={() => props.addRule({})} style={{ marginTop: 5 }}>
                 <Icon icon="plus" text="Add" />
             </Button>
         </React.Fragment>

@@ -2,14 +2,14 @@ import { t } from 'i18next';
 import moment from 'moment';
 
 export function getConditionsForType(type) {
-    return getFieldFilterType(type).conditions;
+    return getFieldRuleType(type).conditions;
 }
 
 export function getConditionsFieldTypeForType(type) {
-    return getFieldFilterType(type).conditionsFieldType;
+    return getFieldRuleType(type).conditionsFieldType;
 }
 
-function getFieldFilterType(type) {
+function getFieldRuleType(type) {
     switch (type) {
         case 'boolean': {
             return {
@@ -757,69 +757,7 @@ function getFieldFilterType(type) {
                 conditionsFieldType: 'selectTags'
             };
         }
-        case 'textarea': {
-            return {
-                conditions: [
-                    {
-                        type: 'equal',
-                        title: t('condition.equal'),
-                        apply: (conditionValue, objectValue) => {
-                            return (conditionValue || '') === (objectValue || '');
-                        }
-                    },
-                    {
-                        type: 'equalIgnoreCase',
-                        title: t('condition.equalIgnoreCase'),
-                        apply: (conditionValue, objectValue) => {
-                            return (conditionValue || '').toUpperCase() === (objectValue || '').toUpperCase();
-                        }
-                    },
-                    {
-                        type: 'notEqual',
-                        title: t('condition.notEqual'),
-                        apply: (conditionValue, objectValue) => {
-                            return (conditionValue || '') !== (objectValue || '');
-                        }
-                    },
-                    {
-                        type: 'notEqualIgnoreCase',
-                        title: t('condition.notEqualIgnoreCase'),
-                        apply: (conditionValue, objectValue) => {
-                            return (conditionValue || '').toUpperCase() !== (objectValue || '').toUpperCase();
-                        }
-                    },
-                    {
-                        type: 'contain',
-                        title: t('condition.contain'),
-                        apply: (conditionValue, objectValue) => {
-                            return (objectValue || '').includes(conditionValue || '');
-                        }
-                    },
-                    {
-                        type: 'containIgnoreCase',
-                        title: t('condition.containIgnoreCase'),
-                        apply: (conditionValue, objectValue) => {
-                            return (objectValue || '').toUpperCase().includes((conditionValue || '').toUpperCase());
-                        }
-                    },
-                    {
-                        type: 'notContain',
-                        title: t('condition.notContain'),
-                        apply: (conditionValue, objectValue) => {
-                            return !(objectValue || '').includes(conditionValue || '');
-                        }
-                    },
-                    {
-                        type: 'notContainIgnoreCase',
-                        title: t('condition.notContainIgnoreCase'),
-                        apply: (conditionValue, objectValue) => {
-                            return !(objectValue || '').toUpperCase().includes((conditionValue || '').toUpperCase());
-                        }
-                    }
-                ],
-                conditionsFieldType: 'textarea'
-            };
-        }
+        case 'textarea':
         case 'text':
         default: {
             return {
@@ -828,6 +766,14 @@ function getFieldFilterType(type) {
                         type: 'equal',
                         title: t('condition.equal'),
                         apply: (conditionValue, objectValue) => {
+                            if (Array.isArray(conditionValue)) {
+                                if (conditionValue.length === 0 && !objectValue) {
+                                    return true;
+                                }
+
+                                return conditionValue.some(item => (item || '') === (objectValue || ''));
+                            }
+
                             return (conditionValue || '') === (objectValue || '');
                         }
                     },
@@ -835,6 +781,14 @@ function getFieldFilterType(type) {
                         type: 'equalIgnoreCase',
                         title: t('condition.equalIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
+                            if (Array.isArray(conditionValue)) {
+                                if (conditionValue.length === 0 && !objectValue) {
+                                    return true;
+                                }
+
+                                return conditionValue.some(item => (item || '').toUpperCase() === (objectValue || '').toUpperCase());
+                            }
+
                             return (conditionValue || '').toUpperCase() === (objectValue || '').toUpperCase();
                         }
                     },
@@ -842,6 +796,14 @@ function getFieldFilterType(type) {
                         type: 'notEqual',
                         title: t('condition.notEqual'),
                         apply: (conditionValue, objectValue) => {
+                            if (Array.isArray(conditionValue)) {
+                                if (conditionValue.length === 0 && !objectValue) {
+                                    return false;
+                                }
+
+                                return conditionValue.every(item => (item || '') !== (objectValue || ''));
+                            }
+
                             return (conditionValue || '') !== (objectValue || '');
                         }
                     },
@@ -849,6 +811,14 @@ function getFieldFilterType(type) {
                         type: 'notEqualIgnoreCase',
                         title: t('condition.notEqualIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
+                            if (Array.isArray(conditionValue)) {
+                                if (conditionValue.length === 0 && !objectValue) {
+                                    return false;
+                                }
+
+                                return conditionValue.every(item => (item || '').toUpperCase() !== (objectValue || '').toUpperCase());
+                            }
+
                             return (conditionValue || '').toUpperCase() !== (objectValue || '').toUpperCase();
                         }
                     },
@@ -856,6 +826,14 @@ function getFieldFilterType(type) {
                         type: 'contain',
                         title: t('condition.contain'),
                         apply: (conditionValue, objectValue) => {
+                            if (Array.isArray(conditionValue)) {
+                                if (conditionValue.length === 0) {
+                                    return true;
+                                }
+
+                                return conditionValue.some(item => (objectValue || '').includes(item || ''));
+                            }
+
                             return (objectValue || '').includes(conditionValue || '');
                         }
                     },
@@ -863,6 +841,14 @@ function getFieldFilterType(type) {
                         type: 'containIgnoreCase',
                         title: t('condition.containIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
+                            if (Array.isArray(conditionValue)) {
+                                if (conditionValue.length === 0) {
+                                    return true;
+                                }
+
+                                return conditionValue.length === 0 || conditionValue.some(item => (objectValue || '').toUpperCase().includes((item || '').toUpperCase()));
+                            }
+
                             return (objectValue || '').toUpperCase().includes((conditionValue || '').toUpperCase());
                         }
                     },
@@ -870,6 +856,14 @@ function getFieldFilterType(type) {
                         type: 'notContain',
                         title: t('condition.notContain'),
                         apply: (conditionValue, objectValue) => {
+                            if (Array.isArray(conditionValue)) {
+                                if (conditionValue.length === 0) {
+                                    return false;
+                                }
+
+                                return conditionValue.every(item => !(objectValue || '').includes(item || ''));
+                            }
+
                             return !(objectValue || '').includes(conditionValue || '');
                         }
                     },
@@ -877,11 +871,19 @@ function getFieldFilterType(type) {
                         type: 'notContainIgnoreCase',
                         title: t('condition.notContainIgnoreCase'),
                         apply: (conditionValue, objectValue) => {
+                            if (Array.isArray(conditionValue)) {
+                                if (conditionValue.length === 0) {
+                                    return false;
+                                }
+
+                                return conditionValue.every(item => !(objectValue || '').toUpperCase().includes((item || '').toUpperCase()));
+                            }
+
                             return !(objectValue || '').toUpperCase().includes((conditionValue || '').toUpperCase());
                         }
                     }
                 ],
-                conditionsFieldType: 'text'
+                conditionsFieldType: type
             };
         }
     }
