@@ -1,12 +1,12 @@
 import { getConditionsForType } from 'data/DataFieldRuleTypes';
 import { getValue } from 'utils/ObjectUtils';
 
-export function applyRule(rule, object, fields) {
-    if (!rule || !rule.condition) {
-        return true;
+export function applyRuleCondition(condition, object, fields) {
+    if (!condition) {
+        return false;
     }
 
-    return applyCondition(rule.condition, object, fields);
+    return applyCondition(condition, object, fields);
 }
 
 function applyCondition(condition, object, fields) {

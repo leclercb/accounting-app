@@ -16,7 +16,7 @@ import { getMovementFields } from 'data/DataMovementFields';
 import { getMovements } from 'selectors/MovementSelectors';
 import { getRules } from 'selectors/RuleSelectors';
 import { getSettings } from 'selectors/SettingSelectors';
-import { applyRule } from 'utils/RuleUtils';
+import { assignCategoryToMovement } from 'utils/MovementUtils';
 import { changeExtension } from 'utils/FileUtils';
 
 export function loadMovementsFromFile(file, bank = null) {
@@ -112,24 +112,7 @@ export function computeCategories() {
             const rules = getRules(state);
 
             movements.forEach(movement => {
-                const matchingRules = rules.filter(rule => applyRule(rule, movement, movementFields));
-
-                if (movement.confidence === 'manual') {
-                    return;
-                }
-
-                movement.category = null;
-                movement.confidence = 'unknown';
-
-                if (matchingRules.length === 1) {
-                    movement.category = matchingRules[0].category;
-                    movement.confidence = matchingRules[0].confidence;
-                }
-
-                if (matchingRules.length > 1) {
-                    movement.category = null;
-                    movement.confidence = 'error';
-                }
+                assignCategoryToMovement(movement, movementFields, rules);
             });
 
             await dispatch(setMovements(movements));

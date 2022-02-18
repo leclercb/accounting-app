@@ -2,15 +2,15 @@ import { getConditionsFieldTypeForType, getConditionsForType } from 'data/DataFi
 import { getFieldType } from 'data/DataFieldTypes';
 import { store } from 'store/Store';
 
-export function toStringRule(rule, fields, state = store.getState()) {
-    if (!rule || !rule.condition) {
+export function toStringRuleCondition(condition, fields, state = store.getState()) {
+    if (!condition) {
         return '';
     }
 
-    return _toStringRule(rule.condition, fields, state);
+    return toStringCondition(condition, fields, state);
 }
 
-function _toStringRule(condition, fields, state) {
+function toStringCondition(condition, fields, state) {
     if (!condition) {
         return '';
     }
@@ -23,7 +23,7 @@ function _toStringRule(condition, fields, state) {
         let tokens = [];
 
         condition.conditions.forEach(condition => {
-            const token = _toStringRule(condition, fields, state);
+            const token = toStringCondition(condition, fields, state);
 
             if (token) {
                 tokens.push(token);
