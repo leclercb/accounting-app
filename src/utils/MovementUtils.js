@@ -64,5 +64,5 @@ function addAmountConditionBasedOnCategory(condition, categoryId) {
             },
             condition
         ]
-    }
+    };
 }

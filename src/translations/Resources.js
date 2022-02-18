@@ -37,6 +37,13 @@ export default {
                 'containIgnoreCase': 'Contains (ignore case)',
                 'notContainIgnoreCase': 'Does not contain (ignore case)'
             },
+            'condition_tree': {
+                'group': {
+                    'and': 'and',
+                    'or': 'or',
+                    'not': 'not'
+                }
+            },
             'confidence': {
                 'unknown': 'Unknown',
                 'automaticLow': 'Automatic Low',
@@ -198,6 +205,13 @@ export default {
                 'notEqualIgnoreCase': 'Pas égal (ignorer la casse)',
                 'containIgnoreCase': 'Contient (ignorer la casse)',
                 'notContainIgnoreCase': 'Ne contient pas (ignorer la casse)'
+            },
+            'condition_tree': {
+                'group': {
+                    'and': 'et',
+                    'or': 'ou',
+                    'not': 'pas'
+                }
             },
             'confidence': {
                 'unknown': 'Inconnu',

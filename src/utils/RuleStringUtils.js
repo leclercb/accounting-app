@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import { getConditionsFieldTypeForType, getConditionsForType } from 'data/DataFieldRuleTypes';
 import { getFieldType } from 'data/DataFieldTypes';
 import { store } from 'store/Store';
@@ -32,11 +33,11 @@ function toStringCondition(condition, fields, state) {
 
         switch (condition.operator) {
             case 'AND':
-                return `(${tokens.join(' and ')})`;
+                return `(${tokens.join(` ${t('condition_tree.group.and')} `)})`;
             case 'OR':
-                return `(${tokens.join(' or ')})`;
+                return `(${tokens.join(` ${t('condition_tree.group.or')} `)})`;
             case 'NOT':
-                return `not (${tokens.join(', ')})`;
+                return `${t('condition_tree.group.not')} (${tokens.join(', ')})`;
             default:
                 return '';
         }
@@ -51,6 +52,6 @@ function toStringCondition(condition, fields, state) {
         const conditionDesc = getConditionsForType(field.type).find(c => c.type === condition.type);
         const conditionFieldType = getFieldType(getConditionsFieldTypeForType(field.type), null);
 
-        return `${field.title} ${conditionDesc.title.toLocaleLowerCase()} ${conditionFieldType.toString(condition.value, state)}`;
+        return `${field.title} ${conditionDesc.title.toLocaleLowerCase()} "${conditionFieldType.toString(condition.value, state)}"`;
     }
 }
