@@ -40,9 +40,7 @@ export function loadMovementsFromFile(file, bank = null) {
 
                 return records.map(record => fields.reduce((movement, field) => {
                     if (field.csv && field.csv[bank]) {
-                        const fieldConfig = field.csv[bank];
-                        const value = record[fieldConfig.index];
-                        movement[field.id] = fieldConfig.convert ? fieldConfig.convert(value, record) : value;
+                        movement[field.id] = field.csv[bank](record);
                     }
 
                     return movement;

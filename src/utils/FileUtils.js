@@ -1,3 +1,3 @@
 export function changeExtension(file, ext) {
-    return file.substr(0, file.lastIndexOf('.')) + '.' + ext;
+    return file.substring(0, file.lastIndexOf('.')) + '.' + ext;
 }

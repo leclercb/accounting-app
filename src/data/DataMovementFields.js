@@ -24,10 +24,8 @@ export function getMovementFields(settings) {
             editable: false,
             defaultOrder: 2,
             csv: {
-                kbc: {
-                    index: 5,
-                    convert: value => moment(value, 'DD-MM-YY').toISOString()
-                }
+                kbc: record => moment(record[5], 'DD-MM-YY').toISOString(),
+                ing: record => moment(record[4], 'DD-MM-YY').toISOString()
             }
         },
         {
@@ -38,9 +36,8 @@ export function getMovementFields(settings) {
             editable: false,
             defaultOrder: 3,
             csv: {
-                kbc: {
-                    index: 14
-                }
+                kbc: record => record[14],
+                ing: record => getFieldValueFromINGColumn(record[8], 'Vers') || getFieldValueFromINGColumn(record[9], 'De')
             },
             conditionsFieldType: 'selectTags'
         },
@@ -52,10 +49,25 @@ export function getMovementFields(settings) {
             editable: false,
             defaultOrder: 4,
             csv: {
-                kbc: {
-                    index: 6
-                }
+                kbc: record => record[6],
+                ing: record => record[9] || record[8],
             }
+        },
+        {
+            static: true,
+            id: 'structuredCommunication',
+            title: t('movement_field.structuredCommunication'),
+            type: 'text',
+            editable: false,
+            defaultOrder: 5,
+            csv: {
+                kbc: record => record[16],
+                ing: record => {
+                    const value = getFieldValueFromINGColumn(record[8], 'Communication');
+                    return value.startsWith('***') ? value : '';
+                }
+            },
+            conditionsFieldType: 'selectTags'
         },
         {
             static: true,
@@ -65,8 +77,10 @@ export function getMovementFields(settings) {
             editable: false,
             defaultOrder: 5,
             csv: {
-                kbc: {
-                    index: 17
+                kbc: record => record[17],
+                ing: record => {
+                    const value = getFieldValueFromINGColumn(record[8], 'Communication');
+                    return !value.startsWith('***') ? value : '';
                 }
             },
             conditionsFieldType: 'selectTags'
@@ -79,10 +93,8 @@ export function getMovementFields(settings) {
             editable: false,
             defaultOrder: 6,
             csv: {
-                kbc: {
-                    index: 8,
-                    convert: value => parseFloat(value.replace(/,/, '.'))
-                }
+                kbc: record => parseFloat(record[8].replace(/,/, '.')),
+                ing: record => parseFloat(record[6].replace(/,/, '.')),
             }
         },
         {
@@ -93,9 +105,8 @@ export function getMovementFields(settings) {
             editable: false,
             defaultOrder: 7,
             csv: {
-                kbc: {
-                    index: 3
-                }
+                kbc: record => record[3],
+                ing: record => record[7],
             }
         },
         {
@@ -107,4 +118,19 @@ export function getMovementFields(settings) {
             defaultOrder: 8
         }
     ]);
+}
+
+// Examples:
+// Virement instantané en euros: Business'Bank On-line            - 162,51         Vers: eurofides - BE36363055303881                                              Instantané le 08/01 - 18:46:06                                                  Communication: ***224/0403/30023***             
+// Virement en euros (SEPA)                                                        De: WORLDLINK                                                                       CONFERENCE ON JEWISH CLAIMS CLAIMS CONFERENCE PAYMENT OPERATIONS DE             TMENT 1359 BROADWAY,20TH FLOOR , RM. 2020                                                                                          Etats-Unis d'Amérique                                             IBAN: IE91CITI99005123687003                                                    Donneur d'ordre final :                                                          CLAIMS CONFERENCE                                                                                                       Communication :                                                                  CLAIMS CONFERENCE IN RE ARTICLE 2 FUND RESTITUTION QUARTERLY PAYMENT           Info personnelle: A2F08429839W0077                                                                                                                                                                       
+
+function getFieldValueFromINGColumn(value, field) {
+    const tokens = value.trim().replace(/\s*:\s*/g, ':').split('     ').filter(token => !!token).map(token => token.trim());
+    const token = tokens.find(token => token.startsWith(field + ':'));
+
+    if (!token) {
+        return '';
+    }
+
+    return token.substring(field.length + 1);
 }
