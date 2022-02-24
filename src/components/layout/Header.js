@@ -2,6 +2,7 @@ import React from 'react';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Button, Modal, Tooltip } from 'antd';
 import { useTranslation } from 'react-i18next';
+import BankSelect from 'components/banks/BankSelect';
 import Icon from 'components/common/Icon';
 import { useAppApi } from 'hooks/UseAppApi';
 import { useMovementApi } from 'hooks/UseMovementApi';
@@ -39,29 +40,67 @@ function Header() {
 
         let filePath = result.filePaths && result.filePaths.length === 1 ? result.filePaths[0] : null;
 
-        if (!result.canceled && filePath) {
-            if (!filePath.endsWith('.json') && exists(changeExtension(filePath, 'json'))) {
-                const override = await new Promise(resolve => {
-                    Modal.confirm({
-                        title: 'Un fichier "Accounting" existe déjà, êtes-vous sûr de vouloir l\'écraser ?',
-                        icon: <ExclamationCircleOutlined />,
-                        okText: 'Oui',
-                        cancelText: 'Non',
-                        onOk() {
-                            resolve(true);
-                        },
-                        onCancel() {
-                            resolve(false);
-                        }
-                    });
+        if (result.canceled || !filePath) {
+            return;
+        }
+
+        if (filePath.endsWith('.json')) {
+            await movementApi.loadMovementsFromFile(filePath);
+            return;
+        }
+
+        try {
+            await exists(changeExtension(filePath, 'json'));
+
+            const override = await new Promise(resolve => {
+                Modal.confirm({
+                    title: 'Un fichier "Accounting" existe déjà, êtes-vous sûr de vouloir l\'écraser ?',
+                    icon: <ExclamationCircleOutlined />,
+                    okText: 'Oui',
+                    cancelText: 'Non',
+                    onOk() {
+                        resolve(true);
+                    },
+                    onCancel() {
+                        resolve(false);
+                    }
                 });
+            });
 
-                if (!override) {
-                    return;
-                }
+            if (!override) {
+                return;
             }
+        } catch (error) { // eslint-disable-line no-empty
 
-            await movementApi.loadMovementsFromFile(filePath, 'kbc');
+        }
+
+        try {
+            const bank = await new Promise((resolve, reject) => {
+                let bank = null;
+
+                Modal.confirm({
+                    title: 'Veuillez sélectionner la banque utilisée pour générer ce fichier',
+                    content: (
+                        <BankSelect
+                            onChange={b => bank = b}
+                            style={{
+                                width: 400
+                            }} />
+                    ),
+                    okText: 'Continuer',
+                    cancelText: 'Annuler',
+                    onOk: () => {
+                        resolve(bank);
+                    },
+                    onCancel: () => {
+                        reject();
+                    },
+                    width: 500
+                });
+            });
+
+            await movementApi.loadMovementsFromFile(filePath, bank);
+        } catch (error) { // eslint-disable-line no-empty
 
         }
     };

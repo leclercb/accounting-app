@@ -50,7 +50,7 @@ export function getMovementFields(settings) {
             defaultOrder: 4,
             csv: {
                 kbc: record => record[6],
-                ing: record => record[9] || record[8],
+                ing: record => record[9] || record[8]
             }
         },
         {
@@ -94,7 +94,7 @@ export function getMovementFields(settings) {
             defaultOrder: 6,
             csv: {
                 kbc: record => parseFloat(record[8].replace(/,/, '.')),
-                ing: record => parseFloat(record[6].replace(/,/, '.')),
+                ing: record => parseFloat(record[6].replace(/,/, '.'))
             }
         },
         {
@@ -106,7 +106,7 @@ export function getMovementFields(settings) {
             defaultOrder: 7,
             csv: {
                 kbc: record => record[3],
-                ing: record => record[7],
+                ing: record => record[7]
             }
         },
         {
