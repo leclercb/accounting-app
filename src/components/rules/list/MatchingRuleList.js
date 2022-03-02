@@ -10,7 +10,7 @@ function MatchingRuleList(props) {
                 size="small"
                 bordered={true}
                 dataSource={props.rules}
-                style={{ minHeight: 400, maxHeight: 400, overflowY: 'auto' }}
+                style={{ minHeight: 200, maxHeight: 200, overflowY: 'auto' }}
                 renderItem={item => (
                     <List.Item
                         onClick={() => props.onRuleSelection(item)}
@@ -19,7 +19,7 @@ function MatchingRuleList(props) {
                     </List.Item>
                 )}
             />
-            <Button onClick={() => props.openRule(props.selectedRuleId)} style={{ marginTop: 5 }} disabled={!props.selectedRuleId}>
+            <Button onClick={() => props.onOpenRule(props.selectedRuleId)} style={{ marginTop: 5 }} disabled={!props.selectedRuleId}>
                 <Icon icon="folder-open" text="Open rule" />
             </Button>
         </React.Fragment>

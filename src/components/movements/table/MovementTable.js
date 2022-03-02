@@ -233,6 +233,10 @@ function MovementTable() {
                                     const onDoubleClick = async () => {
                                         if (movement) {
                                             movementApi.setSelectedMovementIds(movement.id);
+
+                                            if (!field.editable) {
+                                                appApi.setMatchingRulesManagerOptions({ visible: true, movementId: movement.id });
+                                            }
                                         } else {
                                             await onResize({ stop: true }, field.id, getWidthForType(field.type));
 

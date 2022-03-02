@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { getMovementFields } from 'data/DataMovementFields';
 import { getMovement } from 'selectors/MovementSelectors';
+import { getSettings } from 'selectors/SettingSelectors';
 import { getMatchingRules } from 'utils/MovementUtils';
 
 export const canUndoRuleStateUpdate = state => state.rules.past.length > 0;
@@ -26,7 +27,8 @@ export const getSelectedRuleIds = createSelector(
 export const getMatchingRulesSelector = () => createSelector(
     (state, movementId) => getMovement(state, movementId),
     getRules,
-    (movement, rules) => {
-        return getMatchingRules(movement, getMovementFields(), rules);
+    getSettings,
+    (movement, rules, settings) => {
+        return getMatchingRules(movement, getMovementFields(settings), rules);
     }
 );

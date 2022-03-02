@@ -21,7 +21,11 @@ function Header() {
         appApi.saveData();
     };
 
-    const onSetSettingsVisible = () => {
+    const onShowMatchingRulesManager = () => {
+        appApi.setMatchingRulesManagerOptions({ visible: true, movementId: movementApi.selectedMovementIds[0] });
+    };
+
+    const onShowSettingsManager = () => {
         appApi.setSettingManagerOptions({ visible: true });
     };
 
@@ -168,7 +172,7 @@ function Header() {
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>
                 {createButton('save', 'Sauver', onSave, false)}
-                {createButton('cog', 'Préférences', onSetSettingsVisible, false)}
+                {createButton('cog', 'Préférences', onShowSettingsManager, false)}
             </Button.Group>
             <Button.Group style={{ marginRight: 20 }}>
                 {['expenses', 'income'].includes(appApi.selectedView) ? createButton('folder-open', 'Ouvrir le site', onOpenWebsite, false) : null}
@@ -176,6 +180,7 @@ function Header() {
                 {appApi.selectedView === 'rules' ? createButton('plus', 'Ajouter une règle', onAddRule, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('folder-open', 'Charger des mouvements', onLoadMovements, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('wand-magic-sparkles', 'Calculer les catégories', onComputeCategories, false) : null}
+                {appApi.selectedView === 'movements' ? createButton('folder-open', 'Afficher les règles concordantes', onShowMatchingRulesManager, movementApi.selectedMovementIds.length !== 1) : null}
             </Button.Group>
         </>
     );

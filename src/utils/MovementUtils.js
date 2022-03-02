@@ -3,6 +3,10 @@ import { applyRuleCondition } from 'utils/RuleUtils';
 import { getCategory } from 'data/DataCategories';
 
 export function getMatchingRules(movement, movementFields, rules) {
+    if (!movement) {
+        return [];
+    }
+
     return rules.filter(rule => {
         if (!rule.category || !rule.confidence) {
             return false;
