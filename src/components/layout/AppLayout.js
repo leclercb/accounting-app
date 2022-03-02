@@ -6,6 +6,7 @@ import Footer from 'components/layout/Footer';
 import Header from 'components/layout/Header';
 import MovementTable from 'components/movements/table/MovementTable';
 import RuleView from 'components/rules/conditiontree/RuleView';
+import ModalMatchingRulesManager from 'components/rules/list/ModalMatchingRulesManager';
 import ModalSettingManager from 'components/settings/ModalSettingManager';
 import NotificationManager from 'components/thread/NotificationManager';
 import ModalThreadManager from 'components/thread/ModalThreadManager';
@@ -33,9 +34,10 @@ function AppLayout() {
 
     return (
         <React.Fragment>
-            <NotificationManager />
+            <ModalMatchingRulesManager />
             <ModalThreadManager />
             <ModalSettingManager />
+            <NotificationManager />
             <Spin style={{ minHeight: '100%', height: '100%' }} spinning={busy}>
                 <Layout style={{ minHeight: '100%', height: '100%' }}>
                     <Layout.Header>

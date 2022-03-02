@@ -23,4 +23,5 @@ export const getEditingCell = state => state.app.editingCell;
 
 export const getMovementTableScrollProps = state => state.app.movementTableScrollProps;
 
+export const getMatchingRulesManager = state => state.app.matchingRulesManager;
 export const getSettingManager = state => state.app.settingManager;

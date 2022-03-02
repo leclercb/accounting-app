@@ -220,6 +220,15 @@ export function setMovementTableScrollProps(scrollProps) {
     };
 }
 
+export function setMatchingRulesManagerOptions(options) {
+    return async dispatch => {
+        dispatch({
+            type: 'SET_MATCHING_RULES_MANAGER_OPTIONS',
+            ...options
+        });
+    };
+}
+
 export function setSettingManagerOptions(options) {
     return async dispatch => {
         dispatch({

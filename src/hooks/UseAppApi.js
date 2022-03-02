@@ -4,6 +4,7 @@ import {
     loadData,
     saveData,
     setEditingCell,
+    setMatchingRulesManagerOptions,
     setMovementTableScrollProps,
     setSettingManagerOptions
 } from 'actions/AppActions';
@@ -12,6 +13,7 @@ import { checkIsBusy } from 'actions/ThreadActions';
 import {
     getDataUuid,
     getEditingCell,
+    getMatchingRulesManager,
     getMovementTableScrollProps,
     getSettingManager,
     getStartDate,
@@ -28,6 +30,7 @@ export function useAppApi() {
     const selectedView = useSelector(getSelectedView);
     const editingCell = useSelector(getEditingCell);
     const movementTableScrollProps = useSelector(getMovementTableScrollProps);
+    const matchingRulesManager = useSelector(getMatchingRulesManager);
     const settingManager = useSelector(getSettingManager);
     const movementFile = useSelector(getMovementFile);
 
@@ -56,6 +59,11 @@ export function useAppApi() {
         [dispatch]
     );
 
+    const setMatchingRulesManagerOptionsCallback = useCallback(
+        options => dispatch(setMatchingRulesManagerOptions(options)),
+        [dispatch]
+    );
+
     const setSettingManagerOptionsCallback = useCallback(
         options => dispatch(setSettingManagerOptions(options)),
         [dispatch]
@@ -78,6 +86,7 @@ export function useAppApi() {
         selectedView,
         editingCell,
         movementTableScrollProps,
+        matchingRulesManager,
         settingManager,
         movementFile,
         loadData: loadDataCallback,
@@ -85,6 +94,7 @@ export function useAppApi() {
         setSelectedView: setSelectedViewCallback,
         setEditingCell: setEditingCellCallback,
         setMovementTableScrollProps: setMovementTableScrollPropsCallback,
+        setMatchingRulesManagerOptions: setMatchingRulesManagerOptionsCallback,
         setSettingManagerOptions: setSettingManagerOptionsCallback,
         setMovementFile: setMovementFileCallback,
         checkIsBusy: checkIsBusyCallback

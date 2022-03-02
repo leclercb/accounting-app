@@ -11,6 +11,10 @@ const App = () => (state = {
     selectedMovementIds: [],
     selectedRuleIds: [],
     movementTableScrollProps: {},
+    matchingRulesManager: {
+        visible: false,
+        movementId: null
+    },
     settingManager: {
         visible: false,
         category: 'general'
@@ -49,6 +53,14 @@ const App = () => (state = {
             return {
                 ...state,
                 movementTableScrollProps: action.scrollProps
+            };
+        case 'SET_MATCHING_RULES_MANAGER_OPTIONS':
+            return {
+                ...state,
+                matchingRulesManager: {
+                    visible: 'visible' in action ? action.visible : state.matchingRulesManager.visible,
+                    movementId: 'movementId' in action ? action.movementId : state.matchingRulesManager.movementId
+                }
             };
         case 'SET_SETTING_MANAGER_OPTIONS':
             return {

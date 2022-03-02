@@ -5,6 +5,8 @@ export const canRedoMovementStateUpdate = state => state.movements.future.length
 
 export const getMovements = state => state.movements.present;
 
+export const getMovement = (state, movementId) => getMovements(state).find(movement => movement.id === movementId);
+
 export const getSelectedMovements = createSelector(
     getMovements,
     state => state.app.selectedMovementIds,

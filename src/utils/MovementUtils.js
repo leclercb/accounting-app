@@ -2,8 +2,8 @@ import { v4 as uuid } from 'uuid';
 import { applyRuleCondition } from 'utils/RuleUtils';
 import { getCategory } from 'data/DataCategories';
 
-export function assignCategoryToMovement(movement, movementFields, rules) {
-    const matchingRules = rules.filter(rule => {
+export function getMatchingRules(movement, movementFields, rules) {
+    return rules.filter(rule => {
         if (!rule.category || !rule.confidence) {
             return false;
         }
@@ -11,10 +11,14 @@ export function assignCategoryToMovement(movement, movementFields, rules) {
         const condition = getEnhancedRuleCondition(rule);
         return applyRuleCondition(condition, movement, movementFields);
     });
+}
 
+export function assignCategoryToMovement(movement, movementFields, rules) {
     if (movement.confidence === 'manual') {
         return;
     }
+
+    const matchingRules = getMatchingRules(movement, movementFields, rules);
 
     movement.category = null;
     movement.confidence = 'unknown';
