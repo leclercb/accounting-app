@@ -2,12 +2,12 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedMovementIds } from 'actions/AppActions';
 import { addMovement, computeCategories, deleteMovement, duplicateMovement, loadMovementsFromFile, saveMovementsToFile, updateMovement } from 'actions/MovementActions';
-import { getMovements, getSelectedMovementIds, getSelectedMovements } from 'selectors/MovementSelectors';
+import { getSelectedMovementIds, getSelectedMovements, getSortedMovements } from 'selectors/MovementSelectors';
 
 export function useMovementApi() {
     const dispatch = useDispatch();
 
-    const movements = useSelector(getMovements);
+    const movements = useSelector(getSortedMovements);
 
     const selectedMovementIds = useSelector(getSelectedMovementIds);
     const selectedMovements = useSelector(getSelectedMovements);

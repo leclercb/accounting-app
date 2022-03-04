@@ -1,10 +1,8 @@
-import { getMovementFields } from 'data/DataMovementFields';
-import { useSettingsApi } from 'hooks/UseSettingsApi';
+import { useSelector } from 'react-redux';
+import { getMovementFields } from 'selectors/MovementFieldSelectors';
 
 export function useMovementFieldApi() {
-    const settingsApi = useSettingsApi();
-
-    const movementFields = getMovementFields(settingsApi.settings);
+    const movementFields = useSelector(getMovementFields);
 
     return {
         movementFields

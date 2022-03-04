@@ -1,14 +1,14 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedCategoryIds } from 'actions/AppActions';
-import { getComputedCategories, getComputedExpensesCategories, getComputedIncomeCategories, getSelectedCategories, getSelectedCategoryIds } from 'selectors/CategorySelectors';
+import { getComputedCategories, getSelectedCategories, getSelectedCategoryIds, getSortedComputedExpensesCategories, getSortedComputedIncomeCategories } from 'selectors/CategorySelectors';
 
 export function useCategoryApi() {
     const dispatch = useDispatch();
 
     const categories = useSelector(getComputedCategories);
-    const expensesCategories = useSelector(getComputedExpensesCategories);
-    const incomeCategories = useSelector(getComputedIncomeCategories);
+    const expensesCategories = useSelector(getSortedComputedExpensesCategories);
+    const incomeCategories = useSelector(getSortedComputedIncomeCategories);
 
     const selectedCategoryIds = useSelector(getSelectedCategoryIds);
     const selectedCategories = useSelector(getSelectedCategories);

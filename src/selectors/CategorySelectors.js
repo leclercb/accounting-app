@@ -1,6 +1,9 @@
 import { getCategories } from 'data/DataCategories';
+import { getCategoryFields } from 'data/DataCategoryFields';
 import { createSelector } from 'reselect';
 import { getMovements } from 'selectors/MovementSelectors';
+import { getCategoryColumnSorter } from 'selectors/SettingSelectors';
+import { sortObjects } from 'utils/SorterUtils';
 
 export const getComputedCategories = createSelector(
     getMovements,
@@ -37,6 +40,22 @@ export const getComputedIncomeCategories = createSelector(
     getComputedCategories,
     (categories) => {
         return categories.filter(category => category.type === 'income');
+    }
+);
+
+export const getSortedComputedExpensesCategories = createSelector(
+    getComputedExpensesCategories,
+    getCategoryColumnSorter,
+    (categories, categoryColumnSorter) => {
+        return sortObjects(categories, getCategoryFields(), [categoryColumnSorter], store.getState());
+    }
+);
+
+export const getSortedComputedIncomeCategories = createSelector(
+    getComputedIncomeCategories,
+    getCategoryColumnSorter,
+    (categories, categoryColumnSorter) => {
+        return sortObjects(categories, getCategoryFields(), [categoryColumnSorter], store.getState());
     }
 );
 

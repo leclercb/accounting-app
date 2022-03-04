@@ -29,3 +29,6 @@ export const getSettingsSelector = () => {
 export const getSelectedView = state => state.settings.selectedView;
 
 export const getMovementFile = state => state.settings.movementFile;
+
+export const getCategoryColumnSorter = state => state.settings.categoryColumnSorter;
+export const getMovementColumnSorter = state => state.settings.movementColumnSorter;
