@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { getMovementFields } from 'selectors/MovementFieldSelectors';
 import { getMovementColumnSorter } from 'selectors/SettingSelectors';
+import { store } from 'store/Store';
 import { sortObjects } from 'utils/SorterUtils';
 
 export const canUndoMovementStateUpdate = state => state.movements.past.length > 0;
@@ -15,7 +16,7 @@ export const getSortedMovements = createSelector(
     getMovementFields,
     getMovementColumnSorter,
     (movements, movementFields, movementColumnSorter) => {
-        return sortObjects(movements, movementFields, [movementColumnSorter], store.getState());
+        return sortObjects(movements, movementFields, movementColumnSorter ? [movementColumnSorter] : [], store.getState());
     }
 );
 

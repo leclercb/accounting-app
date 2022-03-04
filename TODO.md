@@ -1,6 +1,6 @@
 # Todo List
 
-* Sort and filter tables
+* Filter tables
 * Change license config
 * Review
     * components

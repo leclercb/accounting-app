@@ -3,6 +3,7 @@ import { getCategoryFields } from 'data/DataCategoryFields';
 import { createSelector } from 'reselect';
 import { getMovements } from 'selectors/MovementSelectors';
 import { getCategoryColumnSorter } from 'selectors/SettingSelectors';
+import { store } from 'store/Store';
 import { sortObjects } from 'utils/SorterUtils';
 
 export const getComputedCategories = createSelector(
@@ -47,7 +48,7 @@ export const getSortedComputedExpensesCategories = createSelector(
     getComputedExpensesCategories,
     getCategoryColumnSorter,
     (categories, categoryColumnSorter) => {
-        return sortObjects(categories, getCategoryFields(), [categoryColumnSorter], store.getState());
+        return sortObjects(categories, getCategoryFields(), categoryColumnSorter ? [categoryColumnSorter] : [], store.getState());
     }
 );
 
@@ -55,7 +56,7 @@ export const getSortedComputedIncomeCategories = createSelector(
     getComputedIncomeCategories,
     getCategoryColumnSorter,
     (categories, categoryColumnSorter) => {
-        return sortObjects(categories, getCategoryFields(), [categoryColumnSorter], store.getState());
+        return sortObjects(categories, getCategoryFields(), categoryColumnSorter ? [categoryColumnSorter] : [], store.getState());
     }
 );
 

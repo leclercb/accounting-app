@@ -24,7 +24,11 @@ export function sortObjects(objects, fields, sorters, state) {
         }
 
         if (result === 0) {
-            result = compareObjectsHierarchy(fields.find(field => field.id === 'title'), a, b, 'ascending', state);
+            const field = fields.find(field => field.id === 'title');
+
+            if (field) {
+                result = compareObjectsHierarchy(field, a, b, 'ascending', state);
+            }
         }
 
         if (result === 0) {
