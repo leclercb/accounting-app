@@ -6,6 +6,7 @@
 * Display rule as string
 * Automatically add amount condition
 * Save movement table scroll position
+* Sort columns
 
 # 1.0.0
 
