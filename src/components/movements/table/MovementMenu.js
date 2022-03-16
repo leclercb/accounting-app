@@ -84,7 +84,7 @@ function MovementMenu({ selectedMovements, field, children }) {
                 rule.condition.conditions = [
                     ...(rule.condition.conditions || []),
                     field.createConditionFromFieldValue(value)
-                ]
+                ];
             }
         } else {
             return;
