@@ -4,6 +4,7 @@ import { ArrowKeyStepper, AutoSizer, MultiGrid } from 'react-virtualized';
 import CellRenderer from 'components/common/table/CellRenderer';
 import { ResizableAndMovableColumn, moveHandler, resizeHandler } from 'components/common/table/ResizableAndMovableColumn';
 import { multiSelectionHandler } from 'components/common/table/VirtualizedTable';
+import MovementMenu from 'components/movements/table/MovementMenu';
 import Constants from 'constants/Constants';
 import { getWidthForType, isAlwaysInEditionForType } from 'data/DataFieldTypes';
 import { useAppApi } from 'hooks/UseAppApi';
@@ -105,18 +106,20 @@ function MovementTable() {
         }
 
         return (
-            <CellRenderer
-                record={rowData}
-                field={field}
-                value={cellData}
-                onChange={allValues => {
-                    movementApi.setSelectedMovementIds(rowData.id);
-                    return onUpdateMovement({
-                        ...rowData,
-                        ...allValues
-                    });
-                }}
-                {...dndProps} />
+            <MovementMenu selectedMovements={movementApi.selectedMovements} field={field}>
+                <CellRenderer
+                    record={rowData}
+                    field={field}
+                    value={cellData}
+                    onChange={allValues => {
+                        movementApi.setSelectedMovementIds(rowData.id);
+                        return onUpdateMovement({
+                            ...rowData,
+                            ...allValues
+                        });
+                    }}
+                    {...dndProps} />
+            </MovementMenu>
         );
     };
 
