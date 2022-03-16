@@ -1,5 +1,6 @@
 import { t } from 'i18next';
 import moment from 'moment';
+import { v4 as uuid } from 'uuid';
 import { addColorsToArray } from 'utils/ColorUtils';
 
 export function getMovementFields(settings) {
@@ -39,7 +40,16 @@ export function getMovementFields(settings) {
                 kbc: record => record[14],
                 ing: record => getFieldValueFromINGColumn(record[8], 'Vers') || getFieldValueFromINGColumn(record[9], 'De')
             },
-            conditionsFieldType: 'selectTags'
+            conditionsFieldType: 'selectTags',
+            createConditionFromFieldValue: value => ({
+                id: uuid(),
+                field: 'counterpartyName',
+                type: 'containIgnoreCase',
+                value: [value]
+            }),
+            addValueToCondition: (value, condition) => {
+                condition.value = [...(condition.value || []), value];
+            }
         },
         {
             static: true,
@@ -51,6 +61,16 @@ export function getMovementFields(settings) {
             csv: {
                 kbc: record => record[6],
                 ing: record => record[9] || record[8]
+            },
+            conditionsFieldType: 'selectTags',
+            createConditionFromFieldValue: value => ({
+                id: uuid(),
+                field: 'description',
+                type: 'containIgnoreCase',
+                value: [value]
+            }),
+            addValueToCondition: (value, condition) => {
+                condition.value = [...(condition.value || []), value];
             }
         },
         {
@@ -67,7 +87,16 @@ export function getMovementFields(settings) {
                     return value.startsWith('***') ? value : '';
                 }
             },
-            conditionsFieldType: 'selectTags'
+            conditionsFieldType: 'selectTags',
+            createConditionFromFieldValue: value => ({
+                id: uuid(),
+                field: 'structuredCommunication',
+                type: 'equal',
+                value: [value]
+            }),
+            addValueToCondition: (value, condition) => {
+                condition.value = [...(condition.value || []), value];
+            }
         },
         {
             static: true,
@@ -83,7 +112,16 @@ export function getMovementFields(settings) {
                     return !value.startsWith('***') ? value : '';
                 }
             },
-            conditionsFieldType: 'selectTags'
+            conditionsFieldType: 'selectTags',
+            createConditionFromFieldValue: value => ({
+                id: uuid(),
+                field: 'freeCommunication',
+                type: 'containIgnoreCase',
+                value: [value]
+            }),
+            addValueToCondition: (value, condition) => {
+                condition.value = [...(condition.value || []), value];
+            }
         },
         {
             static: true,

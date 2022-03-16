@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dropdown, Menu } from 'antd';
 import PropTypes from 'prop-types';
+import { v4 as uuid } from 'uuid';
 import CategoryTitle from 'components/categories/CategoryTitle';
 import Icon from 'components/common/Icon';
 import RuleTitle from 'components/rules/RuleTitle';
@@ -10,6 +11,7 @@ import { useMovementApi } from 'hooks/UseMovementApi';
 import { useRuleApi } from 'hooks/UseRuleApi';
 import { FieldPropType } from 'proptypes/FieldPropTypes';
 import { MovementPropType } from 'proptypes/MovementPropTypes';
+import { toString } from 'utils/StringUtils';
 
 function MovementMenu({ selectedMovements, field, children }) {
     const appApi = useAppApi();
@@ -28,7 +30,7 @@ function MovementMenu({ selectedMovements, field, children }) {
                     onAddRule();
                     break;
                 case 'addToRule':
-                    onAddToRule(action.ruleId)
+                    onAddToRule(action.ruleId);
                     break;
                 case 'assignCategory':
                     onAssignCategory(action.categoryId);
@@ -42,7 +44,18 @@ function MovementMenu({ selectedMovements, field, children }) {
     };
 
     const onAddRule = async () => {
-        let rule = {};
+        const value = selectedMovements[0][field.id];
+
+        let rule = {
+            title: toString(value),
+            condition: {
+                id: uuid(),
+                operator: 'AND',
+                conditions: [
+                    field.createConditionFromFieldValue(value)
+                ]
+            }
+        };
 
         rule = await ruleApi.addRule(rule);
         ruleApi.setSelectedRuleIds(rule.id);
@@ -50,18 +63,44 @@ function MovementMenu({ selectedMovements, field, children }) {
     };
 
     const onAddToRule = ruleId => {
-        const rule = ruleApi.find(rule => rule.id === ruleId);
+        const value = selectedMovements[0][field.id];
+
+        const rule = ruleApi.rules.find(rule => rule.id === ruleId);
+
+        if (!rule.condition) {
+            rule.condition = {
+                id: uuid(),
+                operator: 'AND',
+                conditions: [
+                    field.createConditionFromFieldValue(value)
+                ]
+            };
+        } else if (rule.condition.operator) {
+            const condition = (rule.condition.conditions || []).find(condition => condition.field === field.id);
+
+            if (condition) {
+                field.addValueToCondition(value, condition);
+            } else {
+                rule.condition.conditions = [
+                    ...(rule.condition.conditions || []),
+                    field.createConditionFromFieldValue(value)
+                ]
+            }
+        } else {
+            return;
+        }
 
         ruleApi.updateRule(rule);
         ruleApi.setSelectedRuleIds(rule.id);
         appApi.setSelectedView('rules');
-    }
+    };
 
     const onAssignCategory = categoryId => {
         selectedMovements.forEach(movement => {
             movementApi.updateMovement({
                 ...movement,
-                category: categoryId
+                category: categoryId,
+                confidence: 'manual'
             });
         });
     };
@@ -71,10 +110,10 @@ function MovementMenu({ selectedMovements, field, children }) {
             onClick={onClick}
             style={{ width: 300 }}>
             <Menu.SubMenu
-                key={"assignCategory"}
+                key="assignCategory"
                 title={(<Icon icon="plus" text="Assigner la catégorie" />)}>
                 <Menu.SubMenu
-                    key={"assignCategoryExpense"}
+                    key="assignCategoryExpense"
                     title={(<Icon icon="plus" text="Dépenses" />)}>
                     {categoryApi.expensesCategories.map(category => (
                         <Menu.Item key={category.id} action={{ type: 'assignCategory', categoryId: category.id }}>
@@ -83,7 +122,7 @@ function MovementMenu({ selectedMovements, field, children }) {
                     ))}
                 </Menu.SubMenu>
                 <Menu.SubMenu
-                    key={"assignCategoryIncome"}
+                    key="assignCategoryIncome"
                     title={(<Icon icon="plus" text="Revenus" />)}>
                     {categoryApi.incomeCategories.map(category => (
                         <Menu.Item key={category.id} action={{ type: 'assignCategory', categoryId: category.id }}>
@@ -92,14 +131,14 @@ function MovementMenu({ selectedMovements, field, children }) {
                     ))}
                 </Menu.SubMenu>
             </Menu.SubMenu>
-            {selectedMovements.length === 1 && (
+            {selectedMovements.length === 1 && field.createConditionFromFieldValue && (
                 <Menu.Item key="addRule" action={{ type: 'addRule' }}>
                     <Icon icon="plus" text="Créer une règle" />
                 </Menu.Item>
             )}
-            {selectedMovements.length === 1 && (
+            {selectedMovements.length === 1 && field.createConditionFromFieldValue && field.addValueToCondition && (
                 <Menu.SubMenu
-                    key={"addToRule"}
+                    key="addToRule"
                     title={(<Icon icon="plus" text="Ajouter à la règle" />)}>
                     {ruleApi.rules.map(rule => (
                         <Menu.Item key={rule.id} action={{ type: 'addToRule', ruleId: rule.id }}>
