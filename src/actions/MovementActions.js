@@ -1,5 +1,5 @@
-import { parse } from 'csv-parse/dist/esm/sync';
 import { t } from 'i18next';
+import { parse } from 'papaparse';
 import { v4 as uuid } from 'uuid';
 import {
     addObject,
@@ -30,9 +30,8 @@ export function loadMovementsFromFile(file, bank = null) {
             if (file.endsWith('.csv')) {
                 const records = parse(data, {
                     delimiter: ';',
-                    columns: false,
-                    skip_empty_lines: true
-                });
+                    skipEmptyLines: true
+                }).data;
 
                 records.shift();
 

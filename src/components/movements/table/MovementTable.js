@@ -24,8 +24,6 @@ function MovementTable() {
 
     const gridRef = useRef();
 
-    console.log(appApi.movementTableScrollProps);
-
     const dataSource = movementApi.movements;
 
     useEffect(() => {
