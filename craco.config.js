@@ -1,6 +1,13 @@
 const CracoAntDesignPlugin = require('craco-antd');
 
 module.exports = {
+    configure: {
+        resolve: {
+            fallback: {
+                buffer: require.resolve('buffer/'),
+            }
+        }
+    },
     plugins: [
         {
             plugin: CracoAntDesignPlugin
