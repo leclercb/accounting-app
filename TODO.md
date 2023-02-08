@@ -1,6 +1,5 @@
 # Todo List
 
-* Print
 * Filter tables
 * Change license config
 * Review

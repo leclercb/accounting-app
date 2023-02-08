@@ -5,7 +5,9 @@ import { useTranslation } from 'react-i18next';
 import BankSelect from 'components/banks/BankSelect';
 import Icon from 'components/common/Icon';
 import { useAppApi } from 'hooks/UseAppApi';
+import { useCategoryApi } from 'hooks/UseCategoryApi';
 import { useMovementApi } from 'hooks/UseMovementApi';
+import { usePrintApi } from 'hooks/UsePrintApi';
 import { useRuleApi } from 'hooks/UseRuleApi';
 import { autoFill, exists, openWebsite, showOpenDialog } from 'utils/ElectronIpc';
 import { changeExtension } from 'utils/FileUtils';
@@ -14,7 +16,9 @@ function Header() {
     const { t } = useTranslation();
 
     const appApi = useAppApi();
+    const categoryApi = useCategoryApi();
     const movementApi = useMovementApi();
+    const printApi = usePrintApi();
     const ruleApi = useRuleApi();
 
     const onSave = () => {
@@ -27,6 +31,18 @@ function Header() {
 
     const onShowSettingsManager = () => {
         appApi.setSettingManagerOptions({ visible: true });
+    };
+
+    const onPrintExpenses = () => {
+        printApi.printExpenses(categoryApi.expensesCategories);
+    };
+
+    const onPrintIncome = () => {
+        printApi.printIncome(categoryApi.incomeCategories);
+    };
+
+    const onPrintMovements = () => {
+        printApi.printMovements(movementApi.movements);
     };
 
     const onLoadMovements = async () => {
@@ -181,6 +197,9 @@ function Header() {
                 {appApi.selectedView === 'movements' ? createButton('folder-open', 'Charger des mouvements', onLoadMovements, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('wand-magic-sparkles', 'Calculer les catégories', onComputeCategories, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('folder-open', 'Afficher les règles concordantes', onShowMatchingRulesManager, movementApi.selectedMovementIds.length !== 1) : null}
+                {appApi.selectedView === 'expenses' ? createButton('print', 'Print Expenses', onPrintExpenses) : null}
+                {appApi.selectedView === 'income' ? createButton('print', 'Print Income', onPrintIncome) : null}
+                {appApi.selectedView === 'movements' ? createButton('print', 'Print Movements', onPrintMovements) : null}
             </Button.Group>
         </>
     );
