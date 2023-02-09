@@ -37,8 +37,8 @@ class ColorPicker extends React.Component {
         return (
             <Popover
                 trigger="click"
-                visible={this.state.visible}
-                onVisibleChange={this.onVisibleChange}
+                open={this.state.visible}
+                onOpenChange={this.onVisibleChange}
                 content={(
                     <SketchPicker
                         disableAlpha={true}

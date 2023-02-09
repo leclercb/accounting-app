@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { getCompareForType } from 'data/DataFieldTypes';
 
 export function compareBooleans(a, b) {
@@ -20,7 +20,7 @@ export function compareDates(a, b, useTime) {
         return -1;
     }
 
-    return moment(a).diff(moment(b), useTime ? 'minute' : 'day');
+    return dayjs(a).diff(dayjs(b), useTime ? 'minute' : 'day');
 }
 
 export function compareNumbers(a, b) {

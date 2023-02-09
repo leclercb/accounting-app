@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { getConfig } from 'config/Config';
 import { verifyCryptoSync } from 'utils/ElectronIpc';
 
@@ -33,7 +33,7 @@ export function verifyLicense(license) {
                 return null;
             }
 
-            if (content.expirationDate && moment(content.expirationDate).isBefore(moment())) {
+            if (content.expirationDate && dayjs(content.expirationDate).isBefore(dayjs())) {
                 return null;
             }
 

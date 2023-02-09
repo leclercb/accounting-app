@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { checked, logo } from 'constants/Images';
 import { getToStringForType } from 'data/DataFieldTypes';
 import { merge } from 'utils/ObjectUtils';
@@ -37,7 +37,7 @@ export function printDocument(title, orientation = 'p') {
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(0, 0, 0);
 
-    const printDateMsg = 'Print date: ' + moment(new Date()).format('DD-MM-YYYY HH:mm:ss');
+    const printDateMsg = 'Print date: ' + dayjs(new Date()).format('DD-MM-YYYY HH:mm:ss');
 
     doc.text(
         printDateMsg,

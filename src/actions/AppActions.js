@@ -1,5 +1,5 @@
 import { t } from 'i18next';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { ActionCreators } from 'redux-undo';
 import { v4 as uuid } from 'uuid';
 import { getDataFolder, getUserDataPath } from 'actions/ActionUtils';
@@ -91,7 +91,7 @@ export function saveData(options) {
         await dispatch(saveDataToFile(options));
 
         await dispatch(updateSettings({
-            lastSaveDate: moment().toISOString()
+            lastSaveDate: dayjs().toISOString()
         }));
     };
 }

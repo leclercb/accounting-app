@@ -163,8 +163,8 @@ function MovementMenu({ selectedMovements, field, children }) {
             <Dropdown
                 overlay={menu}
                 trigger={['contextMenu']}
-                visible={visible}
-                onVisibleChange={setVisible}>
+                open={visible}
+                onOpenChange={setVisible}>
                 {children}
             </Dropdown>
         </div>

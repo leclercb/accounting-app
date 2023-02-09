@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export function toString(value) {
     if (typeof value === 'undefined' || value === null) {
@@ -22,7 +22,7 @@ export function toStringDate(value, format) {
         return '';
     }
 
-    return moment(value).format(format);
+    return dayjs(value).format(format);
 }
 
 export function toStringArray(value) {

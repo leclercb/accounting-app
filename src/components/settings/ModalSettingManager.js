@@ -20,7 +20,7 @@ function ModalSettingManager() {
     return (
         <Modal
             title={<Icon icon="cog" text={t('settings._')} />}
-            visible={appApi.settingManager.visible}
+            open={appApi.settingManager.visible}
             width="80%"
             closable={false}
             onOk={onClose}

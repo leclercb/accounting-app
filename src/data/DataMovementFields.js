@@ -1,5 +1,5 @@
 import { t } from 'i18next';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { addColorsToArray } from 'utils/ColorUtils';
 
@@ -25,8 +25,8 @@ export function getMovementFields(settings) {
             editable: false,
             defaultOrder: 2,
             csv: {
-                kbc: record => moment(record[5], 'DD-MM-YY').toISOString(),
-                ing: record => moment(record[4], 'DD-MM-YY').toISOString()
+                kbc: record => dayjs(record[5], 'DD-MM-YY').toISOString(),
+                ing: record => dayjs(record[4], 'DD-MM-YY').toISOString()
             }
         },
         {

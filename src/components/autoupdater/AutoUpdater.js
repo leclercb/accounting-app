@@ -17,7 +17,7 @@ function AutoUpdater() {
     return (
         <Modal
             title={<Icon icon="code-branch" text="Auto Updater" />}
-            visible={autoUpdaterApi.visible}
+            open={autoUpdaterApi.visible}
             width="80%"
             closable={false}
             onOk={onClose}

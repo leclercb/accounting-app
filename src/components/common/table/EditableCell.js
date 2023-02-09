@@ -51,7 +51,7 @@ function EditableCell(props) {
 
     return (
         <Tooltip
-            visible={errors.length > 0}
+            open={errors.length > 0}
             title={errors.map(error => <p key={error}>{error}</p>)}>
             <Form form={form} initialValues={{ [props.field.id]: props.value }}>
                 <Form.Item

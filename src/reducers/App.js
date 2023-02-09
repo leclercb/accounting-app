@@ -1,8 +1,8 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const App = () => (state = {
     dataUuid: null,
-    startDate: moment().toISOString(),
+    startDate: dayjs().toISOString(),
     editingCell: {
         objectId: null,
         fieldId: null

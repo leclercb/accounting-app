@@ -43,8 +43,8 @@ function AddButton(props) {
             title="Add Condition"
             placement="bottom"
             trigger="click"
-            visible={menuVisible}
-            onVisibleChange={onMenuVisibleChange}
+            open={menuVisible}
+            onOpenChange={onMenuVisibleChange}
             overlayClassName="condition-tree-add-menu">
             <Button
                 disabled={props.disabled === true}

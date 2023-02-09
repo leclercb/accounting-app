@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { log as electronLog, setLogLevel } from 'utils/ElectronIpc';
 
 export function setElectronLoggerLevel(level) {
@@ -25,7 +25,7 @@ function log(type, ...params) {
     console[type](...params);
 
     params = params.map(param => {
-        if (moment.isMoment(param)) {
+        if (dayjs.isDayjs(param)) {
             return param.toISOString();
         }
 

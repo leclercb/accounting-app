@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { InputNumber, Switch } from 'antd';
 import DatePicker from 'components/common/DatePicker';
 import Spacer from 'components/common/Spacer';
@@ -15,7 +15,7 @@ class ExtendedDatePicker extends React.Component {
 
     onSwitchChange(checked) {
         if (this.props.onChange) {
-            this.props.onChange(checked ? 0 : moment().toISOString());
+            this.props.onChange(checked ? 0 : dayjs().toISOString());
         }
     }
 
@@ -40,7 +40,7 @@ class ExtendedDatePicker extends React.Component {
                         <React.Fragment>
                             <InputNumber {...this.props} onChange={this.onNumberChange} />
                             <Spacer />
-                            <span>({moment().add(this.props.value, 'day').format(this.props.format)})</span>
+                            <span>({dayjs().add(this.props.value, 'day').format(this.props.format)})</span>
                         </React.Fragment>
                     ) : (
                         <DatePicker {...this.props} />

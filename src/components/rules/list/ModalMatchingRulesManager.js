@@ -30,7 +30,7 @@ function ModalMatchingRulesManager() {
     return (
         <Modal
             title={<Icon icon="columns" text="Matching Rules" />}
-            visible={appApi.matchingRulesManager.visible}
+            open={appApi.matchingRulesManager.visible}
             width="50%"
             closable={false}
             onOk={onCloseMatchingRulesManager}

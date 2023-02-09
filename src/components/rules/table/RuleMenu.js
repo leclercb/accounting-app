@@ -69,8 +69,8 @@ function RuleMenu({ selectedRules, children }) {
             <Dropdown
                 overlay={menu}
                 trigger={['contextMenu']}
-                visible={visible}
-                onVisibleChange={setVisible}>
+                open={visible}
+                onOpenChange={setVisible}>
                 {children}
             </Dropdown>
         </div>

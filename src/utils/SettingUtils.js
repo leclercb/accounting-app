@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { isCoreSetting } from 'data/DataSettings';
 import { getConfidence } from 'data/DataConfidences';
 
@@ -17,10 +17,10 @@ export function filterSettings(settings, core) {
 
 export function formatDate(date, settings, showTime = true) {
     if (!showTime) {
-        return moment(date).format(settings.dateFormat);
+        return dayjs(date).format(settings.dateFormat);
     }
 
-    return moment(date).format(`${settings.dateFormat} ${settings.timeFormat}`);
+    return dayjs(date).format(`${settings.dateFormat} ${settings.timeFormat}`);
 }
 
 export function getCategoryForegroundColor() {

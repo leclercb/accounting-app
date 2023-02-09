@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox, Modal, message } from 'antd';
 import { t } from 'i18next';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { getUserDataPath } from 'actions/ActionUtils';
 import { loadData, saveData } from 'actions/AppActions';
 import { checkForUpdates } from 'actions/AutoUpdaterActions';
@@ -246,75 +246,75 @@ export function getCategories() {
                     options: {
                         values: [
                             {
-                                title: `DD/MM/YYYY (${moment().format('DD/MM/YYYY')})`,
+                                title: `DD/MM/YYYY (${dayjs().format('DD/MM/YYYY')})`,
                                 value: 'DD/MM/YYYY'
                             },
                             {
-                                title: `DD-MM-YYYY (${moment().format('DD-MM-YYYY')})`,
+                                title: `DD-MM-YYYY (${dayjs().format('DD-MM-YYYY')})`,
                                 value: 'DD-MM-YYYY'
                             },
                             {
-                                title: `DD.MM.YYYY (${moment().format('DD.MM.YYYY')})`,
+                                title: `DD.MM.YYYY (${dayjs().format('DD.MM.YYYY')})`,
                                 value: 'DD.MM.YYYY'
                             },
                             {
-                                title: `MM/DD/YYYY (${moment().format('MM/DD/YYYY')})`,
+                                title: `MM/DD/YYYY (${dayjs().format('MM/DD/YYYY')})`,
                                 value: 'MM/DD/YYYY'
                             },
                             {
-                                title: `MM-DD-YYYY (${moment().format('MM-DD-YYYY')})`,
+                                title: `MM-DD-YYYY (${dayjs().format('MM-DD-YYYY')})`,
                                 value: 'MM-DD-YYYY'
                             },
                             {
-                                title: `MM.DD.YYYY (${moment().format('MM.DD.YYYY')})`,
+                                title: `MM.DD.YYYY (${dayjs().format('MM.DD.YYYY')})`,
                                 value: 'MM.DD.YYYY'
                             },
                             {
-                                title: `YYYY/MM/DD (${moment().format('YYYY/MM/DD')})`,
+                                title: `YYYY/MM/DD (${dayjs().format('YYYY/MM/DD')})`,
                                 value: 'YYYY/MM/DD'
                             },
                             {
-                                title: `YYYY-MM-DD (${moment().format('YYYY-MM-DD')})`,
+                                title: `YYYY-MM-DD (${dayjs().format('YYYY-MM-DD')})`,
                                 value: 'YYYY-MM-DD'
                             },
                             {
-                                title: `YYYY.MM.DD (${moment().format('YYYY.MM.DD')})`,
+                                title: `YYYY.MM.DD (${dayjs().format('YYYY.MM.DD')})`,
                                 value: 'YYYY.MM.DD'
                             },
                             {
-                                title: `ddd DD/MM/YYYY (${moment().format('ddd DD/MM/YYYY')})`,
+                                title: `ddd DD/MM/YYYY (${dayjs().format('ddd DD/MM/YYYY')})`,
                                 value: 'ddd DD/MM/YYYY'
                             },
                             {
-                                title: `ddd DD-MM-YYYY (${moment().format('ddd DD-MM-YYYY')})`,
+                                title: `ddd DD-MM-YYYY (${dayjs().format('ddd DD-MM-YYYY')})`,
                                 value: 'ddd DD-MM-YYYY'
                             },
                             {
-                                title: `ddd DD.MM.YYYY (${moment().format('ddd DD.MM.YYYY')})`,
+                                title: `ddd DD.MM.YYYY (${dayjs().format('ddd DD.MM.YYYY')})`,
                                 value: 'ddd DD.MM.YYYY'
                             },
                             {
-                                title: `ddd MM/DD/YYYY (${moment().format('ddd MM/DD/YYYY')})`,
+                                title: `ddd MM/DD/YYYY (${dayjs().format('ddd MM/DD/YYYY')})`,
                                 value: 'ddd MM/DD/YYYY'
                             },
                             {
-                                title: `ddd MM-DD-YYYY (${moment().format('ddd MM-DD-YYYY')})`,
+                                title: `ddd MM-DD-YYYY (${dayjs().format('ddd MM-DD-YYYY')})`,
                                 value: 'ddd MM-DD-YYYY'
                             },
                             {
-                                title: `ddd MM.DD.YYYY (${moment().format('ddd MM.DD.YYYY')})`,
+                                title: `ddd MM.DD.YYYY (${dayjs().format('ddd MM.DD.YYYY')})`,
                                 value: 'ddd MM.DD.YYYY'
                             },
                             {
-                                title: `ddd YYYY/MM/DD (${moment().format('ddd YYYY/MM/DD')})`,
+                                title: `ddd YYYY/MM/DD (${dayjs().format('ddd YYYY/MM/DD')})`,
                                 value: 'ddd YYYY/MM/DD'
                             },
                             {
-                                title: `ddd YYYY-MM-DD (${moment().format('ddd YYYY-MM-DD')})`,
+                                title: `ddd YYYY-MM-DD (${dayjs().format('ddd YYYY-MM-DD')})`,
                                 value: 'ddd YYYY-MM-DD'
                             },
                             {
-                                title: `ddd YYYY.MM.DD (${moment().format('ddd YYYY.MM.DD')})`,
+                                title: `ddd YYYY.MM.DD (${dayjs().format('ddd YYYY.MM.DD')})`,
                                 value: 'ddd YYYY.MM.DD'
                             }
                         ]
