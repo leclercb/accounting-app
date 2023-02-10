@@ -17,7 +17,7 @@ function ModalThreadManager() {
     return (
         <Modal
             title={<Icon icon="cogs" text={t('progress')} />}
-            visible={threadApi.threadManagerVisible}
+            open={threadApi.threadManagerVisible}
             closable={false}
             onOk={onClose}
             onCancel={onClose}

@@ -1,5 +1,5 @@
 import { t } from 'i18next';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { getCategories } from 'data/DataCategories';
 import { getConfidences } from 'data/DataConfidences';
 import { getMovementFields } from 'data/DataMovementFields';
@@ -123,18 +123,18 @@ export function getFieldType(type, options) {
                 valuePropName: 'value',
                 compare: (a, b) => {
                     if (Number.isInteger(a)) {
-                        a = moment().add(Number.parseInt(a), 'day').toISOString();
+                        a = dayjs().add(Number.parseInt(a), 'day').toISOString();
                     }
 
                     if (Number.isInteger(b)) {
-                        b = moment().add(Number.parseInt(b), 'day').toISOString();
+                        b = dayjs().add(Number.parseInt(b), 'day').toISOString();
                     }
 
                     return compareDates(a, b, false);
                 },
                 toString: value => {
                     if (Number.isInteger(value)) {
-                        value = moment().add(Number.parseInt(value), 'day').toISOString();
+                        value = dayjs().add(Number.parseInt(value), 'day').toISOString();
                     }
 
                     return toStringDate(value, dateFormat);
@@ -160,18 +160,18 @@ export function getFieldType(type, options) {
                 valuePropName: 'value',
                 compare: (a, b) => {
                     if (Number.isInteger(a)) {
-                        a = moment().add(Number.parseInt(a), 'day').toISOString();
+                        a = dayjs().add(Number.parseInt(a), 'day').toISOString();
                     }
 
                     if (Number.isInteger(b)) {
-                        b = moment().add(Number.parseInt(b), 'day').toISOString();
+                        b = dayjs().add(Number.parseInt(b), 'day').toISOString();
                     }
 
                     return compareDates(a, b, true);
                 },
                 toString: value => {
                     if (Number.isInteger(value)) {
-                        value = moment().add(Number.parseInt(value), 'day').toISOString();
+                        value = dayjs().add(Number.parseInt(value), 'day').toISOString();
                     }
 
                     return toStringDate(value, `${dateFormat} ${timeFormat}`);

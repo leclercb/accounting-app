@@ -1,6 +1,6 @@
 import React from 'react';
 import { DatePicker as AntDatePicker, Button } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import 'components/common/DatePicker.css';
 
@@ -46,7 +46,7 @@ class DatePicker extends React.Component {
         let { value, ...wrappedProps } = this.props;
 
         if (value) {
-            value = moment(value);
+            value = dayjs(value);
         }
 
         return (
@@ -62,7 +62,7 @@ class DatePicker extends React.Component {
                             type="link"
                             size="small"
                             className="datepicker-button first"
-                            onClick={() => this.setDate(moment().add(1, 'day'))}>
+                            onClick={() => this.setDate(dayjs().add(1, 'day'))}>
                             Tomorrow
                         </Button>
                         <span>-</span>
@@ -70,7 +70,7 @@ class DatePicker extends React.Component {
                             type="link"
                             size="small"
                             className="datepicker-button"
-                            onClick={() => this.setDate(moment().add(3, 'day'))}>
+                            onClick={() => this.setDate(dayjs().add(3, 'day'))}>
                             3 days
                         </Button>
                         <span>-</span>
@@ -78,7 +78,7 @@ class DatePicker extends React.Component {
                             type="link"
                             size="small"
                             className="datepicker-button"
-                            onClick={() => this.setDate(moment().add(1, 'week'))}>
+                            onClick={() => this.setDate(dayjs().add(1, 'week'))}>
                             1 week
                         </Button>
                         <span>-</span>
@@ -86,7 +86,7 @@ class DatePicker extends React.Component {
                             type="link"
                             size="small"
                             className="datepicker-button last"
-                            onClick={() => this.setDate(moment().add(1, 'month'))}>
+                            onClick={() => this.setDate(dayjs().add(1, 'month'))}>
                             1 month
                         </Button>
                     </React.Fragment>

@@ -1,7 +1,7 @@
 /* eslint react/display-name: 0 react/prop-types: 0 */
 
 import React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Checkbox, Input, InputNumber, Select, Tag } from 'antd';
 import CategorySelect from 'components/categories/CategorySelect';
 import CategoryTitle from 'components/categories/CategoryTitle';
@@ -122,7 +122,7 @@ export function getFieldComponents(type, options) {
                         return value;
                     }
 
-                    return value ? moment(value).format(dateFormat) : (<span>&nbsp;</span>);
+                    return value ? dayjs(value).format(dateFormat) : (<span>&nbsp;</span>);
                 },
                 input: props => {
                     if (extended) {
@@ -180,7 +180,7 @@ export function getFieldComponents(type, options) {
                         return value;
                     }
 
-                    return value ? moment(value).format(`${dateFormat} ${timeFormat}`) : (<span>&nbsp;</span>);
+                    return value ? dayjs(value).format(`${dateFormat} ${timeFormat}`) : (<span>&nbsp;</span>);
                 },
                 input: props => {
                     if (extended) {

@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { getSettingValues, isCoreSetting } from 'data/DataSettings';
 import { setElectronLoggerLevel } from 'utils/LogUtils';
 
@@ -45,11 +44,14 @@ const Settings = () => (state = {
 function onUpdateSettings(settings) {
     setElectronLoggerLevel(settings.electronLoggerLevel || 'info');
 
+    // TODO fix me for dayjs
+    /*
     moment.updateLocale('en', {
         week: {
             dow: settings.firstDayOfWeek || 0
         }
     });
+    */
 }
 
 export default Settings;

@@ -38,7 +38,7 @@ export function useMovementApi() {
     );
 
     const loadMovementsFromFileCallback = useCallback(
-        (file, bank) => dispatch(loadMovementsFromFile(file, bank)),
+        (file, bank, saveFirst) => dispatch(loadMovementsFromFile(file, bank, saveFirst)),
         [dispatch]
     );
 

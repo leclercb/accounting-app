@@ -1,5 +1,5 @@
 import React from 'react';
-import { notification } from 'antd';
+import { ConfigProvider, notification } from 'antd';
 import { t } from 'i18next';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -29,9 +29,22 @@ window.addEventListener('error', function (e) {
 });
 
 ReactDOM.render(
-    <Provider store={store}>
-        <React.Suspense fallback={(<LoadingIndicator />)}>
-            <App />
-        </React.Suspense>
-    </Provider>,
+    <ConfigProvider
+        theme={{
+            token: {
+                colorPrimary: '#0e67c4',
+                fontSize: 12
+            },
+            components: {
+                Layout: {
+                    colorBgHeader: '#0e67c4'
+                }
+            }
+        }}>
+        <Provider store={store}>
+            <React.Suspense fallback={(<LoadingIndicator />)}>
+                <App />
+            </React.Suspense>
+        </Provider>
+    </ConfigProvider >,
     document.getElementById('root'));

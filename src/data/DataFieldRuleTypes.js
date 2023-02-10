@@ -1,5 +1,5 @@
 import { t } from 'i18next';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export function getConditionsForType(type) {
     return getFieldRuleType(type).conditions;
@@ -103,7 +103,7 @@ function getFieldRuleType(type) {
                         title: t('condition.dateEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue && !objectValue) {
@@ -114,7 +114,7 @@ function getFieldRuleType(type) {
                                 return false;
                             }
 
-                            return moment(conditionValue).isSame(moment(objectValue), 'day');
+                            return dayjs(conditionValue).isSame(dayjs(objectValue), 'day');
                         }
                     },
                     {
@@ -122,7 +122,7 @@ function getFieldRuleType(type) {
                         title: t('condition.dateNotEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue && !objectValue) {
@@ -133,7 +133,7 @@ function getFieldRuleType(type) {
                                 return true;
                             }
 
-                            return !moment(conditionValue).isSame(moment(objectValue), 'day');
+                            return !dayjs(conditionValue).isSame(dayjs(objectValue), 'day');
                         }
                     },
                     {
@@ -141,14 +141,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateBefore'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isBefore(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isBefore(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -156,14 +156,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateBeforeOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isSameOrBefore(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isSameOrBefore(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -171,14 +171,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateAfter'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isAfter(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isAfter(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -186,14 +186,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateAfterOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isSameOrAfter(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isSameOrAfter(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -202,7 +202,7 @@ function getFieldRuleType(type) {
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue && !objectValue) {
@@ -213,7 +213,7 @@ function getFieldRuleType(type) {
                                 return false;
                             }
 
-                            return moment(conditionValue).isSame(moment(objectValue), 'day');
+                            return dayjs(conditionValue).isSame(dayjs(objectValue), 'day');
                         }
                     },
                     {
@@ -222,7 +222,7 @@ function getFieldRuleType(type) {
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue && !objectValue) {
@@ -233,7 +233,7 @@ function getFieldRuleType(type) {
                                 return true;
                             }
 
-                            return !moment(conditionValue).isSame(moment(objectValue), 'day');
+                            return !dayjs(conditionValue).isSame(dayjs(objectValue), 'day');
                         }
                     },
                     {
@@ -242,14 +242,14 @@ function getFieldRuleType(type) {
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isBefore(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isBefore(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -258,14 +258,14 @@ function getFieldRuleType(type) {
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isSameOrBefore(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isSameOrBefore(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -274,14 +274,14 @@ function getFieldRuleType(type) {
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isAfter(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isAfter(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -290,14 +290,14 @@ function getFieldRuleType(type) {
                         visible: false,
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isSameOrAfter(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isSameOrAfter(dayjs(conditionValue), 'day');
                         }
                     }
                 ],
@@ -312,7 +312,7 @@ function getFieldRuleType(type) {
                         title: t('condition.dateEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue && !objectValue) {
@@ -323,7 +323,7 @@ function getFieldRuleType(type) {
                                 return false;
                             }
 
-                            return moment(conditionValue).isSame(moment(objectValue), 'day');
+                            return dayjs(conditionValue).isSame(dayjs(objectValue), 'day');
                         }
                     },
                     {
@@ -331,7 +331,7 @@ function getFieldRuleType(type) {
                         title: t('condition.dateNotEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue && !objectValue) {
@@ -342,7 +342,7 @@ function getFieldRuleType(type) {
                                 return true;
                             }
 
-                            return !moment(conditionValue).isSame(moment(objectValue), 'day');
+                            return !dayjs(conditionValue).isSame(dayjs(objectValue), 'day');
                         }
                     },
                     {
@@ -350,14 +350,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateBefore'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isBefore(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isBefore(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -365,14 +365,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateBeforeOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isSameOrBefore(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isSameOrBefore(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -380,14 +380,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateAfter'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isAfter(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isAfter(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -395,14 +395,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateAfterOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isSameOrAfter(moment(conditionValue), 'day');
+                            return dayjs(objectValue).isSameOrAfter(dayjs(conditionValue), 'day');
                         }
                     },
                     {
@@ -410,7 +410,7 @@ function getFieldRuleType(type) {
                         title: t('condition.dateTimeEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue && !objectValue) {
@@ -421,7 +421,7 @@ function getFieldRuleType(type) {
                                 return false;
                             }
 
-                            return moment(conditionValue).isSame(moment(objectValue), 'minute');
+                            return dayjs(conditionValue).isSame(dayjs(objectValue), 'minute');
                         }
                     },
                     {
@@ -429,7 +429,7 @@ function getFieldRuleType(type) {
                         title: t('condition.dateTimeNotEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue && !objectValue) {
@@ -440,7 +440,7 @@ function getFieldRuleType(type) {
                                 return true;
                             }
 
-                            return !moment(conditionValue).isSame(moment(objectValue), 'minute');
+                            return !dayjs(conditionValue).isSame(dayjs(objectValue), 'minute');
                         }
                     },
                     {
@@ -448,14 +448,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateTimeBefore'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isBefore(moment(conditionValue), 'minute');
+                            return dayjs(objectValue).isBefore(dayjs(conditionValue), 'minute');
                         }
                     },
                     {
@@ -463,14 +463,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateTimeBeforeOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isSameOrBefore(moment(conditionValue), 'minute');
+                            return dayjs(objectValue).isSameOrBefore(dayjs(conditionValue), 'minute');
                         }
                     },
                     {
@@ -478,14 +478,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateTimeAfter'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isAfter(moment(conditionValue), 'minute');
+                            return dayjs(objectValue).isAfter(dayjs(conditionValue), 'minute');
                         }
                     },
                     {
@@ -493,14 +493,14 @@ function getFieldRuleType(type) {
                         title: t('condition.dateTimeAfterOrEqual'),
                         apply: (conditionValue, objectValue) => {
                             if (Number.isInteger(conditionValue)) {
-                                conditionValue = moment().add(Number.parseInt(conditionValue), 'day').toISOString();
+                                conditionValue = dayjs().add(Number.parseInt(conditionValue), 'day').toISOString();
                             }
 
                             if (!conditionValue || !objectValue) {
                                 return false;
                             }
 
-                            return moment(objectValue).isSameOrAfter(moment(conditionValue), 'minute');
+                            return dayjs(objectValue).isSameOrAfter(dayjs(conditionValue), 'minute');
                         }
                     }
                 ],
