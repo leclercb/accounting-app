@@ -2,12 +2,13 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedRuleIds } from 'actions/AppActions';
 import { addRule, deleteRule, duplicateRule, updateRule } from 'actions/RuleActions';
-import { getRules, getSelectedRuleIds, getSelectedRules } from 'selectors/RuleSelectors';
+import { getRules, getSelectedRuleIds, getSelectedRules, getSortedRules } from 'selectors/RuleSelectors';
 
 export function useRuleApi() {
     const dispatch = useDispatch();
 
     const rules = useSelector(getRules);
+    const sortedRules = useSelector(getSortedRules);
 
     const selectedRuleIds = useSelector(getSelectedRuleIds);
     const selectedRules = useSelector(getSelectedRules);
@@ -39,6 +40,7 @@ export function useRuleApi() {
 
     return {
         rules,
+        sortedRules,
         selectedRuleIds,
         selectedRules,
         addRule: addRuleCallback,

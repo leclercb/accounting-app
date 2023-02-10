@@ -140,7 +140,7 @@ function MovementMenu({ selectedMovements, field, children }) {
                 <Menu.SubMenu
                     key="addToRule"
                     title={(<Icon icon="plus" text="Ajouter à la règle" />)}>
-                    {ruleApi.rules.map(rule => (
+                    {ruleApi.sortedRules.map(rule => (
                         <Menu.Item key={rule.id} action={{ type: 'addToRule', ruleId: rule.id }}>
                             <RuleTitle ruleId={rule.id} />
                         </Menu.Item>

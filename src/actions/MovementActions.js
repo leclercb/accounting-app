@@ -1,6 +1,7 @@
 import { t } from 'i18next';
 import { parse } from 'papaparse';
 import { v4 as uuid } from 'uuid';
+import { saveData } from 'actions/AppActions';
 import {
     addObject,
     deleteObject,
@@ -19,10 +20,14 @@ import { getSettings } from 'selectors/SettingSelectors';
 import { assignCategoryToMovement } from 'utils/MovementUtils';
 import { changeExtension } from 'utils/FileUtils';
 
-export function loadMovementsFromFile(file, bank = null) {
+export function loadMovementsFromFile(file, bank = null, saveFirst = false) {
     return async (dispatch, getState) => {
         const state = getState();
         const settings = getSettings(state);
+
+        if (saveFirst) {
+            await dispatch(saveData());
+        }
 
         await dispatch(setMovementFile(changeExtension(file, 'json')));
 

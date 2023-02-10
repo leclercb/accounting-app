@@ -4,6 +4,7 @@ export default {
             'add_objects_one': 'Add object of type "{{property}}"',
             'add_objects_one_other': 'Add {{count}} objects of type "{{property}}"',
             'already_latest_version': 'You already have the latest version',
+            'categories': 'Categories',
             'category_field': {
                 'id': 'ID',
                 'lastBalance': 'Last annual balance',
@@ -58,6 +59,7 @@ export default {
             'delete_object_question': 'Delete "{{title}}" ?',
             'duplicate_object_question': 'Duplicate "{{title}}" ?',
             'error_occurred': 'An error occurred',
+            'expenses': 'Expenses',
             'field_option': {
                 'dateFormat': 'Date format',
                 'timeFormat': 'Time format',
@@ -84,6 +86,7 @@ export default {
                 'textarea': 'Textarea',
                 'text': 'Text'
             },
+            'income': 'Income',
             'load_database': 'Load database',
             'load_from_file': 'Load "{{property}}" from file',
             'movement_field': {
@@ -107,6 +110,10 @@ export default {
                 'debit': 'Debit',
                 'credit': 'Credit'
             },
+            'print_categories': 'Print categories',
+            'print_expenses': 'Print expenses',
+            'print_income': 'Print income',
+            'print_movements': 'Print movements',
             'process_running': 'Another process is currently running',
             'progress': 'Progress',
             'redo_action': 'Redo action',
@@ -174,6 +181,7 @@ export default {
             'add_objects_one': 'Ajouter un objet de type "{{property}}"',
             'add_objects_one_other': 'Ajouter {{count}} objets de type "{{property}}"',
             'already_latest_version': 'Vous avez déjà la dernière version',
+            'categories': 'Catégories',
             'category_field': {
                 'id': 'ID',
                 'lastBalance': 'Dernier solde annuel',
@@ -228,6 +236,7 @@ export default {
             'delete_object_question': 'Supprimer "{{title}}" ?',
             'duplicate_object_question': 'Dupliquer "{{title}}" ?',
             'error_occurred': 'Une erreur est servenue',
+            'expenses': 'Dépenses',
             'field_option': {
                 'dateFormat': 'Format des dates',
                 'timeFormat': 'Format des heures',
@@ -254,6 +263,7 @@ export default {
                 'textarea': 'Zone de texte',
                 'text': 'Texte'
             },
+            'income': 'Revenus',
             'load_database': 'Charger la base de données',
             'load_from_file': 'Charger les "{{property}}" d\'un fichier',
             'movement_field': {
@@ -277,6 +287,10 @@ export default {
                 'debit': 'Débit',
                 'credit': 'Crédit'
             },
+            'print_categories': 'Imprimer les catégories',
+            'print_expenses': 'Imprimer les dépenses',
+            'print_income': 'Imprimer les revenus',
+            'print_movements': 'Imprimer les mouvements',
             'process_running': 'Un autre processus est déjà en cours d\'exécution',
             'progress': 'Progrès',
             'redo_action': 'Rétablir l\'action',

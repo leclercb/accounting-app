@@ -1,25 +1,28 @@
+import { t } from 'i18next';
 import sortBy from 'lodash/sortBy';
 import { v4 as uuid } from 'uuid';
 import { getDataFolder, saveBufferToFile } from 'actions/ActionUtils';
 import { updateProcess } from 'actions/ThreadActions';
 import { getCategoryFields } from 'data/DataCategoryFields';
 import { getMovementFields } from 'data/DataMovementFields';
-import { getSettings } from 'selectors/SettingSelectors';
+import { getMovementFile, getSettings } from 'selectors/SettingSelectors';
 import { ensureDir, joinSync, openPath } from 'utils/ElectronIpc';
 import { printDocument, printTable } from 'utils/PrintUtils';
 
 export function printExpenses(categories) {
-    return printCategories(categories, 'expenses.pdf', 'Expense', 'Print expense');
+    return printCategories(categories, 'expenses.pdf', t('expenses'), t('print_expenses'));
 }
 
 export function printIncome(categories) {
-    return printCategories(categories, 'income.pdf', 'Income', 'Print income');
+    return printCategories(categories, 'income.pdf', t('income'), t('print_income'));
 }
 
-export function printCategories(categories, fileName = 'categories.pdf', documentTitle = 'Categories', processTitle = 'Print categories') {
+export function printCategories(categories, fileName = 'categories.pdf', documentTitle = t('categories'), processTitle = t('print_categories')) {
     return (dispatch, getState) => {
         const state = getState();
         const settings = getSettings(state);
+
+        const movementFile = getMovementFile(state);
 
         const fields = getCategoryFields();
         const sortedFields = sortBy(fields, field => settings['categoryColumnOrder_' + field.id] || 0);
@@ -32,6 +35,7 @@ export function printCategories(categories, fileName = 'categories.pdf', documen
             categories,
             fileName,
             documentTitle,
+            movementFile,
             processTitle);
     };
 }
@@ -40,6 +44,8 @@ export function printMovements(movements) {
     return (dispatch, getState) => {
         const state = getState();
         const settings = getSettings(state);
+
+        const movementFile = getMovementFile(state);
 
         const fields = getMovementFields(settings);
         const sortedFields = sortBy(fields, field => settings['movementColumnOrder_' + field.id] || 0);
@@ -51,12 +57,13 @@ export function printMovements(movements) {
             sortedAndFilteredFields,
             movements,
             'movements.pdf',
-            'Movements',
-            'Print movements');
+            t('movements'),
+            movementFile,
+            t('print_movements'));
     };
 }
 
-async function printObjects(dispatch, state, fields, objects, fileName, documentTitle, processTitle) {
+async function printObjects(dispatch, state, fields, objects, fileName, documentTitle, documentSubTitle, processTitle) {
     const processId = uuid();
 
     dispatch(updateProcess({
@@ -66,7 +73,7 @@ async function printObjects(dispatch, state, fields, objects, fileName, document
     }));
 
     try {
-        const doc = printDocument(documentTitle, 'l');
+        const doc = printDocument(documentTitle, documentSubTitle, 'l');
         printTable(doc, null, fields, objects, state);
 
         const dataFolder = await getDataFolder(getSettings(state));

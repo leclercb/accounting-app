@@ -33,7 +33,7 @@ function RuleView() {
             <Row>
                 <Col span={6}>
                     <RuleList
-                        rules={ruleApi.rules}
+                        rules={ruleApi.sortedRules}
                         selectedRuleId={selectedRuleId}
                         addRule={onAddRule}
                         duplicateRule={onDuplicateRule}

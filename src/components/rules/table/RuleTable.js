@@ -23,7 +23,7 @@ function RuleTable() {
 
     const gridRef = useRef();
 
-    const dataSource = ruleApi.rules;
+    const dataSource = ruleApi.sortedRules;
 
     useEffect(() => {
         if (gridRef.current) {

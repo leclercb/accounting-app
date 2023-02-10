@@ -65,7 +65,7 @@ function Header() {
         }
 
         if (filePath.endsWith('.json')) {
-            await movementApi.loadMovementsFromFile(filePath);
+            await movementApi.loadMovementsFromFile(filePath, null, true);
             return;
         }
 
@@ -119,7 +119,7 @@ function Header() {
                 });
             });
 
-            await movementApi.loadMovementsFromFile(filePath, bank);
+            await movementApi.loadMovementsFromFile(filePath, bank, true);
         } catch (error) { // eslint-disable-line no-empty
 
         }
@@ -197,9 +197,9 @@ function Header() {
                 {appApi.selectedView === 'movements' ? createButton('folder-open', 'Charger des mouvements', onLoadMovements, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('wand-magic-sparkles', 'Calculer les catégories', onComputeCategories, false) : null}
                 {appApi.selectedView === 'movements' ? createButton('folder-open', 'Afficher les règles concordantes', onShowMatchingRulesManager, movementApi.selectedMovementIds.length !== 1) : null}
-                {appApi.selectedView === 'expenses' ? createButton('print', 'Print Expenses', onPrintExpenses) : null}
-                {appApi.selectedView === 'income' ? createButton('print', 'Print Income', onPrintIncome) : null}
-                {appApi.selectedView === 'movements' ? createButton('print', 'Print Movements', onPrintMovements) : null}
+                {appApi.selectedView === 'expenses' ? createButton('print', t('print_expenses'), onPrintExpenses) : null}
+                {appApi.selectedView === 'income' ? createButton('print', t('print_income'), onPrintIncome) : null}
+                {appApi.selectedView === 'movements' ? createButton('print', t('print_movements'), onPrintMovements) : null}
             </Button.Group>
         </>
     );

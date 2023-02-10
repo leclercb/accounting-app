@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { getSettingValues, isCoreSetting } from 'data/DataSettings';
 import { setElectronLoggerLevel } from 'utils/LogUtils';
 

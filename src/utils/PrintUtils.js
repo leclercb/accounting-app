@@ -7,7 +7,7 @@ import { merge } from 'utils/ObjectUtils';
 
 const DEFAULT_START_Y = 30;
 
-export function printDocument(title, orientation = 'p') {
+export function printDocument(title, subTitle, orientation = 'p') {
     const doc = new jsPDF(orientation, 'pt');
 
     doc.setFont('helvetica');
@@ -31,6 +31,15 @@ export function printDocument(title, orientation = 'p') {
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(0, 0, 0);
     doc.text(title, 140, 30);
+
+    // SubTitle
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.text(
+        subTitle,
+        doc.internal.pageSize.getWidth() - (doc.getStringUnitWidth(subTitle) * 8) - 80,
+        40);
 
     // Print Date
     doc.setFontSize(8);

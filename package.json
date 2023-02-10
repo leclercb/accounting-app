@@ -23,7 +23,7 @@
         "@fortawesome/fontawesome-svg-core": "^6.3.0",
         "@fortawesome/free-solid-svg-icons": "^6.3.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
-        "antd": "^4.24.7",
+        "antd": "^5.2.0",
         "buffer": "^6.0.3",
         "craco-antd": "^2.0.0",
         "dayjs": "^1.11.7",
