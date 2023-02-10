@@ -1,3 +1,12 @@
+# 1.3.0
+
+## New Features
+
+* Migrate to antd5
+* Print
+
+# 1.2.0
+
 # 1.1.0
 
 ## New Features
