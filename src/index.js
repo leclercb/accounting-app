@@ -1,7 +1,7 @@
 import React from 'react';
 import { ConfigProvider, notification } from 'antd';
 import { t } from 'i18next';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from 'App';
 import { initializeShortcuts } from './shortcuts';
@@ -28,7 +28,9 @@ window.addEventListener('error', function (e) {
     return false;
 });
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
     <ConfigProvider
         theme={{
             token: {
@@ -46,5 +48,4 @@ ReactDOM.render(
                 <App />
             </React.Suspense>
         </Provider>
-    </ConfigProvider >,
-    document.getElementById('root'));
+    </ConfigProvider >);

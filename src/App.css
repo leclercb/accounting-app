@@ -16,6 +16,10 @@
     border-width: 1px !important;
 }
 
+.ant-btn[disabled] {
+    background-color: #bbbbbb;
+}
+
 .ant-btn-primary svg {
     color: #ffffff !important;
 }
@@ -181,6 +185,7 @@
 
 .selected-view {
     background-color: #c8d2dd !important;
+    font-weight: bold;
 }
 
 .selected-list-item {

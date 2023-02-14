@@ -353,6 +353,7 @@ export function getFieldComponents(type, options) {
                     return (
                         <Select
                             onBlur={props.onCommit}
+                            onDeselect={props.onCommit}
                             onClear={props.onCommit}
                             dropdownMatchSelectWidth={false}
                             mode="multiple"
@@ -388,6 +389,7 @@ export function getFieldComponents(type, options) {
                     return (
                         <Select
                             onBlur={props.onCommit}
+                            onDeselect={props.onCommit}
                             onClear={props.onCommit}
                             dropdownMatchSelectWidth={false}
                             mode="tags"
