@@ -22,20 +22,6 @@ function createMainWindow(settings, isQuitInitiated) {
     let closed = false;
 
     if (isDevelopment) {
-        const {
-            default: installExtension,
-            REACT_DEVELOPER_TOOLS,
-            REDUX_DEVTOOLS
-        } = require('electron-devtools-installer');
-
-        installExtension(REACT_DEVELOPER_TOOLS)
-            .then(name => { log.info(`Added extension: ${name}`); })
-            .catch(error => { log.error('An error occurred: ', error); });
-
-        installExtension(REDUX_DEVTOOLS)
-            .then(name => { log.info(`Added extension: ${name}`); })
-            .catch(error => { log.error('An error occurred: ', error); });
-
         window.webContents.openDevTools();
     }
 
