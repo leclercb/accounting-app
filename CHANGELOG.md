@@ -1,3 +1,10 @@
+# 1.3.1
+
+## Bug Fixes
+
+* CSS after antd5 migration
+* Delete tag
+
 # 1.3.0
 
 ## New Features
