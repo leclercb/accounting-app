@@ -42,7 +42,10 @@
             "error",
             "prefer-double"
         ],
-        "linebreak-style": 0,
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
         "object-shorthand": [
             "error",
             "always"

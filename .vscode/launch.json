@@ -20,7 +20,7 @@
             },
             "args" : ["."],
             "env": {
-                "ACCOUNTING_DATA_FOLDER": "C:\\Users\\benja\\Documents\\accounting-app\\data"
+                "ACCOUNTING_DATA_FOLDER": "/Users/leclercb/Documents/accounting-app/data"
             }
         }
     ]
